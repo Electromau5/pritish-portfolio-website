@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const CaseStudyModal = ({
     isOpen,
@@ -367,6 +368,9 @@ const CaseStudyModal = ({
                             ))}
                         </div>
                     </div>
+                </div>
+                <div className="absolute bottom-6 right-6 z-[9999] bg-white/80 dark:bg-gray-900/80 rounded-lg shadow-lg p-1">
+                    <ThemeToggle />
                 </div>
             </div>
 
