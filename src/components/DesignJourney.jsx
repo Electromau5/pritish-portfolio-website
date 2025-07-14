@@ -1,7 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ExternalLink } from 'lucide-react';
+import CaseStudyModal from './CaseStudyModal';
+import { handsAIData } from '../data/handsai.data';
 
-const DesignJourney = ({ scrollY, onProjectClick }) => {
+const DesignJourney = ({ scrollY }) => {
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [expandingCard, setExpandingCard] = useState(null);
+
+    const handleProjectClick = (project, cardElement) => {
+        // For now, only the healthcare project has data
+        if (project.id === 1) {
+            const rect = cardElement.getBoundingClientRect();
+            setExpandingCard({
+                project,
+                position: {
+                    top: rect.top,
+                    left: rect.left,
+                    width: rect.width,
+                    height: rect.height
+                }
+            });
+            setSelectedProject(project);
+            setModalOpen(true);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+        setSelectedProject(null);
+        setExpandingCard(null);
+    };
+
+    const getCaseStudyData = (projectId) => {
+        switch (projectId) {
+            case 1:
+                return handsAIData;
+            default:
+                return null;
+        }
+    };
+
     const projects = [
         {
             id: 1,
@@ -56,18 +95,18 @@ const DesignJourney = ({ scrollY, onProjectClick }) => {
     ];
 
     return (
-        <section id="section-1" className="py-20 bg-gray-50">
+        <section id="section-1" className="py-20 bg-gray-50 dark:bg-gray-800">
             <div className="max-w-6xl mx-auto px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-6">My Design Journey</h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-extralight mb-6 text-gray-900 dark:text-white">My Design Journey</h2>
+                    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                         Five years of evolving from traditional enterprise tools to pioneering AI-powered experiences
                     </p>
                 </div>
 
                 <div className="relative">
                     {/* Timeline line */}
-                    <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gray-200" />
+                    <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gray-200 dark:bg-gray-600" />
 
                     {projects.map((project, index) => (
                         <ProjectCard
@@ -75,11 +114,20 @@ const DesignJourney = ({ scrollY, onProjectClick }) => {
                             project={project}
                             index={index}
                             scrollY={scrollY}
-                            onProjectClick={onProjectClick}
+                            onProjectClick={handleProjectClick}
                         />
                     ))}
                 </div>
             </div>
+
+            {/* Case Study Modal */}
+            <CaseStudyModal
+                isOpen={modalOpen}
+                onClose={handleCloseModal}
+                caseStudyData={getCaseStudyData(selectedProject?.id)}
+                accentColor="blue"
+                expandingCard={expandingCard}
+            />
         </section>
     );
 };
@@ -87,9 +135,9 @@ const DesignJourney = ({ scrollY, onProjectClick }) => {
 const ProjectCard = ({ project, index, scrollY, onProjectClick }) => {
     const isEven = index % 2 === 0;
 
-    const handleClick = () => {
+    const handleClick = (event) => {
         if (onProjectClick) {
-            onProjectClick(project.id);
+            onProjectClick(project, event.currentTarget);
         }
     };
 
@@ -97,7 +145,7 @@ const ProjectCard = ({ project, index, scrollY, onProjectClick }) => {
         <div className={`flex items-center mb-16 ${isEven ? 'flex-row-reverse' : ''}`}>
             <div className={`w-1/2 ${isEven ? 'pr-12 text-right' : 'pl-12'}`}>
                 <div
-                    className={`${project.color} p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer border border-white`}
+                    className={`${project.color} dark:bg-gray-700 dark:hover:bg-gray-600 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer border border-white dark:border-gray-600`}
                     style={{
                         transform: `translateY(${Math.max(0, scrollY - 800 - index * 200) * -0.1}px)`
                     }}
@@ -105,20 +153,20 @@ const ProjectCard = ({ project, index, scrollY, onProjectClick }) => {
                 >
                     <div className={`flex items-center space-x-3 mb-4 ${isEven ? 'justify-end' : ''}`}>
                         <span className="text-3xl">{project.image}</span>
-                        <span className="text-sm font-medium text-gray-500">{project.year}</span>
+                        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{project.year}</span>
                     </div>
-                    <h3 className="text-2xl font-medium mb-2 group-hover:text-gray-700 transition-colors">
+                    <h3 className="text-2xl font-medium mb-2 group-hover:text-gray-700 dark:text-white dark:group-hover:text-gray-200 transition-colors">
                         {project.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{project.description}</p>
                     <div className={`flex flex-wrap gap-2 ${isEven ? 'justify-end' : ''}`}>
                         {project.tags.map((tag) => (
-                            <span key={tag} className="px-3 py-1 bg-white/80 rounded-full text-sm text-gray-700">
+                            <span key={tag} className="px-3 py-1 bg-white/80 dark:bg-gray-600/80 rounded-full text-sm text-gray-700 dark:text-gray-200">
                                 {tag}
                             </span>
                         ))}
                     </div>
-                    <div className={`mt-6 flex items-center space-x-2 text-gray-600 group-hover:text-gray-800 transition-colors ${isEven ? 'justify-end' : ''}`}>
+                    <div className={`mt-6 flex items-center space-x-2 text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors ${isEven ? 'justify-end' : ''}`}>
                         <span className="text-sm font-medium">View Case Study</span>
                         <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -126,7 +174,7 @@ const ProjectCard = ({ project, index, scrollY, onProjectClick }) => {
             </div>
 
             {/* Timeline dot */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-900 rounded-full border-4 border-white shadow" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-900 dark:bg-white rounded-full border-4 border-white dark:border-gray-800 shadow" />
 
             <div className="w-1/2" />
         </div>

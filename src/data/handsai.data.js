@@ -1,4 +1,4 @@
-export const healthcareAICaseStudy = {
+export const handsAIData = {
     title: "HealthRecord AI Assistant",
     subtitle: "Transforming healthcare data access with intelligent, HIPAA-compliant AI that reduced physician query time by 70%",
     sections: [
@@ -199,39 +199,6 @@ export const healthcareAICaseStudy = {
                                 title: "Privacy Protection",
                                 description: "Advanced encryption and access controls ensure HIPAA compliance with zero data retention policies."
                             }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            title: "Implementation",
-            content: [
-                {
-                    type: "hero",
-                    data: {
-                        title: "Seamless Healthcare Integration",
-                        description: "Deployed across multiple healthcare systems with comprehensive training and support for medical staff adoption."
-                    }
-                },
-                {
-                    type: "text",
-                    data: {
-                        title: "Deployment Strategy",
-                        paragraphs: [
-                            "We implemented a phased rollout starting with a pilot program in the emergency department, where time pressure made the value proposition most clear to users.",
-                            "Change management included hands-on training sessions, peer champions program, and continuous feedback collection to refine the system based on real-world usage.",
-                            "Integration with existing EMR systems required custom API development to ensure seamless data flow without disrupting established clinical workflows."
-                        ]
-                    }
-                },
-                {
-                    type: "stats",
-                    data: {
-                        items: [
-                            { value: "3 weeks", label: "Average Adoption Time" },
-                            { value: "94%", label: "Daily Active Users" },
-                            { value: "15 min", label: "Daily Time Saved per User" }
                         ]
                     }
                 }
