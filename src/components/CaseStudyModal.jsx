@@ -452,80 +452,126 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                     </div>
                 )}
                 {activeSubsection === 1 && (
-                    // Primary Roles content
-                    <div className="space-y-2 max-w-4xl mx-auto">
-                        <div className="grid md:grid-cols-2 gap-x-16 gap-y-8 items-start">
+                    // Primary Roles content - Minimal Clean Design
+                    <div className="max-w-5xl mx-auto space-y-16">
+                        <div className="grid md:grid-cols-2 gap-20 items-start">
                             {/* Left column: Team */}
-                            <div className="space-y-2">
-                                <h2 className="text-xl font-semibold mb-0 uppercase" style={{ color: '#0C5C8A' }}>TEAM</h2>
-                                <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.12)', marginBottom: '0.25rem' }} />
-                                <div>
-                                    <ul className="list-disc pl-6 space-y-2 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <li>1 Lead Designer (Pritish)</li>
-                                        <li>2 Junior Designers</li>
-                                        <li>1 Product Manager</li>
-                                        <li>1 AI Researcher</li>
-                                        <li>2 Backend Engineers</li>
-                                        <li>2 Frontend Engineers</li>
-                                    </ul>
+                            <div className="space-y-8">
+                                <div className="text-center">
+                                    <h2 className="text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-2">Team</h2>
+                                    <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Lead Designer</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">(Pritish)</div>
+                                    </div>
+                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Junior Designers</div>
+                                    </div>
+                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Product Manager</div>
+                                    </div>
+                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white">AI Researcher</div>
+                                    </div>
+                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Backend Engineers</div>
+                                    </div>
+                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
+                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Frontend Engineers</div>
+                                    </div>
                                 </div>
                             </div>
+
                             {/* Right column: My Primary Roles */}
-                            <div className="space-y-2">
-                                <h2 className="text-xl font-semibold mb-0 uppercase" style={{ color: '#0C5C8A' }}>MY PRIMARY ROLES</h2>
-                                <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.12)', marginBottom: '0.25rem' }} />
-                                <div>
-                                    <ul className="list-disc pl-6 space-y-2">
-                                        <li className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                                            <span className="font-semibold text-gray-900 dark:text-white">Design Leadership</span>: Took full ownership of the design process, ensuring alignment, on-time delivery, and a cohesive user experience.
-                                        </li>
-                                        <li className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                                            <span className="font-semibold text-gray-900 dark:text-white">Human-Centered Approach</span>: Led extensive research and usability testing to understand user pain points and identify areas where the AI could deliver real value.
-                                        </li>
-                                        <li className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                                            <span className="font-semibold text-gray-900 dark:text-white">Cross-Functional Delivery</span>: Facilitated collaboration between design, engineering, and AI teams to ensure seamless integration of AI capabilities into the platform’s core features.
-                                        </li>
-                                    </ul>
+                            <div className="space-y-8">
+                                <div className="text-center">
+                                    <h2 className="text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-2">My Primary Roles</h2>
+                                    <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
+                                </div>
+
+                                <div className="space-y-8">
+                                    <div className="text-center py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Design Leadership</h3>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
+                                            Took full ownership of the design process, ensuring alignment, on-time delivery, and a cohesive user experience.
+                                        </p>
+                                    </div>
+
+                                    <div className="text-center py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Human-Centered Approach</h3>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
+                                            Led extensive research and usability testing to understand user pain points and identify areas where the AI could deliver real value.
+                                        </p>
+                                    </div>
+
+                                    <div className="text-center py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Cross-Functional Delivery</h3>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
+                                            Facilitated collaboration between design, engineering, and AI teams to ensure seamless integration of AI capabilities into the platform's core features.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 )}
+
                 {activeSubsection === 2 && (
-                    // Project Impact content
-                    <div className="max-w-5xl mx-auto overflow-y-auto max-h-[70vh] project-impact-scroll">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>$250K</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Projected Reduction in Administrative Overhead Costs</div>
+                    // Project Impact content - Minimal Clean Design
+                    <div className="max-w-6xl mx-auto space-y-16">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl font-extralight text-gray-900 dark:text-white uppercase tracking-[0.3em] mb-4">Project Impact</h2>
+                            <div className="w-16 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
+                        </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>$250K</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Projected Reduction in Administrative Overhead Costs</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>45%</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Increase in Documentation Accuracy</div>
+
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>45%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Increase in Documentation Accuracy</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>40%</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Reduction in Manual Data Entry Time</div>
+
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>40%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Reduction in Manual Data Entry Time</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>68%</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Percentage of Missing Records Flagged</div>
+
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>68%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Percentage of Missing Records Flagged</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>30%</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Faster Case Processing</div>
+
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>30%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Faster Case Processing</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>60%</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Reduction in Certification Errors</div>
+
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>60%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Reduction in Certification Errors</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>20%</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Faster Benefit Processing</div>
+
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>20%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Faster Benefit Processing</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <div className="text-xl font-medium mb-2" style={{ color: '#0C5C8A' }}>90%</div>
-                                <div className="text-gray-600 dark:text-gray-300 text-sm">Faster Report Generation</div>
+
+                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>90%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Faster Report Generation</div>
                             </div>
                         </div>
                     </div>

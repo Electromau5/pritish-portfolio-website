@@ -18,14 +18,14 @@ const HeroSection = ({ scrollY, onExploreClick, onScrollDown }) => {
                         animationDelay: '0.3s'
                     }}
                 >
-                    <h1 className="text-6xl md:text-7xl font-extralight mb-6 leading-tight text-gray-900 dark:text-white">
-                        Designing the Future of
-                        <span className="block font-light bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                            Enterprise AI
-                        </span>
+                    <h1 className="text-6xl md:text-7xl font-extralight mb-4 leading-tight text-gray-900 dark:text-white">
+                        Hi, I&apos;m Pritish
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 leading-relaxed">
-                        Senior UX Designer crafting intelligent, human-centered experiences for complex enterprise platforms
+                    <p className="text-4xl md:text-5xl font-medium text-gray-800 dark:text-gray-100 mb-8 leading-snug">
+                        A Design Leader in Enterprise AI
+                    </p>
+                    <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-300 mb-12" style={{ lineHeight: 2.2 }}>
+                        For the past five years, I&apos;ve led design teams across large-scale private and federal organizations, solving some of the most complex enterprise challenges impacting thousands of users across the United States. Now, I’m fully immersed in the Enterprise AI space, driven by a mission to make these products truly human-first
                     </p>
                     <div className="flex flex-col items-center space-y-8">
                         <button
