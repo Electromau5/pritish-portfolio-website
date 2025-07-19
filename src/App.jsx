@@ -12,7 +12,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/home');
-    }, 5000); // 5 seconds
+    }, 7000); // 7 seconds
     return () => clearTimeout(timer);
   }, [navigate]);
 
@@ -24,7 +24,7 @@ const SplashScreen = () => {
         style={{ borderRadius: '1rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', maxWidth: 600, width: '100%', height: 'auto', background: '#fff' }}
       />
       <div style={{ width: 256, height: 8, background: '#e5e7eb', borderRadius: 9999, overflow: 'hidden', marginTop: 32 }}>
-        <div style={{ height: '100%', background: '#2563eb', width: '100%', animation: 'loadingBar 5s linear forwards' }} />
+        <div style={{ height: '100%', background: '#2563eb', width: '100%', animation: 'loadingBar 7s linear forwards' }} />
       </div>
       <style>{`
         @keyframes loadingBar {
@@ -52,11 +52,11 @@ const UXPortfolio = () => {
   };
 
   const handleExploreClick = () => {
-    scrollToSection(1); // Now scrolls to AboutSection
+    scrollToSection(2); // Now scrolls to AboutSection (Bridging Human Needs with AI Possibilities)
   };
 
   const handleScrollDown = () => {
-    scrollToSection(1); // Now scrolls to AboutSection
+    scrollToSection(2); // Now scrolls to AboutSection (Bridging Human Needs with AI Possibilities)
   };
 
   return (

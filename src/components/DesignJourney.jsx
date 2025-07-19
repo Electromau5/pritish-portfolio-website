@@ -44,53 +44,48 @@ const DesignJourney = ({ scrollY }) => {
     const projects = [
         {
             id: 1,
-            title: "HealthRecord AI Assistant",
+            title: "Transforming Healthcare with Smart Automation",
             subtitle: "Healthcare • AI Chatbot",
             year: "2024",
-            description: "Designed an intelligent healthcare records assistant that reduced physician query time by 70% while maintaining HIPAA compliance.",
-            tags: ["AI/ML", "Healthcare", "Conversational UI"],
-            image: "🏥",
-            color: "bg-blue-50 hover:bg-blue-100"
+            description: "Redefining healthcare case management by embedding an intelligent assistant that turns complex case workflows into seamless, insight-driven experiences.",
+            tags: ["Healthcare", "Conversational AI", "Case Automation"],
+            color: "bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/30"
         },
         {
             id: 2,
-            title: "EduInsights Platform",
+            title: "AI for Smarter School Decisions",
             subtitle: "Education • Data Analytics",
-            year: "2024",
-            description: "Created an AI-powered analytics platform helping administrators identify student success patterns across 200+ schools.",
-            tags: ["AI/ML", "Data Visualization", "Education"],
-            image: "📊",
-            color: "bg-green-50 hover:bg-green-100"
+            year: "2023",
+            description: "Distilling student and school data into clear, actionable insights that empower educators with real-time clarity and turn data complexity into strategic action.",
+            tags: ["AI Insights", "Data Visualization", "Education"],
+            color: "bg-green-50 hover:bg-green-100 dark:bg-green-900/20 dark:hover:bg-green-900/30"
         },
         {
             id: 3,
-            title: "Verizon Project Hub",
+            title: "Simplifying Verizon's Engineering Operations",
             subtitle: "Enterprise • Project Management",
-            year: "2023",
-            description: "Redesigned project management workflows for Verizon's engineering teams, improving task completion rates by 45%.",
-            tags: ["Enterprise", "Workflow Design", "Collaboration"],
-            image: "🔧",
-            color: "bg-purple-50 hover:bg-purple-100"
+            year: "2021",
+            description: "Redesigned project management workflows to empower Verizon's engineering and network teams to manage complex initiatives from inception to delivery.",
+            tags: ["Project Management", "Workflow Design", "Collaboration"],
+            color: "bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/20 dark:hover:bg-purple-900/30"
         },
         {
             id: 4,
-            title: "Network Operations Center",
+            title: "Structuring Network Data for Greater Clarity and Speed",
             subtitle: "Enterprise • Monitoring Dashboard",
-            year: "2022",
-            description: "Built comprehensive monitoring dashboards for network operations, reducing incident response time by 60%.",
-            tags: ["Real-time Data", "Enterprise", "Operations"],
-            image: "📡",
-            color: "bg-orange-50 hover:bg-orange-100"
+            year: "2021",
+            description: "Reengineered Verizon’s diagnostic interface by flattening overloaded network hierarchies into a modular, intuitive experience. ",
+            tags: ["Real-time Data", "Project Management", "Operations"],
+            color: "bg-orange-50 hover:bg-orange-100 dark:bg-orange-900/20 dark:hover:bg-orange-900/30"
         },
         {
             id: 5,
-            title: "Customer Service Portal",
+            title: "Reimagining Network Search for Faster Field Operations",
             subtitle: "Enterprise • Customer Experience",
             year: "2021",
-            description: "Transformed legacy customer service tools into an intuitive, unified platform serving 10M+ users annually.",
-            tags: ["Customer Experience", "Enterprise", "Service Design"],
-            image: "🎯",
-            color: "bg-pink-50 hover:bg-pink-100"
+            description: "Redesigned Verizon's internal search function into a intuitive interface that enhanced metadata transparency, and reorganized search logic.",
+            tags: ["Customer Experience", "Enterprise Search", "Service Design"],
+            color: "bg-pink-50 hover:bg-pink-100 dark:bg-pink-900/20 dark:hover:bg-pink-900/30"
         }
     ];
 

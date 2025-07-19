@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Navigation = ({ onNavigate, name = "Pritish Sai" }) => {
     const navItems = [
-        { label: "Work", sectionIndex: 0 },
         { label: "About", sectionIndex: 2 },
+        { label: "Work", sectionIndex: 1 },
+        { label: "Blog", href: "https://medium.com/ai-ui" },
         { label: "Contact", sectionIndex: 3 }
     ];
     const navigate = useNavigate();
@@ -22,13 +23,23 @@ const Navigation = ({ onNavigate, name = "Pritish Sai" }) => {
                 </button>
                 <div className="flex items-center space-x-8">
                     {navItems.map((item) => (
-                        <button
-                            key={item.label}
-                            onClick={() => onNavigate(item.sectionIndex)}
-                            className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-gray-900 dark:text-white"
-                        >
-                            {item.label}
-                        </button>
+                        item.href ? (
+                            <button
+                                key={item.label}
+                                onClick={() => window.open(item.href, '_blank', 'noopener,noreferrer')}
+                                className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-gray-900 dark:text-white font-normal"
+                            >
+                                {item.label}
+                            </button>
+                        ) : (
+                            <button
+                                key={item.label}
+                                onClick={() => onNavigate(item.sectionIndex)}
+                                className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-gray-900 dark:text-white font-normal"
+                            >
+                                {item.label}
+                            </button>
+                        )
                     ))}
                     <ThemeToggle />
                 </div>

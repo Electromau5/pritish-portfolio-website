@@ -24,15 +24,15 @@ const HeroSection = ({ scrollY, onExploreClick, onScrollDown }) => {
                     <p className="text-4xl md:text-5xl font-medium text-gray-800 dark:text-gray-100 mb-8 leading-snug">
                         A Design Leader in Enterprise AI
                     </p>
-                    <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-300 mb-12" style={{ lineHeight: 2.2 }}>
-                        For the past five years, I&apos;ve led design teams across large-scale private and federal organizations, solving some of the most complex enterprise challenges impacting thousands of users across the United States. Now, I’m fully immersed in the Enterprise AI space, driven by a mission to make these products truly human-first
+                    <p className="text-xl md:text-2xl font-normal text-gray-600 dark:text-gray-300 mb-12" style={{ lineHeight: 2.2 }}>
+                        For the past five years, I&apos;ve led design teams across large-scale private and federal organizations, solving some of the most complex enterprise challenges impacting thousands of users across the United States. Now, I'm fully immersed in the Enterprise AI space, driven by a mission to make these products truly human-first
                     </p>
                     <div className="flex flex-col items-center space-y-8">
                         <button
                             onClick={onExploreClick}
                             className="group flex items-center space-x-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-300 hover:shadow-lg hover:scale-105"
                         >
-                            <span>Explore My Journey</span>
+                            <span className="font-medium">About me</span>
                             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                         <ChevronDown

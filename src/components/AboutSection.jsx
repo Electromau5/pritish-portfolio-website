@@ -14,18 +14,18 @@ const AboutSection = () => {
             <div className="max-w-4xl mx-auto px-6">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-extralight mb-8 text-gray-900 dark:text-white">
+                        <h2 className="text-4xl md:text-5xl font-light mb-8 text-gray-900 dark:text-white">
                             Bridging Human Needs with AI Possibilities
                         </h2>
                         <div className="space-y-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                            <p>
-                                I believe that the best AI experiences don't feel like AI at all — they feel intuitive, trustworthy, and genuinely helpful.
+                            <p className="font-normal">
+                                I began my career in enterprise design at Verizon, focusing on large-scale systems that serve complex workflows and use-cases. At the DOE, I shifted toward Enterprise AI, where the role of design expanded beyond usability to shaping how people work with intelligent systems.
                             </p>
-                            <p>
-                                Over the past five years, I've specialized in designing enterprise platforms that harness AI's power while maintaining the human touch that makes technology truly valuable.
+                            <p className="font-normal">
+                                My belief has evolved: the best AI doesn't feel like AI — it feels human. It guides, supports, and empowers without overwhelming. Human-AI collaboration should enhance decision-making, not replace it.
                             </p>
-                            <p>
-                                My approach combines rigorous user research, rapid prototyping, and close collaboration with engineering teams to create solutions that scale across complex organizations.
+                            <p className="font-normal">
+                                I focus on designing AI-powered tools that are scalable, intuitive, and grounded in user research. By collaborating closely with engineers, I ensure these systems meet real needs while staying adaptable in fast-moving environments.
                             </p>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ const AboutSection = () => {
                             {skills.map((skill) => (
                                 <div key={skill} className="flex items-center space-x-3">
                                     <div className="w-2 h-2 bg-gray-900 dark:bg-white rounded-full" />
-                                    <span className="text-gray-700 dark:text-gray-300">{skill}</span>
+                                    <span className="text-gray-700 dark:text-gray-300 font-normal">{skill}</span>
                                 </div>
                             ))}
                         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import AnimatedCloseButton from './AnimatedCloseButton';
 
 const CaseStudyModal = ({
     isOpen,
@@ -271,40 +272,35 @@ const CaseStudyModal = ({
                 {/* Header */}
                 <div className="sticky top-0 z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-700">
                     <div className="flex items-center justify-between p-6">
-                        <div className="flex-1">
-                            <h1 className="text-2xl font-light text-gray-900 dark:text-white">{title}</h1>
-                            <p className="text-gray-600 dark:text-gray-300 mt-1">{subtitle}</p>
+                        <div className="flex-1 min-w-0">
+                            <h1 className="text-2xl font-light text-gray-900 dark:text-white truncate">{title}</h1>
+                            <p className="text-gray-600 dark:text-gray-300 mt-1 truncate">{subtitle}</p>
                         </div>
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-4 flex-shrink-0">
                             <span className="text-sm text-gray-500 dark:text-gray-400">
                                 {activeSection + 1} of {standardizedSections?.length}
                             </span>
-                            <button
-                                onClick={onClose}
-                                className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
-                            >
-                                <X size={20} />
-                            </button>
+                            <AnimatedCloseButton onClick={onClose} />
                         </div>
                     </div>
 
                     {/* Section Navigation */}
-                    <div className="px-6 pb-4">
+                    <div className="px-6 pb-4 overflow-x-hidden">
                         <div className="flex items-center space-x-2">
                             {menuStartIndex > 0 && (
                                 <button
                                     onClick={prevMenuItems}
-                                    className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+                                    className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors flex-shrink-0"
                                 >
                                     <ChevronLeft size={16} />
                                 </button>
                             )}
-                            <div className="flex-1 flex space-x-1 justify-center">
+                            <div className="flex-1 flex space-x-1 justify-center overflow-x-auto scrollbar-hide">
                                 {standardizedSections?.slice(menuStartIndex, menuStartIndex + visibleMenuItems).map((section, index) => (
                                     <button
                                         key={menuStartIndex + index}
                                         onClick={() => navigateToSection(menuStartIndex + index)}
-                                        className={`px-4 py-2 whitespace-nowrap text-sm font-medium transition-all duration-200 rounded-lg ${activeSection === menuStartIndex + index
+                                        className={`px-4 py-2 whitespace-nowrap text-sm font-medium transition-all duration-200 rounded-lg flex-shrink-0 ${activeSection === menuStartIndex + index
                                             ? `${colors.text} ${colors.light} dark:bg-gray-800`
                                             : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800'
                                             }`}
@@ -316,7 +312,7 @@ const CaseStudyModal = ({
                             {menuStartIndex < maxMenuStartIndex && (
                                 <button
                                     onClick={nextMenuItems}
-                                    className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+                                    className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors flex-shrink-0"
                                 >
                                     <ChevronRight size={16} />
                                 </button>
@@ -325,14 +321,14 @@ const CaseStudyModal = ({
 
                         {/* Internal Navigation for all sections */}
                         {currentSubsections.length > 0 && (
-                            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 overflow-x-hidden">
                                 <div className="flex items-center space-x-2">
-                                    <div className="flex-1 flex space-x-1 justify-center">
+                                    <div className="flex-1 flex space-x-1 justify-center overflow-x-auto scrollbar-hide">
                                         {currentSubsections.map((subsection, index) => (
                                             <button
                                                 key={index}
                                                 onClick={() => navigateToSubsection(index)}
-                                                className={`px-3 py-1.5 whitespace-nowrap text-xs font-medium transition-all duration-200 rounded-md ${activeSubsection === index
+                                                className={`px-3 py-1.5 whitespace-nowrap text-xs font-medium transition-all duration-200 rounded-md flex-shrink-0 ${activeSubsection === index
                                                     ? `${colors.text} ${colors.light} dark:bg-gray-700`
                                                     : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                                                     }`}
@@ -348,8 +344,8 @@ const CaseStudyModal = ({
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 overflow-y-auto">
-                    <div className="relative">
+                <div className="flex-1 overflow-y-auto overflow-x-hidden">
+                    <div className="relative w-full">
                         <div
                             className="flex transition-transform duration-300 ease-in-out"
                             style={{
@@ -360,7 +356,7 @@ const CaseStudyModal = ({
                             {standardizedSections?.map((section, index) => (
                                 <div
                                     key={index}
-                                    className="w-full flex-shrink-0 px-12 pt-8 pb-16"
+                                    className="w-full flex-shrink-0 px-6 md:px-12 pt-8 pb-16"
                                     style={{ width: `${100 / standardizedSections.length}%` }}
                                 >
                                     <SectionContent section={section} colors={colors} activeSubsection={activeSubsection} />
@@ -419,6 +415,15 @@ const CaseStudyModal = ({
   scrollbar-width: thin;
   scrollbar-color: rgba(12,92,138,0.3) transparent;
 }
+
+/* Hide scrollbar for navigation */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
 `}</style>
         </div>
     );
@@ -428,11 +433,11 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
     // For Project Overview section, show different content based on activeSubsection
     if (section === "Project Overview") {
         return (
-            <div className="space-y-12 max-w-7xl mx-auto">
+            <div className="space-y-12 max-w-7xl mx-auto w-full">
                 {activeSubsection === 0 && (
                     // Project Overview content
                     <div className="space-y-8">
-                        <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto pt-2 pb-8 px-8">
+                        <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto pt-2 pb-8 px-4 md:px-8">
                             <div className="space-y-4 pt-2">
                                 <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                                     The Special Supplemental Nutrition Program for Women, Infants, and Children (WIC) serves millions of families across the country, providing critical nutrition assistance and healthcare support.
@@ -453,8 +458,8 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 )}
                 {activeSubsection === 1 && (
                     // Primary Roles content - Minimal Clean Design
-                    <div className="max-w-5xl mx-auto space-y-16">
-                        <div className="grid md:grid-cols-2 gap-20 items-start">
+                    <div className="max-w-5xl mx-auto space-y-16 px-4">
+                        <div className="grid md:grid-cols-2 gap-8 lg:gap-20 items-start">
                             {/* Left column: Team */}
                             <div className="space-y-8">
                                 <div className="text-center">
@@ -462,31 +467,31 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
-                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Lead Designer</div>
+                                <div className="grid grid-cols-2 gap-4 md:gap-6">
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
+                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Lead Designer</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">(Pritish)</div>
                                     </div>
-                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
-                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Junior Designers</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
+                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Junior Designers</div>
                                     </div>
-                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
-                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Product Manager</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
+                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Product Manager</div>
                                     </div>
-                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
-                                        <div className="text-sm font-medium text-gray-900 dark:text-white">AI Researcher</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
+                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">AI Researcher</div>
                                     </div>
-                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
-                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Backend Engineers</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
+                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Backend Engineers</div>
                                     </div>
-                                    <div className="text-center py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <div className="text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
-                                        <div className="text-sm font-medium text-gray-900 dark:text-white">Frontend Engineers</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
+                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Frontend Engineers</div>
                                     </div>
                                 </div>
                             </div>
@@ -498,24 +503,24 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                                 </div>
 
-                                <div className="space-y-8">
-                                    <div className="text-center py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Design Leadership</h3>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
+                                <div className="space-y-6 md:space-y-8">
+                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-3 md:mb-4">Design Leadership</h3>
+                                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto px-2">
                                             Took full ownership of the design process, ensuring alignment, on-time delivery, and a cohesive user experience.
                                         </p>
                                     </div>
 
-                                    <div className="text-center py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Human-Centered Approach</h3>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
+                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-3 md:mb-4">Human-Centered Approach</h3>
+                                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto px-2">
                                             Led extensive research and usability testing to understand user pain points and identify areas where the AI could deliver real value.
                                         </p>
                                     </div>
 
-                                    <div className="text-center py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Cross-Functional Delivery</h3>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto">
+                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-3 md:mb-4">Cross-Functional Delivery</h3>
+                                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto px-2">
                                             Facilitated collaboration between design, engineering, and AI teams to ensure seamless integration of AI capabilities into the platform's core features.
                                         </p>
                                     </div>
@@ -527,66 +532,66 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
 
                 {activeSubsection === 2 && (
                     // Project Impact content - Minimal Clean Design
-                    <div className="max-w-6xl mx-auto space-y-16">
+                    <div className="max-w-6xl mx-auto space-y-16 px-4">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl font-extralight text-gray-900 dark:text-white uppercase tracking-[0.3em] mb-4">Project Impact</h2>
+                            <h2 className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white uppercase tracking-[0.3em] mb-4">Project Impact</h2>
                             <div className="w-16 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>$250K</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Projected Reduction in Administrative Overhead Costs</div>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>$250K</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Projected Reduction in Administrative Overhead Costs</div>
                             </div>
 
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>45%</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Increase in Documentation Accuracy</div>
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>45%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Increase in Documentation Accuracy</div>
                             </div>
 
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>40%</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Reduction in Manual Data Entry Time</div>
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>40%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Manual Data Entry Time</div>
                             </div>
 
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>68%</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Percentage of Missing Records Flagged</div>
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>68%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Percentage of Missing Records Flagged</div>
                             </div>
 
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>30%</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Faster Case Processing</div>
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>30%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Case Processing</div>
                             </div>
 
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>60%</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Reduction in Certification Errors</div>
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>60%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Certification Errors</div>
                             </div>
 
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>20%</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Faster Benefit Processing</div>
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>20%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Benefit Processing</div>
                             </div>
 
-                            <div className="text-center py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                <div className="text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>90%</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-4">Faster Report Generation</div>
+                            <div className="text-center py-8 md:py-12 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-2xl md:text-4xl font-extralight mb-4" style={{ color: '#0C5C8A' }}>90%</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Report Generation</div>
                             </div>
                         </div>
                     </div>
                 )}
                 {activeSubsection === 3 && (
                     // Problem & Solution content
-                    <div className="space-y-12">
+                    <div className="space-y-12 px-4">
                         <div className="text-center mb-12">
                             <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Problem & Solution</h2>
-                            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
                                 Understanding the challenge and designing the right solution
                             </p>
                         </div>
-                        <div className="grid md:grid-cols-2 gap-12">
-                            <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                            <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
                                 <h3 className="text-lg font-semibold mb-6" style={{ color: '#0C5C8A' }}>The Problem</h3>
                                 <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                                     <p>Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems.</p>
@@ -594,7 +599,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <p>The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
                                 </div>
                             </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                            <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
                                 <h3 className="text-lg font-semibold mb-6" style={{ color: '#0C5C8A' }}>The Solution</h3>
                                 <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                                     <p>An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance.</p>
@@ -607,33 +612,33 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 )}
                 {activeSubsection === 4 && (
                     // Design Process content
-                    <div className="space-y-12">
+                    <div className="space-y-12 px-4">
                         <div className="text-center mb-12">
                             <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Design Process</h2>
-                            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
                                 A systematic approach to creating human-centered AI experiences
                             </p>
                         </div>
-                        <div className="grid md:grid-cols-4 gap-6">
-                            <div className={`${colors.light} dark:bg-gray-800 p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-3xl font-light ${colors.text} mb-3`}>1</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Discover</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm">Research and understand user needs</p>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
+                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>1</div>
+                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Discover</h3>
+                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Research and understand user needs</p>
                             </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-3xl font-light ${colors.text} mb-3`}>2</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Define</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm">Synthesize insights and define problems</p>
+                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
+                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>2</div>
+                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Define</h3>
+                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Synthesize insights and define problems</p>
                             </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-3xl font-light ${colors.text} mb-3`}>3</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Design</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm">Create solutions and prototypes</p>
+                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
+                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>3</div>
+                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Design</h3>
+                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Create solutions and prototypes</p>
                             </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-3xl font-light ${colors.text} mb-3`}>4</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Deliver</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm">Test, iterate, and implement</p>
+                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
+                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>4</div>
+                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Deliver</h3>
+                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Test, iterate, and implement</p>
                             </div>
                         </div>
                     </div>
@@ -647,121 +652,30 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
         case "Discovery & Research":
             return (
                 <div className="space-y-12 max-w-7xl mx-auto">
-                    {activeSubsection === 0 && (
-                        // Research Strategy
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Strategy</h2>
-                                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                                    Comprehensive approach to understanding healthcare workflows and user needs
-                                </p>
-                            </div>
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Goals</h3>
-                                    <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p>Understand the complete user journey of healthcare professionals accessing patient information.</p>
-                                        <p>Identify pain points and inefficiencies in current workflows.</p>
-                                        <p>Discover opportunities for AI-powered improvements.</p>
-                                    </div>
-                                </div>
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Questions</h3>
-                                    <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p>How do healthcare professionals currently access patient information?</p>
-                                        <p>What are the most time-consuming tasks in their daily workflow?</p>
-                                        <p>What would make their information access more efficient?</p>
-                                    </div>
-                                </div>
+                    <div className="text-center mb-12">
+                        <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Strategy</h2>
+                        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                            Comprehensive approach to understanding healthcare workflows and user needs
+                        </p>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Goals</h3>
+                            <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Understand the complete user journey of healthcare professionals accessing patient information.</p>
+                                <p>Identify pain points and inefficiencies in current workflows.</p>
+                                <p>Discover opportunities for AI-powered improvements.</p>
                             </div>
                         </div>
-                    )}
-                    {activeSubsection === 1 && (
-                        // Methodologies
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Methodologies</h2>
-                                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                                    Multi-faceted research approach combining qualitative and quantitative methods
-                                </p>
-                            </div>
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Qualitative Methods</h3>
-                                    <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p><strong>Shadowing:</strong> Observed 50+ healthcare professionals during their daily workflows.</p>
-                                        <p><strong>Contextual Interviews:</strong> Conducted 30+ in-depth interviews at point of use.</p>
-                                        <p><strong>Time-Motion Studies:</strong> Measured task completion times and identified bottlenecks.</p>
-                                    </div>
-                                </div>
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Quantitative Methods</h3>
-                                    <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p><strong>Usage Analytics:</strong> Analyzed existing system usage patterns and metrics.</p>
-                                        <p><strong>Survey Research:</strong> Distributed comprehensive surveys to 200+ healthcare professionals.</p>
-                                        <p><strong>Performance Metrics:</strong> Measured current system response times and error rates.</p>
-                                    </div>
-                                </div>
+                        <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Questions</h3>
+                            <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>How do healthcare professionals currently access patient information?</p>
+                                <p>What are the most time-consuming tasks in their daily workflow?</p>
+                                <p>What would make their information access more efficient?</p>
                             </div>
                         </div>
-                    )}
-                    {activeSubsection === 2 && (
-                        // Participants
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Participants</h2>
-                                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                                    Diverse group of healthcare professionals across multiple facilities
-                                </p>
-                            </div>
-                            <div className="grid md:grid-cols-3 gap-8">
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                    <div className={`text-3xl font-light ${colors.text} mb-3`}>25</div>
-                                    <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Physicians</h3>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm">Emergency, Internal Medicine, Cardiology</p>
-                                </div>
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                    <div className={`text-3xl font-light ${colors.text} mb-3`}>15</div>
-                                    <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Nurses</h3>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm">RNs, Nurse Practitioners, Charge Nurses</p>
-                                </div>
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                    <div className={`text-3xl font-light ${colors.text} mb-3`}>10</div>
-                                    <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Medical Assistants</h3>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm">Clinical Support Staff</p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    {activeSubsection === 3 && (
-                        // Research Insights
-                        <div className="space-y-12">
-                            <div className="text-center mb-12">
-                                <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Insights</h2>
-                                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                                    Key findings that shaped the design direction
-                                </p>
-                            </div>
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Time Pressure</h3>
-                                    <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p>Physicians had an average of 15 minutes per patient, with 6 minutes spent on data lookup.</p>
-                                        <p>73% of information lookup tasks were repetitive queries that could be automated.</p>
-                                        <p>Time spent searching for information directly impacted patient care quality.</p>
-                                    </div>
-                                </div>
-                                <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>System Fragmentation</h3>
-                                    <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p>Medical staff used 4-7 different systems daily, causing cognitive load and errors.</p>
-                                        <p>67% of queries happened while moving between patients, requiring mobile-first design.</p>
-                                        <p>No unified interface existed for cross-system information retrieval.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                    </div>
                 </div>
             );
 
