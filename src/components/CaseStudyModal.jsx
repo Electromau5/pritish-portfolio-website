@@ -57,8 +57,8 @@ const CaseStudyModal = ({
     const projectOverviewSubsections = [
         "Project Overview",
         "Primary Roles",
-        "Project Impact",
         "Problem & Solution",
+        "Project Impact",
         "Design Process"
     ];
 
@@ -67,14 +67,12 @@ const CaseStudyModal = ({
         "Project Overview": [
             "Project Overview",
             "Primary Roles",
-            "Project Impact",
             "Problem & Solution",
+            "Project Impact",
             "Design Process"
         ],
         "Discovery & Research": [
             "Research Strategy",
-            "Methodologies",
-            "Participants",
             "Research Insights"
         ],
         "Design Thinking": [
@@ -266,7 +264,7 @@ const CaseStudyModal = ({
                 className="relative w-full h-full max-w-7xl max-h-[95vh] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden focus:outline-none"
                 style={{
                     ...expansionStyles,
-                    animation: expandingCard ? 'none' : (isOpen ? 'modalSlideIn 0.8s ease-out' : 'modalSlideOut 0.6s ease-out')
+                    animation: isOpen ? 'modalSlideIn 0.8s ease-out' : 'modalSlideOut 0.6s ease-out'
                 }}
             >
                 {/* Header */}
@@ -384,22 +382,22 @@ const CaseStudyModal = ({
         @keyframes modalSlideIn {
           from {
             opacity: 0;
-            transform: translateY(100vh);
+            transform: translate(-50%, 100vh);
           }
           to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate(-50%, -50%);
           }
         }
         
         @keyframes modalSlideOut {
           from {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate(-50%, -50%);
           }
           to {
             opacity: 0;
-            transform: translateY(100vh);
+            transform: translate(-50%, 100vh);
           }
         }
       `}</style>
@@ -459,13 +457,13 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                     <div className="space-y-8">
                         <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto pt-2 pb-8 px-4 md:px-8">
                             <div className="space-y-4 pt-2">
-                                <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                                     The Special Supplemental Nutrition Program for Women, Infants, and Children (WIC) is a federally funded public health initiative that supports low-income pregnant women, mothers, infants, and children up to age five by providing access to nutritious foods, healthcare referrals, and nutrition education.
                                 </p>
                                 <h3 className="text-xl font-medium text-gray-900 dark:text-white mt-8 mb-4">
                                     Who is Emma?
                                 </h3>
-                                <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                                     HANDS, a trusted platform in WIC management, has partnered with me to create Emma—an intelligent assistant designed to streamline operations, enhance efficiency, and ensure that professionals can focus on their core mission: <span className="text-black dark:text-white font-bold">supporting the health and well-being of families in need.</span>
                                 </p>
                             </div>
@@ -491,7 +489,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3 md:gap-4">
-                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
                                         <img
                                             src="/images/hands-ai/lead-designer.svg"
                                             alt="Lead Designer"
@@ -506,7 +504,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                         <div className="text-xs font-medium text-gray-900 dark:text-white">Lead Designer</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400">(Pritish)</div>
                                     </div>
-                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
                                         <img
                                             src="/images/hands-ai/junior-designer.svg"
                                             alt="Junior Designer"
@@ -520,7 +518,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                         <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">2</div>
                                         <div className="text-xs font-medium text-gray-900 dark:text-white">Junior Designers</div>
                                     </div>
-                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
                                         <img
                                             src="/images/hands-ai/product-manager.svg"
                                             alt="Product Manager"
@@ -534,7 +532,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                         <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">1</div>
                                         <div className="text-xs font-medium text-gray-900 dark:text-white">Product Manager</div>
                                     </div>
-                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
                                         <img
                                             src="/images/hands-ai/AI Researcher.svg"
                                             alt="AI Researcher"
@@ -548,7 +546,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                         <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">1</div>
                                         <div className="text-xs font-medium text-gray-900 dark:text-white">AI Researcher</div>
                                     </div>
-                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
                                         <img
                                             src="/images/hands-ai/Backend Engineer.svg"
                                             alt="Backend Engineer"
@@ -562,7 +560,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                         <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">2</div>
                                         <div className="text-xs font-medium text-gray-900 dark:text-white">Backend Engineers</div>
                                     </div>
-                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
                                         <img
                                             src="/images/hands-ai/Frontend Engineer.svg"
                                             alt="Frontend Engineer"
@@ -614,6 +612,51 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 )}
 
                 {activeSubsection === 2 && (
+                    // Problem & Solution content
+                    <div className="space-y-8 lg:space-y-12 px-4 py-4">
+                        <div className="text-center mb-8 lg:mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Problem & Solution</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
+                        </div>
+                        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+                            {/* Left column: Problem & Solution stacked vertically */}
+                            <div className="space-y-6 lg:space-y-8 -mt-4">
+                                <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                                    <h3 className="text-lg font-semibold mb-4 md:mb-6 text-blue-600 dark:text-blue-400">The Problem</h3>
+                                    <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                        <p className="text-sm">Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems.</p>
+                                        <p className="text-sm">This led to delayed patient care, physician burnout, and increased risk of medical errors due to incomplete information access.</p>
+                                        <p className="text-sm">The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
+                                    </div>
+                                </div>
+                                <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                                    <h3 className="text-lg font-semibold mb-4 md:mb-6 text-blue-600 dark:text-blue-400">The Solution</h3>
+                                    <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                        <p className="text-sm">An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance.</p>
+                                        <p className="text-sm">The system provides contextual suggestions and real-time confidence scoring, ensuring accuracy while maintaining transparency.</p>
+                                        <p className="text-sm">Mobile-first design enables hands-free operation in busy clinical environments, with voice integration for seamless workflow integration.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right column: End User Image */}
+                            <div className="flex justify-center items-start -mt-6">
+                                <img
+                                    src="/images/hands-ai/end-user.svg"
+                                    alt="End User"
+                                    className="w-full max-w-md lg:max-w-lg rounded-2xl object-cover"
+                                    style={{ 
+                                        imageRendering: 'crisp-edges',
+                                        imageRendering: '-webkit-optimize-contrast',
+                                        imageRendering: 'optimizeQuality'
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {activeSubsection === 3 && (
                     // Project Impact content - Minimal Clean Design
                     <div className="max-w-6xl mx-auto space-y-8 lg:space-y-12 px-4 py-4">
                         <div className="text-center mb-8 lg:mb-12">
@@ -622,53 +665,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                         </div>
 
                         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-                            {/* Left column: Impact Metrics */}
-                            <div>
-                                <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6 lg:mb-8 text-center">Impact Metrics</h3>
-                                <div className="grid grid-cols-2 gap-3 md:gap-4">
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>$250K</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Projected Reduction in Administrative Overhead Costs</div>
-                                    </div>
-
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>45%</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Increase in Documentation Accuracy</div>
-                                    </div>
-
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>40%</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Manual Data Entry Time</div>
-                                    </div>
-
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>68%</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Percentage of Missing Records Flagged</div>
-                                    </div>
-
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>30%</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Case Processing</div>
-                                    </div>
-
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>60%</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Certification Errors</div>
-                                    </div>
-
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>20%</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Benefit Processing</div>
-                                    </div>
-
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>90%</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Report Generation</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Right column: Product Objectives */}
+                            {/* Left column: Product Objectives */}
                             <div>
                                 <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6 lg:mb-8 text-center">Product Objectives</h3>
                                 <div className="space-y-3 md:space-y-4">
@@ -694,34 +691,50 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                )}
-                {activeSubsection === 3 && (
-                    // Problem & Solution content
-                    <div className="space-y-8 lg:space-y-12 px-4 py-4">
-                        <div className="text-center mb-8 lg:mb-12">
-                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Problem & Solution</h2>
-                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
-                            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mt-8">
-                                Understanding the challenge and designing the right solution
-                            </p>
-                        </div>
-                        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-                            <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                <h3 className="text-lg font-semibold mb-4 md:mb-6" style={{ color: '#0C5C8A' }}>The Problem</h3>
-                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    <p>Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems.</p>
-                                    <p>This led to delayed patient care, physician burnout, and increased risk of medical errors due to incomplete information access.</p>
-                                    <p>The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
-                                </div>
-                            </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                <h3 className="text-lg font-semibold mb-4 md:mb-6" style={{ color: '#0C5C8A' }}>The Solution</h3>
-                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    <p>An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance.</p>
-                                    <p>The system provides contextual suggestions and real-time confidence scoring, ensuring accuracy while maintaining transparency.</p>
-                                    <p>Mobile-first design enables hands-free operation in busy clinical environments, with voice integration for seamless workflow integration.</p>
+
+                            {/* Right column: Impact Metrics */}
+                            <div>
+                                <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6 lg:mb-8 text-center">Impact Metrics</h3>
+                                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">$250K</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Projected Reduction in Administrative Overhead Costs</div>
+                                    </div>
+
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">45%</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Increase in Documentation Accuracy</div>
+                                    </div>
+
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">40%</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Manual Data Entry Time</div>
+                                    </div>
+
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">68%</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Percentage of Missing Records Flagged</div>
+                                    </div>
+
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">30%</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Case Processing</div>
+                                    </div>
+
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">60%</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Certification Errors</div>
+                                    </div>
+
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">20%</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Benefit Processing</div>
+                                    </div>
+
+                                    <div className="text-center py-3 md:py-4 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-blue-600 dark:text-blue-400">90%</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Report Generation</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -733,30 +746,121 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                         <div className="text-center mb-8 lg:mb-12">
                             <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Design Process</h2>
                             <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
-                            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mt-8">
-                                A systematic approach to creating human-centered AI experiences
-                            </p>
                         </div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
-                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>1</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Discover</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Research and understand user needs</p>
+                        
+                        <div className="max-w-7xl mx-auto">
+                            {/* Top Row - Steps 1-3 */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                                {/* Step 1: Initial Ideation Workshop */}
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center">
+                                        <img
+                                            src="/images/hands-ai/Design Process/Ideation.svg"
+                                            alt="Initial Ideation Workshop"
+                                            className="w-12 h-12"
+                                            style={{ 
+                                                imageRendering: 'crisp-edges',
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                imageRendering: 'optimizeQuality'
+                                            }}
+                                        />
+                                    </div>
+                                    <h3 className="text-sm lg:text-base font-semibold text-gray-900 dark:text-white">1. Initial Ideation Workshop</h3>
+                                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-48">Gather key stakeholders to align on goals and identify opportunities.</p>
+                                </div>
+
+                                {/* Step 2: Research & AI Feasibility */}
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center">
+                                        <img
+                                            src="/images/hands-ai/Design Process/Research.svg"
+                                            alt="Research & AI Feasibility"
+                                            className="w-12 h-12"
+                                            style={{ 
+                                                imageRendering: 'crisp-edges',
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                imageRendering: 'optimizeQuality'
+                                            }}
+                                        />
+                                    </div>
+                                    <h3 className="text-sm lg:text-base font-semibold text-gray-900 dark:text-white">2. Research & AI Feasibility</h3>
+                                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-48">Validate assumptions with user research and data analysis</p>
+                                </div>
+
+                                {/* Step 3: Concept Development */}
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center">
+                                        <img
+                                            src="/images/hands-ai/Design Process/Concept.svg"
+                                            alt="Concept Development"
+                                            className="w-12 h-12"
+                                            style={{ 
+                                                imageRendering: 'crisp-edges',
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                imageRendering: 'optimizeQuality'
+                                            }}
+                                        />
+                                    </div>
+                                    <h3 className="text-sm lg:text-base font-semibold text-gray-900 dark:text-white">3. Concept Development</h3>
+                                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-48">Define AI features, build prototypes, and test user-AI interactions.</p>
+                                </div>
                             </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>2</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Define</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Synthesize insights and define problems</p>
-                            </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>3</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Design</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Create solutions and prototypes</p>
-                            </div>
-                            <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>4</div>
-                                <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Deliver</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Test, iterate, and implement</p>
+
+                            {/* Bottom Row - Steps 4-6 */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                {/* Step 4: Validation & Feedback Loops */}
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className="w-24 h-24 bg-pink-500 rounded-full flex items-center justify-center">
+                                        <img
+                                            src="/images/hands-ai/Design Process/Validation.svg"
+                                            alt="Validation & Feedback Loops"
+                                            className="w-12 h-12"
+                                            style={{ 
+                                                imageRendering: 'crisp-edges',
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                imageRendering: 'optimizeQuality'
+                                            }}
+                                        />
+                                    </div>
+                                    <h3 className="text-sm lg:text-base font-semibold text-gray-900 dark:text-white">4. Validation & Feedback Loops</h3>
+                                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-48">Run usability tests and to prevent bias and track design iterations.</p>
+                                </div>
+
+                                {/* Step 5: Implementation & Design System */}
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className="w-24 h-24 bg-yellow-600 rounded-full flex items-center justify-center">
+                                        <img
+                                            src="/images/hands-ai/Design Process/Implementation.svg"
+                                            alt="Implementation & Design System"
+                                            className="w-12 h-12"
+                                            style={{ 
+                                                imageRendering: 'crisp-edges',
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                imageRendering: 'optimizeQuality'
+                                            }}
+                                        />
+                                    </div>
+                                    <h3 className="text-sm lg:text-base font-semibold text-gray-900 dark:text-white">5. Implementation & Design System</h3>
+                                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-48">Ship designs, and integrate AI guidelines into the design system.</p>
+                                </div>
+
+                                {/* Step 6: Post Launch Evaluation */}
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className="w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center">
+                                        <img
+                                            src="/images/hands-ai/Design Process/Post-Launch.svg"
+                                            alt="Post Launch Evaluation"
+                                            className="w-12 h-12"
+                                            style={{ 
+                                                imageRendering: 'crisp-edges',
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                imageRendering: 'optimizeQuality'
+                                            }}
+                                        />
+                                    </div>
+                                    <h3 className="text-sm lg:text-base font-semibold text-gray-900 dark:text-white">6. Post Launch Evaluation</h3>
+                                    <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-48">Measure adoption, analyze user behavior, and fine-tune models.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -776,9 +880,14 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                             Comprehensive approach to understanding healthcare workflows and user needs
                         </p>
                     </div>
+                    
+                    <div className="mb-8">
+                        <h3 className="text-lg font-semibold mb-6 text-center" style={{ color: '#0C5C8A' }}>Research Strategies & Objectives</h3>
+                    </div>
+                    
                     <div className="grid md:grid-cols-2 gap-8">
                         <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Goals</h3>
+                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>1. Research Objectives</h3>
                             <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                                 <p>Understand the complete user journey of healthcare professionals accessing patient information.</p>
                                 <p>Identify pain points and inefficiencies in current workflows.</p>
@@ -786,11 +895,27 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                             </div>
                         </div>
                         <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Research Questions</h3>
+                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>2. Research Methods</h3>
                             <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                <p>How do healthcare professionals currently access patient information?</p>
-                                <p>What are the most time-consuming tasks in their daily workflow?</p>
-                                <p>What would make their information access more efficient?</p>
+                                <p>Conducted user interviews with healthcare professionals across different roles.</p>
+                                <p>Performed contextual inquiry sessions in clinical environments.</p>
+                                <p>Analyzed existing workflow documentation and system usage patterns.</p>
+                            </div>
+                        </div>
+                        <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>3. Personas</h3>
+                            <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Developed detailed personas representing different healthcare professional types.</p>
+                                <p>Mapped their daily workflows, pain points, and information access patterns.</p>
+                                <p>Identified common scenarios and decision-making processes.</p>
+                            </div>
+                        </div>
+                        <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
+                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>4. Sample Size</h3>
+                            <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <p>Interviewed 25 healthcare professionals across 5 different facilities.</p>
+                                <p>Included physicians, nurses, administrators, and support staff.</p>
+                                <p>Conducted 40+ hours of contextual observation and interviews.</p>
                             </div>
                         </div>
                     </div>
