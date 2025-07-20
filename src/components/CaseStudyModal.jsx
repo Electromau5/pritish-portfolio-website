@@ -461,128 +461,128 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 )}
                 {activeSubsection === 1 && (
                     // Primary Roles content - Minimal Clean Design
-                    <div className="max-w-5xl mx-auto space-y-16 px-4">
-                        <div className="grid md:grid-cols-2 gap-8 lg:gap-20 items-start">
+                    <div className="max-w-6xl mx-auto space-y-8 lg:space-y-12 px-4 py-4">
+                        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
                             {/* Left column: Team */}
-                            <div className="space-y-8">
+                            <div className="space-y-6">
                                 <div className="text-center">
-                                    <h2 className="text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-2">Team</h2>
+                                    <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-2">Team</h2>
                                     <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4 md:gap-6">
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
                                         <img
                                             src="/images/hands-ai/lead-designer.svg"
                                             alt="Lead Designer"
-                                            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-3 object-cover"
+                                            className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
                                             style={{ 
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
                                             }}
                                         />
-                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
-                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Lead Designer</div>
-                                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">(Pritish)</div>
+                                        <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">1</div>
+                                        <div className="text-xs font-medium text-gray-900 dark:text-white">Lead Designer</div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400">(Pritish)</div>
                                     </div>
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
                                         <img
                                             src="/images/hands-ai/junior-designer.svg"
                                             alt="Junior Designer"
-                                            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-3 object-cover"
+                                            className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
                                             style={{ 
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
                                             }}
                                         />
-                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
-                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Junior Designers</div>
+                                        <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">2</div>
+                                        <div className="text-xs font-medium text-gray-900 dark:text-white">Junior Designers</div>
                                     </div>
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
                                         <img
                                             src="/images/hands-ai/product-manager.svg"
                                             alt="Product Manager"
-                                            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-3 object-cover"
+                                            className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
                                             style={{ 
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
                                             }}
                                         />
-                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
-                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Product Manager</div>
+                                        <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">1</div>
+                                        <div className="text-xs font-medium text-gray-900 dark:text-white">Product Manager</div>
                                     </div>
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
                                         <img
                                             src="/images/hands-ai/AI Researcher.svg"
                                             alt="AI Researcher"
-                                            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-3 object-cover"
+                                            className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
                                             style={{ 
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
                                             }}
                                         />
-                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">1</div>
-                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">AI Researcher</div>
+                                        <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">1</div>
+                                        <div className="text-xs font-medium text-gray-900 dark:text-white">AI Researcher</div>
                                     </div>
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
                                         <img
                                             src="/images/hands-ai/Backend Engineer.svg"
                                             alt="Backend Engineer"
-                                            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-3 object-cover"
+                                            className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
                                             style={{ 
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
                                             }}
                                         />
-                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
-                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Backend Engineers</div>
+                                        <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">2</div>
+                                        <div className="text-xs font-medium text-gray-900 dark:text-white">Backend Engineers</div>
                                     </div>
-                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                    <div className="text-center py-2 md:py-3 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
                                         <img
                                             src="/images/hands-ai/Frontend Engineer.svg"
                                             alt="Frontend Engineer"
-                                            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-3 object-cover"
+                                            className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
                                             style={{ 
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
                                             }}
                                         />
-                                        <div className="text-2xl md:text-3xl font-extralight text-gray-900 dark:text-white mb-2">2</div>
-                                        <div className="text-xs md:text-sm font-medium text-gray-900 dark:text-white">Frontend Engineers</div>
+                                        <div className="text-base md:text-lg lg:text-xl font-extralight text-gray-900 dark:text-white mb-1">2</div>
+                                        <div className="text-xs font-medium text-gray-900 dark:text-white">Frontend Engineers</div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Right column: My Primary Roles */}
-                            <div className="space-y-8">
+                            <div className="space-y-6">
                                 <div className="text-center">
-                                    <h2 className="text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-2">My Primary Roles</h2>
+                                    <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-2">My Primary Roles</h2>
                                     <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                                 </div>
 
-                                <div className="space-y-6 md:space-y-8">
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-3 md:mb-4">Design Leadership</h3>
+                                <div className="space-y-4 md:space-y-6">
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-sm md:text-base lg:text-lg font-medium text-gray-900 dark:text-white mb-2 md:mb-3">Design Leadership</h3>
                                         <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto px-2">
                                             Took full ownership of the design process, ensuring alignment, on-time delivery, and a cohesive user experience.
                                         </p>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-3 md:mb-4">Human-Centered Approach</h3>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-sm md:text-base lg:text-lg font-medium text-gray-900 dark:text-white mb-2 md:mb-3">Human-Centered Approach</h3>
                                         <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto px-2">
                                             Led extensive research and usability testing to understand user pain points and identify areas where the AI could deliver real value.
                                         </p>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
-                                        <h3 className="text-base md:text-lg font-medium text-gray-900 dark:text-white mb-3 md:mb-4">Cross-Functional Delivery</h3>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-colors duration-300">
+                                        <h3 className="text-sm md:text-base lg:text-lg font-medium text-gray-900 dark:text-white mb-2 md:mb-3">Cross-Functional Delivery</h3>
                                         <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mx-auto px-2">
                                             Facilitated collaboration between design, engineering, and AI teams to ensure seamless integration of AI capabilities into the platform's core features.
                                         </p>
@@ -595,54 +595,54 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
 
                 {activeSubsection === 2 && (
                     // Project Impact content - Minimal Clean Design
-                    <div className="max-w-6xl mx-auto space-y-16 px-4">
-                        <div className="text-center mb-16">
-                            <h2 className="text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Project Impact</h2>
+                    <div className="max-w-6xl mx-auto space-y-8 lg:space-y-12 px-4 py-4">
+                        <div className="text-center mb-8 lg:mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Project Impact</h2>
                             <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-12 items-start">
+                        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                             {/* Left column: Impact Metrics */}
                             <div>
-                                <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-8 text-center">Impact Metrics</h3>
-                                <div className="grid grid-cols-2 gap-4 md:gap-6">
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>$250K</div>
+                                <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6 lg:mb-8 text-center">Impact Metrics</h3>
+                                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>$250K</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Projected Reduction in Administrative Overhead Costs</div>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>45%</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>45%</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Increase in Documentation Accuracy</div>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>40%</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>40%</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Manual Data Entry Time</div>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>68%</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>68%</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Percentage of Missing Records Flagged</div>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>30%</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>30%</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Case Processing</div>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>60%</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>60%</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Reduction in Certification Errors</div>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>20%</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>20%</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Benefit Processing</div>
                                     </div>
 
-                                    <div className="text-center py-6 md:py-8 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
-                                        <div className="text-xl md:text-2xl font-extralight mb-3" style={{ color: '#0C5C8A' }}>90%</div>
+                                    <div className="text-center py-4 md:py-6 border border-gray-100 dark:border-gray-800 rounded-lg hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-sm">
+                                        <div className="text-lg md:text-xl lg:text-2xl font-extralight mb-2" style={{ color: '#0C5C8A' }}>90%</div>
                                         <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed px-2">Faster Report Generation</div>
                                     </div>
                                 </div>
@@ -650,8 +650,8 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
 
                             {/* Right column: Product Objectives */}
                             <div>
-                                <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-8 text-center">Product Objectives</h3>
-                                <div className="space-y-4">
+                                <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6 lg:mb-8 text-center">Product Objectives</h3>
+                                <div className="space-y-3 md:space-y-4">
                                     <div className="flex items-start space-x-3">
                                         <span className="text-blue-600 dark:text-blue-400 font-medium mt-1">•</span>
                                         <span className="text-sm text-gray-600 dark:text-gray-300">Minimize administrative burden through smart automation</span>
@@ -679,26 +679,26 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 )}
                 {activeSubsection === 3 && (
                     // Problem & Solution content
-                    <div className="space-y-12 px-4">
-                        <div className="text-center mb-12">
-                            <h2 className="text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Problem & Solution</h2>
+                    <div className="space-y-8 lg:space-y-12 px-4 py-4">
+                        <div className="text-center mb-8 lg:mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Problem & Solution</h2>
                             <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                             <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mt-8">
                                 Understanding the challenge and designing the right solution
                             </p>
                         </div>
-                        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
                             <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                <h3 className="text-lg font-semibold mb-6" style={{ color: '#0C5C8A' }}>The Problem</h3>
-                                <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <h3 className="text-lg font-semibold mb-4 md:mb-6" style={{ color: '#0C5C8A' }}>The Problem</h3>
+                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                                     <p>Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems.</p>
                                     <p>This led to delayed patient care, physician burnout, and increased risk of medical errors due to incomplete information access.</p>
                                     <p>The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
                                 </div>
                             </div>
                             <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                <h3 className="text-lg font-semibold mb-6" style={{ color: '#0C5C8A' }}>The Solution</h3>
-                                <div className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                <h3 className="text-lg font-semibold mb-4 md:mb-6" style={{ color: '#0C5C8A' }}>The Solution</h3>
+                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                                     <p>An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance.</p>
                                     <p>The system provides contextual suggestions and real-time confidence scoring, ensuring accuracy while maintaining transparency.</p>
                                     <p>Mobile-first design enables hands-free operation in busy clinical environments, with voice integration for seamless workflow integration.</p>
@@ -709,32 +709,32 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 )}
                 {activeSubsection === 4 && (
                     // Design Process content
-                    <div className="space-y-12 px-4">
-                        <div className="text-center mb-12">
-                            <h2 className="text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Design Process</h2>
+                    <div className="space-y-8 lg:space-y-12 px-4 py-4">
+                        <div className="text-center mb-8 lg:mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Design Process</h2>
                             <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                             <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mt-8">
                                 A systematic approach to creating human-centered AI experiences
                             </p>
                         </div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
                             <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>1</div>
+                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>1</div>
                                 <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Discover</h3>
                                 <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Research and understand user needs</p>
                             </div>
                             <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>2</div>
+                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>2</div>
                                 <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Define</h3>
                                 <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Synthesize insights and define problems</p>
                             </div>
                             <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>3</div>
+                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>3</div>
                                 <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Design</h3>
                                 <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Create solutions and prototypes</p>
                             </div>
                             <div className={`${colors.light} dark:bg-gray-800 p-4 md:p-6 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm text-center`}>
-                                <div className={`text-2xl md:text-3xl font-light ${colors.text} mb-3`}>4</div>
+                                <div className={`text-xl md:text-2xl lg:text-3xl font-light ${colors.text} mb-2 md:mb-3`}>4</div>
                                 <h3 className="font-semibold mb-2 text-gray-900 dark:text-white text-sm md:text-base">Deliver</h3>
                                 <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">Test, iterate, and implement</p>
                             </div>
