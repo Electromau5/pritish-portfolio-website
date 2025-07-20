@@ -344,7 +344,7 @@ const CaseStudyModal = ({
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 overflow-y-auto overflow-x-hidden">
+                <div className="flex-1 overflow-y-auto overflow-x-hidden max-h-[calc(100vh-200px)]">
                     <div className="relative w-full">
                         <div
                             className="flex transition-transform duration-300 ease-in-out"
@@ -356,7 +356,7 @@ const CaseStudyModal = ({
                             {standardizedSections?.map((section, index) => (
                                 <div
                                     key={index}
-                                    className="w-full flex-shrink-0 px-6 md:px-12 pt-8 pb-16"
+                                    className="w-full flex-shrink-0 px-6 md:px-12 pt-8 pb-16 overflow-y-auto section-scroll"
                                     style={{ width: `${100 / standardizedSections.length}%` }}
                                 >
                                     <SectionContent section={section} colors={colors} activeSubsection={activeSubsection} />
@@ -423,6 +423,26 @@ const CaseStudyModal = ({
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
+}
+
+/* Custom scrollbar for sections */
+.section-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.section-scroll::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+.section-scroll::-webkit-scrollbar-thumb {
+  background: rgba(12,92,138,0.6);
+  border-radius: 4px;
+}
+.section-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(12,92,138,0.8);
+}
+.section-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(12,92,138,0.6) rgba(0,0,0,0.1);
 }
 `}</style>
         </div>
