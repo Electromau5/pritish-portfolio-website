@@ -444,7 +444,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                         <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto pt-2 pb-8 px-4 md:px-8">
                             <div className="space-y-4 pt-2">
                                 <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    The Special Supplemental Nutrition Program for Women, Infants, and Children (WIC) is a federally funded public health initiative that supports low-income pregnant women, mothers, infants, and children up to age five by providing access to nutritious foods, healthcare referrals, and nutrition education.
+                                    The Special Supplemental Nutrition Program for Women, Infants, and Children (WIC) is a federally funded public health initiative that supports millions of low-income families by providing access to nutritious foods, healthcare referrals, and nutrition education.
                                 </p>
                                 <h3 className="text-xl font-medium text-gray-900 dark:text-white mt-8 mb-4">
                                     Who is Emma?
@@ -604,38 +604,46 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                             <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Problem & Solution</h2>
                             <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                         </div>
-                        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-                            {/* Left column: Problem & Solution stacked vertically */}
-                            <div className="space-y-6 lg:space-y-8 -mt-4">
-                                <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4 md:mb-6 text-blue-600 dark:text-blue-400">The Problem</h3>
-                                    <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p className="text-sm">Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems.</p>
-                                        <p className="text-sm">This led to delayed patient care, physician burnout, and increased risk of medical errors due to incomplete information access.</p>
-                                        <p className="text-sm">The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
-                                    </div>
-                                </div>
-                                <div className={`${colors.light} dark:bg-gray-800 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                                    <h3 className="text-lg font-semibold mb-4 md:mb-6 text-blue-600 dark:text-blue-400">The Solution</h3>
-                                    <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        <p className="text-sm">An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance.</p>
-                                        <p className="text-sm">The system provides contextual suggestions and real-time confidence scoring, ensuring accuracy while maintaining transparency.</p>
-                                        <p className="text-sm">Mobile-first design enables hands-free operation in busy clinical environments, with voice integration for seamless workflow integration.</p>
-                                    </div>
+                        {/* 2x2 Grid for Problem & Solution */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 gap-6 lg:gap-8 -mt-4">
+                            {/* Column 1, Row 1: The Problem */}
+                            <div className={`row-start-1 col-start-1 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm flex flex-col justify-center`}>
+                                <h3 className="text-lg font-semibold mb-4 md:mb-6 text-white">
+                                    The Problem
+                                </h3>
+                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    <p className="text-sm">Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems.</p>
+                                    <p className="text-sm">This led to delayed patient care, physician burnout, and increased risk of medical errors due to incomplete information access.</p>
+                                    <p className="text-sm">The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
                                 </div>
                             </div>
-
-                            {/* Right column: End User Image */}
-                            <div className="flex justify-center items-start -mt-6">
+                            {/* Column 1, Row 2: The Solution */}
+                            <div className={`row-start-2 col-start-1 p-6 md:p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm flex flex-col justify-center`}>
+                                <h3 className="text-lg font-semibold mb-4 md:mb-6 text-white">
+                                    The Solution
+                                </h3>
+                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    <p className="text-sm">An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance.</p>
+                                    <p className="text-sm">The system provides contextual suggestions and real-time confidence scoring, ensuring accuracy while maintaining transparency.</p>
+                                    <p className="text-sm">Mobile-first design enables hands-free operation in busy clinical environments, with voice integration for seamless workflow integration.</p>
+                                </div>
+                            </div>
+                            {/* Column 2, Row 1: problem.gif image */}
+                            <div className="row-start-1 col-start-2 flex items-center justify-center rounded-2xl overflow-hidden bg-black">
                                 <img
-                                    src="/images/hands-ai/end-user.svg"
-                                    alt="End User"
-                                    className="w-full max-w-md lg:max-w-lg rounded-2xl object-cover"
-                                    style={{ 
-                                        imageRendering: 'crisp-edges',
-                                        imageRendering: '-webkit-optimize-contrast',
-                                        imageRendering: 'optimizeQuality'
-                                    }}
+                                    src="/images/hands-ai/Problem Solution/problem.gif"
+                                    alt="Problem demo"
+                                    className="w-full h-full max-h-80 rounded-2xl object-contain bg-black"
+                                    style={{ imageRendering: 'crisp-edges', imageRendering: '-webkit-optimize-contrast', imageRendering: 'optimizeQuality' }}
+                                />
+                            </div>
+                            {/* Column 2, Row 2: solution.gif image */}
+                            <div className="row-start-2 col-start-2 flex items-center justify-center rounded-2xl overflow-hidden bg-black">
+                                <img
+                                    src="/images/hands-ai/Problem Solution/solution.gif"
+                                    alt="Solution demo"
+                                    className="w-full h-full max-h-80 rounded-2xl object-contain bg-black"
+                                    style={{ imageRendering: 'crisp-edges', imageRendering: '-webkit-optimize-contrast', imageRendering: 'optimizeQuality' }}
                                 />
                             </div>
                         </div>
@@ -1062,6 +1070,30 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
             );
 
         case "Ideation & Prototyping":
+            if (activeSubsection === 1) {
+                // Prototypes subsection with Figma embed
+                return (
+                    <div className="space-y-8 max-w-7xl mx-auto">
+                        <div className="text-center mb-8">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Prototypes</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                                Explore the interactive Figma prototype below:
+                            </p>
+                        </div>
+                        <div className="flex justify-center">
+                            <iframe
+                                title="Figma Prototype"
+                                width="100%"
+                                height="600"
+                                style={{ border: '1px solid #ccc', borderRadius: '1rem' }}
+                                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/3VHOm6u72jABRY24G3HLdJ/HANDS-AI?node-id=6466-21219&t=LYxvw2mxMjwmq44m-1"
+                                allowFullScreen
+                            />
+                        </div>
+                    </div>
+                );
+            }
             return (
                 <div className="space-y-12 max-w-7xl mx-auto">
                     <div className="text-center mb-12">
