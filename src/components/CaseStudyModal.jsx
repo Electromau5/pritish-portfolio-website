@@ -870,90 +870,43 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 // Research Strategy content
                 return (
                     <div className="space-y-12 max-w-7xl mx-auto w-full">
-                        <div className="text-red-500 text-2xl font-bold">TEST</div>
                         <div className="text-center mb-12">
-                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Research Strategy</h2>
-                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
-                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                                Uncovering the human story behind WIC operations
-                            </p>
+                        <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Research Strategy</h2>
+                        <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+                
                         </div>
 
                         {/* The Challenge That Started It All */}
                         <div className="mb-16">
-                            <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6">The Challenge That Started It All</h3>
-                            <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-100 dark:border-gray-700">
-                                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                                    When we first approached the WIC program offices, we weren't just researching a system—we were stepping into the daily lives of professionals who dedicate themselves to supporting vulnerable families. Each case worker we met carried the weight of ensuring that pregnant mothers, new parents, and young children receive the nutrition and care they desperately need.
-                                </p>
-                                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    But there was a problem. Despite their passion and dedication, these professionals were drowning in administrative complexity.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Following Sarah Through Her Day */}
-                        <div className="mb-16">
-                            <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6">Following Sarah Through Her Day</h3>
                             <div className="grid lg:grid-cols-2 gap-8 items-start">
-                                <div className="space-y-4">
-                                    <blockquote className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-600">
-                                        <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
-                                            "I love helping families, but I spend more time fighting with technology than actually talking to the people who need me."
+                                {/* Left column: The Challenge That Started It All */}
+                                <div>
+                                    <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6"> Uncovering the human story behind WIC operations</h3>
+                                    <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-100 dark:border-gray-700">
+                                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                                            To design a meaningful AI solution for WIC, we knew we couldn't just analyze workflows—we had to understand the people behind them. So we began our research by embedding ourselves in the clinics, and observing day-to-day operations.
+                                      </p>      
+                                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                                            We weren't just studying a system; we were stepping into the lived experiences of professionals who carry the responsibility of supporting vulnerable families every day.
                                         </p>
-                                        <cite className="text-blue-600 dark:text-blue-400 text-sm mt-2 block">— Sarah, WIC Case Worker</cite>
-                                    </blockquote>
-                                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        Take Sarah, a case worker we shadowed during our contextual inquiry. By 9 AM, she had already juggled three different systems just to pull up her morning appointments.
-                                    </p>
-                                </div>
-                                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-xl">
-                                    <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Contextual Inquiry Insights</h4>
-                                    <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
-                                        <div className="flex items-center space-x-2">
-                                            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                                            <span>6 case workers observed across multiple sites</span>
-                                        </div>
-                                        <div className="flex items-center space-x-2">
-                                            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                                            <span>Real-world behaviors documented</span>
-                                        </div>
-                                        <div className="flex items-center space-x-2">
-                                            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                                            <span>Environmental constraints identified</span>
-                                        </div>
+                                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                            Our goal was to uncover where their pain truly lived—whether it was the cognitive load of managing complex cases, the friction in handoffs between roles, or the emotional toll of navigating broken tools.
+                                        </p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        {/* The Stories That Emerged */}
-                        <div className="mb-16">
-                            <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-8">The Stories That Emerged</h3>
-                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-                                Our in-depth interviews with 12-15 professionals revealed patterns that data alone could never capture:
-                            </p>
-                            
-                            <div className="grid md:grid-cols-3 gap-6">
-                                <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-6 rounded-xl">
-                                    <h4 className="font-semibold text-red-700 dark:text-red-400 mb-3">The 3 PM Frustration</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        Almost every case worker described a specific time—usually mid-afternoon—when the weight of incomplete documentation, missed follow-ups, and system crashes would hit them all at once.
-                                    </p>
-                                </div>
                                 
-                                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-6 rounded-xl">
-                                    <h4 className="font-semibold text-yellow-700 dark:text-yellow-400 mb-3">The Supervisor's Dilemma</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        Directors weren't just managing staff; they were constantly translating between policy requirements and the messy reality of human need.
-                                    </p>
-                                </div>
-                                
-                                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-xl">
-                                    <h4 className="font-semibold text-green-700 dark:text-green-400 mb-3">The Technical Reality Check</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                                        System administrators opened our eyes to backend constraints that shaped every user experience—what was possible vs. practical.
-                                    </p>
+                                {/* Right column: User Research Image */}
+                                <div className="flex justify-center items-start">
+                                    <img
+                                        src="/images/hands-ai/User Research/user-research.png"
+                                        alt="User Research"
+                                        className="w-full max-w-md lg:max-w-lg rounded-2xl object-cover"
+                                        style={{ 
+                                            imageRendering: 'crisp-edges',
+                                            imageRendering: '-webkit-optimize-contrast',
+                                            imageRendering: 'optimizeQuality'
+                                        }}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -961,7 +914,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                         {/* Research Methods Visual */}
                         <div className="mb-16">
                             <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-8 text-center">Our Multi-Method Approach</h3>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
                                 <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                                     <div className="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                                         <span className="text-white font-bold text-lg">12-15</span>
@@ -979,14 +932,6 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                 </div>
                                 
                                 <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-                                    <div className="w-16 h-16 bg-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                        <span className="text-white font-bold text-lg">8-10</span>
-                                    </div>
-                                    <h4 className="font-medium text-gray-900 dark:text-white mb-2">Usability Sessions</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-300">Testing functionality and trust</p>
-                                </div>
-                                
-                                <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                                     <div className="w-16 h-16 bg-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                                         <span className="text-white font-bold text-lg">4</span>
                                     </div>
@@ -1001,27 +946,6 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <h4 className="font-medium text-gray-900 dark:text-white mb-2">Task Flow Mapping</h4>
                                     <p className="text-sm text-gray-600 dark:text-gray-300">Visualizing invisible labor</p>
                                 </div>
-                                
-                                <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-                                    <div className="w-16 h-16 bg-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                        <span className="text-white font-bold text-lg">⚡</span>
-                                    </div>
-                                    <h4 className="font-medium text-gray-900 dark:text-white mb-2">Card Sorting</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-300">AI feature prioritization</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Key Insights */}
-                        <div className="mb-16">
-                            <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-8">What We Learned</h3>
-                            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-8 rounded-2xl border border-gray-200 dark:border-gray-700">
-                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-4">
-                                    By the end of our research, we understood that designing Emma wasn't a technology challenge—it was a human challenge.
-                                </p>
-                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    The professionals we met didn't need AI to do their jobs for them. They needed AI to help them do their jobs better, with more time for the human connections that drew them to this work in the first place.
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -1029,9 +953,88 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
             } else if (activeSubsection === 1) {
                 // Research Insights content
                 return (
-                    <div className="space-y-8">
-                        <h3 className="text-2xl font-light text-gray-900 dark:text-white">Research Insights</h3>
-                        <p className="text-gray-600 dark:text-gray-300">Detailed insights from our research will go here...</p>
+                    <div className="space-y-12 max-w-7xl mx-auto w-full">
+                        <div className="text-center mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Research Insights</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+                        </div>
+
+                        {/* Following Sarah Through Her Day */}
+                        <div className="mb-16">
+                            <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6">Key Findings</h3>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-600">
+                                    <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed mb-4">
+                                        "I spend more time fixing errors and hunting for information than actually helping families. It feels like I'm constantly juggling outdated records, missing data, and scattered documents across different places. It's exhausting and really slows me down."
+                                    </p>
+                                    <div>
+                                        <cite className="text-blue-600 dark:text-blue-400 font-semibold text-sm">Maria Lopez</cite>
+                                        <div className="text-gray-500 dark:text-gray-400 text-xs">Senior Caseworker at Phoenix WIC Clinic</div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border-l-4 border-green-600">
+                                    <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed mb-4">
+                                        "I can't tell you how many times I've missed a key health indicator because the data is buried or incomplete. It's almost impossible to get a full picture of a client's health at once. Every minute spent digging through records means a missed opportunity for early intervention."
+                                    </p>
+                                    <div>
+                                        <cite className="text-green-600 dark:text-green-400 font-semibold text-sm">Dr. Kevin Singh</cite>
+                                        <div className="text-gray-500 dark:text-gray-400 text-xs">Nutritionist at Denver County Health</div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border-l-4 border-purple-600">
+                                    <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed mb-4">
+                                        "Our no-show rate is out of control, and it's because our scheduling system is so clunky. Families miss appointments because reminders don't go out on time, or they can't get the slots they need. It really cuts into how many people we can help each day."
+                                    </p>
+                                    <div>
+                                        <cite className="text-purple-600 dark:text-purple-400 font-semibold text-sm">Janet White</cite>
+                                        <div className="text-gray-500 dark:text-gray-400 text-xs">Clinic Manager at Tucson WIC Center</div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border-l-4 border-orange-600">
+                                    <p className="text-gray-700 dark:text-gray-300 italic leading-relaxed mb-4">
+                                        "It takes forever to find the right client file, and half the time, I'm not even sure if it's accurate. Switching between different modules just to piece together basic information is frustrating and makes us look disorganized to the families we serve."
+                                    </p>
+                                    <div>
+                                        <cite className="text-orange-600 dark:text-orange-400 font-semibold text-sm">Derek Thompson</cite>
+                                        <div className="text-gray-500 dark:text-gray-400 text-xs">Program Supervisor at Maricopa County Public Health</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* The Stories That Emerged */}
+                        <div className="mb-16">
+                            <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-8">The Primary User Needs</h3>
+                            
+                            <div className="grid md:grid-cols-3 gap-6">
+                                <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-6 rounded-xl">
+                                    <h4 className="font-semibold text-red-700 dark:text-red-400 mb-3">Faster Prioritization</h4>
+                                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Ensure faster and more accurate access to clients who require high-priority assistance 
+                                    </p>
+                                </div>
+                                
+                                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-6 rounded-xl">
+                                    <h4 className="font-semibold text-yellow-700 dark:text-yellow-400 mb-3">Efficient Decision Making</h4>
+                                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                        Allow professionals to manage data effortlessly and make informed decisions with confidence
+                                    </p>
+                                </div>
+                                
+                                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-xl">
+                                    <h4 className="font-semibold text-green-700 dark:text-green-400 mb-3">Maximize Operational Efficiency</h4>
+                                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Enhance operational efficiency including tracking inconsistent no-shows for critical appointments
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Key Insights */}
+                 
                     </div>
                 );
             }
