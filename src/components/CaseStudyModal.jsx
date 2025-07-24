@@ -45,10 +45,9 @@ const CaseStudyModal = ({
     // Standardized case study sections for all projects
     const standardizedSections = [
         "Project Overview",
-        "Discovery & Research",
-        "Design Thinking",
-        "Ideation & Prototyping",
-        "Design Systems & Usability",
+        "Research & Synthesis",
+        "Ideation & Design",
+        "Systems & Scalability",
         "Testing & Validation",
         "Outcome & Impact"
     ];
@@ -71,23 +70,21 @@ const CaseStudyModal = ({
             "Project Impact",
             "Design Process"
         ],
-        "Discovery & Research": [
+        "Research & Synthesis": [
             "Research Strategy",
-            "Research Insights"
-        ],
-        "Design Thinking": [
+            "Research Insights",
             "Journey Maps",
             "JTBD",
             "Prioritization Framework",
             "Vision"
         ],
-        "Ideation & Prototyping": [
+        "Ideation & Design": [
             "Wireframes",
             "Prototypes",
             "Design Collaboration",
             "Key Design Decisions"
         ],
-        "Design Systems & Usability": [
+        "Systems & Scalability": [
             "Accessibility Standards",
             "Tokens, Components, Documentation",
             "Design System",
@@ -109,7 +106,7 @@ const CaseStudyModal = ({
 
     const currentSubsections = sectionSubsections[standardizedSections[activeSection]] || [];
 
-    const visibleMenuItems = 5; // Number of menu items visible at once
+    const visibleMenuItems = 7; // Number of menu items visible at once
     const maxMenuStartIndex = Math.max(0, standardizedSections.length - visibleMenuItems);
 
     const nextMenuItems = () => {
@@ -283,7 +280,7 @@ const CaseStudyModal = ({
                     </div>
 
                     {/* Section Navigation */}
-                    <div className="px-6 pb-4 overflow-x-hidden">
+                    <div className="px-6 pb-4">
                         <div className="flex items-center space-x-2">
                             {menuStartIndex > 0 && (
                                 <button
@@ -293,7 +290,7 @@ const CaseStudyModal = ({
                                     <ChevronLeft size={16} />
                                 </button>
                             )}
-                            <div className="flex-1 flex space-x-1 justify-center overflow-x-auto scrollbar-hide">
+                            <div className="flex-1 flex space-x-1 justify-start overflow-x-auto scrollbar-hide">
                                 {standardizedSections?.slice(menuStartIndex, menuStartIndex + visibleMenuItems).map((section, index) => (
                                     <button
                                         key={menuStartIndex + index}
@@ -319,9 +316,9 @@ const CaseStudyModal = ({
 
                         {/* Internal Navigation for all sections */}
                         {currentSubsections.length > 0 && (
-                            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 overflow-x-hidden">
+                            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                                 <div className="flex items-center space-x-2">
-                                    <div className="flex-1 flex space-x-1 justify-center overflow-x-auto scrollbar-hide">
+                                    <div className="flex-1 flex space-x-1 justify-start overflow-x-auto scrollbar-hide">
                                         {currentSubsections.map((subsection, index) => (
                                             <button
                                                 key={index}
@@ -480,7 +477,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/lead-designer.svg"
                                             alt="Lead Designer"
                                             className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -495,7 +492,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/junior-designer.svg"
                                             alt="Junior Designer"
                                             className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -509,7 +506,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/product-manager.svg"
                                             alt="Product Manager"
                                             className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -523,7 +520,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/AI Researcher.svg"
                                             alt="AI Researcher"
                                             className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -537,7 +534,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Backend Engineer.svg"
                                             alt="Backend Engineer"
                                             className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -551,7 +548,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Frontend Engineer.svg"
                                             alt="Frontend Engineer"
                                             className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-2 object-cover"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -741,7 +738,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                             <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Design Process</h2>
                             <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto"></div>
                         </div>
-                        
+
                         <div className="max-w-7xl mx-auto">
                             {/* Top Row - Steps 1-3 */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -752,7 +749,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Design Process/Ideation.svg"
                                             alt="Initial Ideation Workshop"
                                             className="w-12 h-12"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -770,7 +767,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Design Process/Research.svg"
                                             alt="Research & AI Feasibility"
                                             className="w-12 h-12"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -788,7 +785,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Design Process/Concept.svg"
                                             alt="Concept Development"
                                             className="w-12 h-12"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -809,7 +806,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Design Process/Validation.svg"
                                             alt="Validation & Feedback Loops"
                                             className="w-12 h-12"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -827,7 +824,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Design Process/Implementation.svg"
                                             alt="Implementation & Design System"
                                             className="w-12 h-12"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -845,7 +842,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                             src="/images/hands-ai/Design Process/Post-Launch.svg"
                                             alt="Post Launch Evaluation"
                                             className="w-12 h-12"
-                                            style={{ 
+                                            style={{
                                                 imageRendering: 'crisp-edges',
                                                 imageRendering: '-webkit-optimize-contrast',
                                                 imageRendering: 'optimizeQuality'
@@ -865,15 +862,15 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
 
     // Handle other standardized sections
     switch (section) {
-        case "Discovery & Research":
+        case "Research & Synthesis":
             if (activeSubsection === 0) {
                 // Research Strategy content
                 return (
                     <div className="space-y-12 max-w-7xl mx-auto w-full">
                         <div className="text-center mb-12">
-                        <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Research Strategy</h2>
-                        <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
-                
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Research Strategy</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+
                         </div>
 
                         {/* The Challenge That Started It All */}
@@ -885,8 +882,8 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-100 dark:border-gray-700">
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                                             To design a meaningful AI solution for WIC, we knew we couldn't just analyze workflows—we had to understand the people behind them. So we began our research by embedding ourselves in the clinics, and observing day-to-day operations.
-                                      </p>      
-                                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                                        </p>
+                                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                                             We weren't just studying a system; we were stepping into the lived experiences of professionals who carry the responsibility of supporting vulnerable families every day.
                                         </p>
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -894,14 +891,14 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                         </p>
                                     </div>
                                 </div>
-                                
+
                                 {/* Right column: User Research Image */}
                                 <div className="flex justify-center items-start">
                                     <img
                                         src="/images/hands-ai/User Research/user-research.png"
                                         alt="User Research"
                                         className="w-full max-w-md lg:max-w-lg rounded-2xl object-cover"
-                                        style={{ 
+                                        style={{
                                             imageRendering: 'crisp-edges',
                                             imageRendering: '-webkit-optimize-contrast',
                                             imageRendering: 'optimizeQuality'
@@ -922,7 +919,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <h4 className="font-medium text-gray-900 dark:text-white mb-2">In-Depth Interviews</h4>
                                     <p className="text-sm text-gray-600 dark:text-gray-300">Conversations about purpose and frustration</p>
                                 </div>
-                                
+
                                 <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                                     <div className="w-16 h-16 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                                         <span className="text-white font-bold text-lg">5-7</span>
@@ -930,7 +927,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <h4 className="font-medium text-gray-900 dark:text-white mb-2">Contextual Observations</h4>
                                     <p className="text-sm text-gray-600 dark:text-gray-300">Gap between policy and practice</p>
                                 </div>
-                                
+
                                 <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                                     <div className="w-16 h-16 bg-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                                         <span className="text-white font-bold text-lg">4</span>
@@ -938,7 +935,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <h4 className="font-medium text-gray-900 dark:text-white mb-2">Diary Studies</h4>
                                     <p className="text-sm text-gray-600 dark:text-gray-300">5-day emotional labor insights</p>
                                 </div>
-                                
+
                                 <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                                     <div className="w-16 h-16 bg-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                                         <span className="text-white font-bold text-lg">✓</span>
@@ -1008,91 +1005,202 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                         {/* The Stories That Emerged */}
                         <div className="mb-16">
                             <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-8">The Primary User Needs</h3>
-                            
+
                             <div className="grid md:grid-cols-3 gap-6">
                                 <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-6 rounded-xl">
                                     <h4 className="font-semibold text-red-700 dark:text-red-400 mb-3">Faster Prioritization</h4>
                                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    Ensure faster and more accurate access to clients who require high-priority assistance 
+                                        Ensure faster and more accurate access to clients who require high-priority assistance
                                     </p>
                                 </div>
-                                
+
                                 <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-6 rounded-xl">
                                     <h4 className="font-semibold text-yellow-700 dark:text-yellow-400 mb-3">Efficient Decision Making</h4>
                                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                                         Allow professionals to manage data effortlessly and make informed decisions with confidence
                                     </p>
                                 </div>
-                                
+
                                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-xl">
                                     <h4 className="font-semibold text-green-700 dark:text-green-400 mb-3">Maximize Operational Efficiency</h4>
                                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    Enhance operational efficiency including tracking inconsistent no-shows for critical appointments
+                                        Enhance operational efficiency including tracking inconsistent no-shows for critical appointments
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Key Insights */}
-                 
+
+                    </div>
+                );
+            } else if (activeSubsection === 2) {
+                // Journey Maps content
+                return (
+                    <div className="space-y-12 max-w-7xl mx-auto w-full">
+                        <div className="text-center mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Journey Maps</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+                        </div>
+                        <div className="text-center">
+                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                                Journey mapping content coming soon...
+                            </p>
+                        </div>
+                    </div>
+                );
+            } else if (activeSubsection === 3) {
+                // JTBD content
+                return (
+                    <div className="space-y-12 max-w-7xl mx-auto w-full">
+                        <div className="text-center mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Jobs To Be Done</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+                        </div>
+                        <div className="text-center">
+                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                                JTBD analysis content coming soon...
+                            </p>
+                        </div>
+                    </div>
+                );
+            } else if (activeSubsection === 4) {
+                // Prioritization Framework content
+                return (
+                    <div className="space-y-12 max-w-7xl mx-auto w-full">
+                        <div className="text-center mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Prioritization Framework</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+                        </div>
+                        <div className="text-center">
+                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                                Prioritization framework content coming soon...
+                            </p>
+                        </div>
+                    </div>
+                );
+            } else if (activeSubsection === 5) {
+                // Vision content
+                return (
+                    <div className="space-y-12 max-w-7xl mx-auto w-full">
+                        <div className="text-center mb-12">
+                            <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Vision</h2>
+                            <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
+                        </div>
+                        <div className="text-center">
+                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                                Vision content coming soon...
+                            </p>
+                        </div>
                     </div>
                 );
             }
             break;
 
-        case "Design Thinking":
-            return (
-                <div className="space-y-12 max-w-7xl mx-auto">
-                    <div className="text-center mb-12">
-                        <h2 className="text-xl font-semibold mb-4" style={{ color: '#0C5C8A' }}>Design Thinking</h2>
-                        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                            Human-centered approach to solving complex healthcare challenges
-                        </p>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Empathy</h3>
-                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                                Deep understanding of healthcare professionals' daily challenges, time constraints, and emotional needs in high-pressure environments.
-                            </p>
-                        </div>
-                        <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Ideation</h3>
-                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                                Collaborative brainstorming sessions with cross-functional teams to explore innovative solutions for healthcare data access.
-                            </p>
-                        </div>
-                        <div className={`${colors.light} dark:bg-gray-800 p-8 rounded-2xl border ${colors.border} dark:border-gray-700 shadow-sm`}>
-                            <h3 className="text-lg font-semibold mb-4" style={{ color: '#0C5C8A' }}>Iteration</h3>
-                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                                Continuous refinement based on user feedback and testing, ensuring the solution evolves to meet real-world needs.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            );
 
-        case "Ideation & Prototyping":
+
+        case "Ideation & Design":
             if (activeSubsection === 1) {
-                // Prototypes subsection with Figma embed
+                // Prototypes subsection with navigation
+                const [selectedPrototype, setSelectedPrototype] = useState(0);
+
+                const prototypes = [
+                    {
+                        name: "WIC Search",
+                        file: "/images/hands-ai/Prototypes/WIC-search.svg",
+                        description: "Search functionality for WIC participants and benefits"
+                    },
+                    {
+                        name: "Medical Module",
+                        file: "/images/hands-ai/Prototypes/medical-module.svg",
+                        description: "Medical information and health tracking interface"
+                    },
+                    {
+                        name: "Calendar View 1",
+                        file: "/images/hands-ai/Prototypes/Calendar-1.svg",
+                        description: "Primary calendar interface for appointment scheduling"
+                    },
+                    {
+                        name: "Calendar View 2",
+                        file: "/images/hands-ai/Prototypes/Calendar-2.svg",
+                        description: "Alternative calendar layout with enhanced features"
+                    },
+                    {
+                        name: "Calendar View 3",
+                        file: "/images/hands-ai/Prototypes/Calendar-3.svg",
+                        description: "Advanced calendar with detailed appointment management"
+                    }
+                ];
+
                 return (
                     <div className="space-y-8 max-w-7xl mx-auto">
                         <div className="text-center mb-8">
                             <h2 className="text-xl lg:text-2xl font-light text-gray-900 dark:text-white uppercase tracking-[0.2em] mb-4">Prototypes</h2>
                             <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mb-8"></div>
-                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                                Explore the interactive Figma prototype below:
-                            </p>
                         </div>
-                        <div className="flex justify-center">
-                            <iframe
-                                title="Figma Prototype"
-                                width="100%"
-                                height="600"
-                                style={{ border: '1px solid #ccc', borderRadius: '1rem' }}
-                                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/3VHOm6u72jABRY24G3HLdJ/HANDS-AI?node-id=6466-21219&t=LYxvw2mxMjwmq44m-1"
-                                allowFullScreen
-                            />
+
+                        {/* Main Prototype Display */}
+                        <div className="mb-8">
+                            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
+                                <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+                                    <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                                        {prototypes[selectedPrototype].name}
+                                    </h3>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                                        {prototypes[selectedPrototype].description}
+                                    </p>
+                                </div>
+                                <div className="p-6">
+                                    <div className="bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                                        <img
+                                            src={prototypes[selectedPrototype].file}
+                                            alt={prototypes[selectedPrototype].name}
+                                            className="w-full h-auto object-contain"
+                                            style={{
+                                                imageRendering: 'crisp-edges',
+                                                imageRendering: '-webkit-optimize-contrast',
+                                                imageRendering: 'optimizeQuality'
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Bottom Horizontal Navigation Menu */}
+                        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+                            <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-4">Prototype Navigation</h3>
+                            <div className="flex gap-3 overflow-x-auto scrollbar-hide">
+                                {prototypes.map((prototype, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setSelectedPrototype(index)}
+                                        className={`flex-shrink-0 p-3 rounded-lg border transition-all duration-200 text-center ${selectedPrototype === index
+                                                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-sm'
+                                                : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'
+                                            }`}
+                                    >
+                                        <div className="w-24 h-16 bg-white dark:bg-gray-900 rounded border border-gray-200 dark:border-gray-600 mb-2 overflow-hidden">
+                                            <img
+                                                src={prototype.file}
+                                                alt={prototype.name}
+                                                className="w-full h-full object-contain p-1"
+                                                style={{
+                                                    imageRendering: 'crisp-edges',
+                                                    imageRendering: '-webkit-optimize-contrast',
+                                                    imageRendering: 'optimizeQuality'
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="text-xs font-medium text-gray-900 dark:text-white mb-1">
+                                            {prototype.name}
+                                        </div>
+                                        <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed max-w-24">
+                                            {prototype.description}
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 );
@@ -1122,7 +1230,7 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                 </div>
             );
 
-        case "Design Systems & Usability":
+        case "Systems & Scalability":
             return (
                 <div className="space-y-12 max-w-7xl mx-auto">
                     <div className="text-center mb-12">
