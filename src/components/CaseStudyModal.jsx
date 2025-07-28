@@ -881,8 +881,14 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                     <h3 className="text-lg lg:text-xl font-medium text-gray-900 dark:text-white mb-6"> Uncovering the human story behind WIC operations</h3>
                                     <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-100 dark:border-gray-700">
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                                            To design a meaningful AI solution for WIC, we knew we couldn't just analyze workflows—we had to understand the people behind them. So we began our research by embedding ourselves in the clinics, and observing day-to-day operations.
+                                            In order to gain a transaprent understanding of the daily challenges faced by WIC caseworkers, my team and I travelled to a healthcare clinic in Phoenix, Arizona.
                                         </p>
+                        
+                                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                                            We used a combination of an ethnographic observation and contextual inquiries to observe day-to-day operations of several caseworkers who volunteered to participate in our research.
+                                        </p>
+                                            
+                        
                                         <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                                             We weren't just studying a system; we were stepping into the lived experiences of professionals who carry the responsibility of supporting vulnerable families every day.
                                         </p>
