@@ -1,3 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Bayon&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .banner-title {
+    font-family: 'Bayon', sans-serif;
+    @apply text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.2] md:leading-[1.2] lg:leading-[1.2] uppercase tracking-[0.12em];
+  }
+
+  .banner-text {
+    @apply text-lg md:text-xl text-gray-400 leading-[2.75rem] md:leading-[2.75rem] max-w-2xl;
+  }
+
+  .site-nav {
+    @apply fixed top-0 inset-x-0 z-50 bg-black text-white border-b border-white/10;
+  }
+
+  .site-nav__inner {
+    @apply max-w-6xl mx-auto px-6 py-6 flex items-center justify-between;
+  }
+
+  .site-nav__brand {
+    @apply text-lg tracking-wide text-white uppercase font-medium;
+  }
+
+  .site-nav__links {
+    @apply flex items-center gap-8;
+  }
+
+  .site-nav__link {
+    @apply text-sm tracking-[0.2em] uppercase text-gray-400 hover:text-white transition;
+  }
+
+  .section-title {
+    font-family: 'Bayon', sans-serif;
+    @apply text-4xl md:text-5xl font-light tracking-[0.15em] uppercase text-gray-900 dark:text-white;
+  }
+
+  .about-text {
+    @apply text-lg text-gray-300 leading-8;
+  }
+
+  .about-cta {
+    @apply inline-flex items-center justify-center px-8 py-3 border border-white/30 text-white uppercase tracking-[0.3em] text-xs rounded-full transition hover:bg-white hover:text-black;
+  }
+
+  button,
+  .button,
+  .btn {
+    @apply inline-flex items-center justify-center px-8 py-3 border border-white/30 text-white uppercase tracking-[0.3em] text-xs rounded-full transition hover:bg-white hover:text-black;
+  }
+}

@@ -5,7 +5,7 @@ const ContactSection = ({ email = "pritish@example.com", linkedinUrl = "https://
     return (
         <section id="section-3" className="py-20 bg-gray-900 text-white">
             <div className="max-w-4xl mx-auto px-6 text-center">
-                <h2 className="text-4xl md:text-5xl font-extralight mb-8">
+                <h2 className="section-title mb-8">
                     Let's Shape the Future Together
                 </h2>
                 <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">

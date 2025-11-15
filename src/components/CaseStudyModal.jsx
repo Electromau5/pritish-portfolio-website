@@ -608,10 +608,8 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                 <h3 className="text-lg font-semibold mb-4 md:mb-6 text-white">
                                     The Problem
                                 </h3>
-                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    <p className="text-sm">Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems.</p>
-                                    <p className="text-sm">This led to delayed patient care, physician burnout, and increased risk of medical errors due to incomplete information access.</p>
-                                    <p className="text-sm">The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
+                                <div className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    <p className="text-base leading-relaxed">Healthcare professionals were spending 40% of their time searching through complex medical records across multiple fragmented systems. This led to delayed patient care, physician burnout, and increased risk of medical errors due to incomplete information access. The existing systems required extensive training and were not optimized for the fast-paced clinical environment.</p>
                                 </div>
                             </div>
                             {/* Column 1, Row 2: The Solution */}
@@ -619,10 +617,8 @@ const SectionContent = ({ section, colors, activeSubsection = 0 }) => {
                                 <h3 className="text-lg font-semibold mb-4 md:mb-6 text-white">
                                     The Solution
                                 </h3>
-                                <div className="space-y-3 md:space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                                    <p className="text-sm">An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance.</p>
-                                    <p className="text-sm">The system provides contextual suggestions and real-time confidence scoring, ensuring accuracy while maintaining transparency.</p>
-                                    <p className="text-sm">Mobile-first design enables hands-free operation in busy clinical environments, with voice integration for seamless workflow integration.</p>
+                                <div className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    <p className="text-base leading-relaxed">An intelligent AI assistant that understands natural language queries and instantly retrieves relevant patient information with complete HIPAA compliance. The system provides contextual suggestions and real-time confidence scoring, ensuring accuracy while maintaining transparency. Mobile-first design enables hands-free operation in busy clinical environments, with voice integration for seamless workflow integration.</p>
                                 </div>
                             </div>
                             {/* Column 2, Row 1: problem.gif image */}
