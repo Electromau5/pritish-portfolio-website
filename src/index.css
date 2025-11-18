@@ -47,9 +47,45 @@
     @apply inline-flex items-center justify-center px-8 py-3 border border-white/30 text-white uppercase tracking-[0.3em] text-xs rounded-full transition hover:bg-white hover:text-black;
   }
 
-  button,
-  .button,
-  .btn {
-    @apply inline-flex items-center justify-center px-8 py-3 border border-white/30 text-white uppercase tracking-[0.3em] text-xs rounded-full transition hover:bg-white hover:text-black;
+  .section-eyebrow {
+    @apply text-xs uppercase tracking-[0.4em] text-gray-500;
   }
+
+  .featured-project {
+    @apply grid gap-10 lg:grid-cols-[1.2fr_1fr] items-center py-8 lg:py-12;
+  }
+
+  .featured-project__media {
+    @apply w-full rounded-[1.5rem] overflow-hidden bg-gray-900;
+  }
+
+  .featured-project__media img {
+    @apply w-full h-full object-cover;
+  }
+
+  .featured-project__eyebrow {
+    @apply text-xs uppercase tracking-[0.4em] text-gray-500 font-semibold mb-6;
+  }
+
+  .featured-project__title {
+    font-family: 'Bayon', sans-serif;
+    @apply text-3xl md:text-4xl text-white mb-4 leading-tight;
+  }
+
+  .featured-project__description {
+    @apply text-base md:text-lg text-gray-300 leading-relaxed mb-6;
+  }
+
+  .featured-project__tags {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .featured-project__tag {
+    @apply px-4 py-1.5 rounded-full bg-white text-black text-xs uppercase tracking-[0.2em] font-semibold;
+  }
+
+  .section-divider {
+    @apply w-full h-px bg-white/20;
+  }
+
 }

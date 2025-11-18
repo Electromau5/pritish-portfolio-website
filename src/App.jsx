@@ -72,7 +72,7 @@ const UXPortfolio = () => {
               onScrollDown={handleScrollDown}
             />
             <AboutSection />
-            <DesignJourney scrollY={scrollY} />
+            <DesignJourney />
             <ContactSection
               email="pritish@example.com"
               linkedinUrl="https://linkedin.com/in/pritishpatel"
