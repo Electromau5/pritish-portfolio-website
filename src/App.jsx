@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import DesignJourney from './components/DesignJourney';
 import AboutSection from './components/AboutSection';
+import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -72,6 +73,7 @@ const UXPortfolio = () => {
               onScrollDown={handleScrollDown}
             />
             <AboutSection />
+            <SkillsSection />
             <DesignJourney />
             <ContactSection
               email="pritish@example.com"

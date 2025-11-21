@@ -6,6 +6,7 @@ const Navigation = ({ onNavigate, name = "Pritish Sai" }) => {
         { label: "Home", sectionIndex: 0 },
         { label: "About", sectionIndex: 2 },
         { label: "Featured Work", sectionIndex: 1 },
+        { label: "Resume", href: "/resume.pdf" },
         { label: "Blog", href: "https://medium.com/ai-ui" },
         { label: "Contact", sectionIndex: 3 }
     ];
