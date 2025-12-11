@@ -37,12 +37,12 @@ const AboutSection = () => {
     return (
         <section id="section-2" className="py-24 bg-black text-white border-t border-white/10">
             <div className="max-w-6xl mx-auto px-6">
-                <div className="grid md:grid-cols-2 gap-16 items-start">
+                <div className="grid md:grid-cols-[1.4fr_1fr] gap-16 items-start">
                     <div className="space-y-8">
                         <div className="space-y-5">
                             <p className="text-sm uppercase tracking-[0.4em] text-gray-500">Pritish Sai</p>
                             <h2 className="section-title about-title text-white" style={{ textTransform: 'none' }}>
-                                I bridge human needs with AI possibilities
+                                A Decade of Experience Designign Enterprise Applications
                             </h2>
                         </div>
                         <div className="space-y-6">
