@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import CaseStudyModal from './CaseStudyModal';
-import { handsAIData } from '../data/handsai.data';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const DesignJourney = () => {
-    const [selectedProject, setSelectedProject] = useState(null);
-    const [modalOpen, setModalOpen] = useState(false);
+    const navigate = useNavigate();
     const testImage = "/images/hands-ai/hands-ai-cover.png";
 
     const projects = [
@@ -58,14 +56,8 @@ const DesignJourney = () => {
 
     const handleProjectClick = (project) => {
         if (project.hasCaseStudy && project.id === 1) {
-            setSelectedProject(project);
-            setModalOpen(true);
+            navigate(`/project/${project.id}`);
         }
-    };
-
-    const handleCloseModal = () => {
-        setModalOpen(false);
-        setSelectedProject(null);
     };
 
     return (
@@ -101,13 +93,6 @@ const DesignJourney = () => {
                     ))}
                 </div>
             </div>
-
-            <CaseStudyModal
-                isOpen={modalOpen}
-                onClose={handleCloseModal}
-                caseStudyData={selectedProject?.id === 1 ? handsAIData : null}
-                accentColor="blue"
-            />
         </section>
     );
 };

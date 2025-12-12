@@ -6,6 +6,7 @@ import DesignJourney from './components/DesignJourney';
 import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
+import ProjectDetailPage from './components/ProjectDetailPage';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 const SplashScreen = () => {
@@ -81,6 +82,7 @@ const UXPortfolio = () => {
             />
           </div>
         } />
+        <Route path="/project/:projectId" element={<ProjectDetailPage />} />
       </Routes>
     </ThemeProvider>
   );

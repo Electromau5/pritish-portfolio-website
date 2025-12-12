@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Linkedin, User, Briefcase, MessageSquare, FileText } from 'lucide-react';
-import CaseStudyModal from './CaseStudyModal';
-import { handsAIData } from '../data/handsai.data';
+import { useNavigate } from 'react-router-dom';
 
 const GridHomepage = () => {
+    const navigate = useNavigate();
     const [selectedSection, setSelectedSection] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [expandingCard, setExpandingCard] = useState(null);
@@ -198,6 +198,7 @@ const GridHomepage = () => {
                 onClose={handleCloseModal}
                 section={selectedSection}
                 expandingCard={expandingCard}
+                navigate={navigate}
             />
         </div>
     );
@@ -243,7 +244,7 @@ const GridCard = ({ section, onClick }) => {
     );
 };
 
-const SectionModal = ({ isOpen, onClose, section, expandingCard }) => {
+const SectionModal = ({ isOpen, onClose, section, expandingCard, navigate }) => {
     if (!isOpen || !section) return null;
 
     const renderContent = () => {
@@ -251,7 +252,7 @@ const SectionModal = ({ isOpen, onClose, section, expandingCard }) => {
             case 'about':
                 return <AboutModalContent data={section.content.data} />;
             case 'work':
-                return <WorkModalContent data={section.content.data} />;
+                return <WorkModalContent data={section.content.data} navigate={navigate} />;
             case 'contact':
                 return <ContactModalContent data={section.content.data} />;
             case 'blog':
@@ -346,18 +347,11 @@ const AboutModalContent = ({ data }) => {
     );
 };
 
-const WorkModalContent = ({ data }) => {
-    const [selectedProject, setSelectedProject] = useState(null);
-    const [caseStudyOpen, setCaseStudyOpen] = useState(false);
-
+const WorkModalContent = ({ data, navigate }) => {
     const handleProjectClick = (project) => {
-        setSelectedProject(project);
-        setCaseStudyOpen(true);
-    };
-
-    const handleCloseCaseStudy = () => {
-        setCaseStudyOpen(false);
-        setSelectedProject(null);
+        if (project.id === 1) {
+            navigate(`/project/${project.id}`);
+        }
     };
 
     return (
@@ -384,14 +378,6 @@ const WorkModalContent = ({ data }) => {
                     />
                 ))}
             </div>
-
-            {/* Case Study Modal */}
-            <CaseStudyModal
-                isOpen={caseStudyOpen}
-                onClose={handleCloseCaseStudy}
-                caseStudyData={selectedProject?.id === 1 ? handsAIData : null}
-                accentColor="blue"
-            />
         </div>
     );
 };
