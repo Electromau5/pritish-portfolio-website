@@ -10,10 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "crypto-js": "^4.2.0",
+    "dexie": "^4.2.1",
+    "dexie-react-hooks": "^4.2.0",
     "lucide-react": "^0.525.0",
+    "mammoth": "^1.11.0",
+    "pdfjs-dist": "^5.4.530",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.7.0"
+    "react-router-dom": "^7.7.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

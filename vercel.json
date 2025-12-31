@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/process-content.js": {
+      "maxDuration": 60
+    }
+  }
+}
+

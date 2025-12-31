@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { AuthProvider } from './contexts/AuthContext';
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import DesignJourney from './components/DesignJourney';
@@ -7,6 +8,7 @@ import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import ProjectDetailPage from './components/ProjectDetailPage';
+import CMSApp from './cms/CMSApp';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 const SplashScreen = () => {
@@ -63,27 +65,30 @@ const UXPortfolio = () => {
 
   return (
     <ThemeProvider>
-      <Routes>
-        <Route path="/" element={<SplashScreen />} />
-        <Route path="/home" element={
-          <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-light transition-colors duration-200">
-            <Navigation onNavigate={scrollToSection} name="Pritish Sai" />
-            <HeroSection
-              scrollY={scrollY}
-              onExploreClick={handleExploreClick}
-              onScrollDown={handleScrollDown}
-            />
-            <AboutSection />
-            <SkillsSection />
-            <DesignJourney />
-            <ContactSection
-              email="pritish@example.com"
-              linkedinUrl="https://linkedin.com/in/pritishpatel"
-            />
-          </div>
-        } />
-        <Route path="/project/:projectId" element={<ProjectDetailPage />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<SplashScreen />} />
+          <Route path="/home" element={
+            <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-light transition-colors duration-200">
+              <Navigation onNavigate={scrollToSection} name="Pritish Sai" />
+              <HeroSection
+                scrollY={scrollY}
+                onExploreClick={handleExploreClick}
+                onScrollDown={handleScrollDown}
+              />
+              <AboutSection />
+              <SkillsSection />
+              <DesignJourney />
+              <ContactSection
+                email="pritish@example.com"
+                linkedinUrl="https://linkedin.com/in/pritishpatel"
+              />
+            </div>
+          } />
+          <Route path="/project/:projectId" element={<ProjectDetailPage />} />
+          <Route path="/cms/*" element={<CMSApp />} />
+        </Routes>
+      </AuthProvider>
     </ThemeProvider>
   );
 };
