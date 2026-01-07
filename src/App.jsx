@@ -8,6 +8,7 @@ import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import ProjectDetailPage from './components/ProjectDetailPage';
+import CaseStudyDisplay from './components/CaseStudyDisplay';
 import CMSApp from './cms/CMSApp';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -86,6 +87,7 @@ const UXPortfolio = () => {
             </div>
           } />
           <Route path="/project/:projectId" element={<ProjectDetailPage />} />
+          <Route path="/case-study/:slug" element={<CaseStudyDisplay />} />
           <Route path="/cms/*" element={<CMSApp />} />
         </Routes>
       </AuthProvider>

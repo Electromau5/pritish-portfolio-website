@@ -15,10 +15,16 @@ export default async function handler(req, res) {
 
   // Get API key from environment variable
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  
+
   if (!apiKey) {
-    return res.status(500).json({ error: 'Claude API key not configured' });
+    console.error('ANTHROPIC_API_KEY not found in environment variables');
+    return res.status(500).json({
+      error: 'Claude API key not configured. Add ANTHROPIC_API_KEY to your .env file.'
+    });
   }
+
+  // Log that we have a key (but not the key itself for security)
+  console.log('API key found, length:', apiKey.length);
 
   const systemPrompt = `You are a case study content structurer for a UX design portfolio. Transform the provided document content into a structured case study JSON.
 
@@ -59,7 +65,7 @@ Guidelines:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'claude-sonnet-4-20250514',
         max_tokens: 4096,
         system: systemPrompt,
         messages: [
@@ -73,9 +79,21 @@ Guidelines:
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('Claude API error:', errorData);
-      return res.status(response.status).json({ 
-        error: 'Failed to process content with Claude AI',
+      console.error('Claude API error status:', response.status);
+      console.error('Claude API error details:', errorData);
+
+      // Parse the error to give more helpful messages
+      let parsedError;
+      try {
+        parsedError = JSON.parse(errorData);
+      } catch {
+        parsedError = { message: errorData };
+      }
+
+      const errorMessage = parsedError.error?.message || parsedError.message || errorData;
+
+      return res.status(response.status).json({
+        error: `Claude API error: ${errorMessage}`,
         details: errorData
       });
     }
