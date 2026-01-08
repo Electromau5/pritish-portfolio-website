@@ -76,13 +76,14 @@ Guidelines:
 - Use "grid" for lists of features, methods, or comparisons
 - Use "text" for detailed explanations
 - Use "quote" for testimonials or key insights
-- Build a realistic "journeyMap" with 4-6 stages covering end-to-end flow and 3-6 steps per stage. For each step, include action, thoughts, feelings, emotion (1-5 scale), painPoints, opportunities, touchpoints.
+- Build a concise "journeyMap" with 3-4 stages and 2-3 steps per stage. For each step, include action, thoughts, feelings, emotion (1-5 scale), painPoints, opportunities, touchpoints.
 - Include a "journey" content block in at least one section so UIs can render the journey map easily. Reference the top-level journeyMap using { "ref": "journeyMap" }.
 - Keep content concise and impactful
 - Return ONLY valid JSON, no markdown formatting`;
 
-  // Cap input size to help keep latency under Vercel’s 60s limit
-  const trimmedText = typeof text === 'string' && text.length > 15000 ? text.slice(0, 15000) : text;
+  // Cap input size to help keep latency under Vercel's 60s limit
+  // Reduced from 15000 to 10000 to avoid timeouts
+  const trimmedText = typeof text === 'string' && text.length > 10000 ? text.slice(0, 10000) : text;
 
   try {
     // Abort after 50s to avoid platform 504 and return a controlled timeout
@@ -99,9 +100,9 @@ Guidelines:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        // Faster model and fewer tokens to reduce latency
-        model: 'claude-3-haiku-20240307',
-        max_tokens: 1200,
+        // Use Haiku for speed, but need enough tokens for full JSON response
+        model: 'claude-3-5-haiku-latest',
+        max_tokens: 4096,
         temperature: 0.2,
         system: systemPrompt,
         messages: [
