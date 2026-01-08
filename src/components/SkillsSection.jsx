@@ -48,7 +48,7 @@ const SkillsSection = () => {
     ];
 
     return (
-        <section id="section-skills" className="py-24 bg-black text-white border-t border-white/10">
+        <section id="section-2" className="py-24 bg-black text-white border-t border-white/10">
             <div className="max-w-6xl mx-auto px-6">
                 <div className="space-y-4 mb-12">
                     <p className="section-eyebrow text-gray-500">Expertise</p>
@@ -70,7 +70,7 @@ const SkillsSection = () => {
                     ))}
                 </div>
                 <div className="mt-12 flex justify-center">
-                    <button className="about-cta" onClick={() => document.getElementById('section-1')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <button className="about-cta" onClick={() => document.getElementById('section-3')?.scrollIntoView({ behavior: 'smooth' })}>
                         Featured Work
                     </button>
                 </div>

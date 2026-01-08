@@ -35,7 +35,7 @@ const AboutSection = () => {
     ];
 
     return (
-        <section id="section-2" className="py-24 bg-black text-white border-t border-white/10">
+        <section id="section-1" className="py-24 bg-black text-white border-t border-white/10">
             <div className="max-w-6xl mx-auto px-6">
                 <div className="grid md:grid-cols-[1.4fr_1fr] gap-16 items-start">
                     <div className="space-y-8">
@@ -60,7 +60,7 @@ const AboutSection = () => {
                                 closely with engineers, I ensure these systems meet real needs while staying adaptable in fast-moving environments.
                             </p>
                         </div>
-                        <button className="about-cta" onClick={() => document.getElementById('section-skills')?.scrollIntoView({ behavior: 'smooth' })}>
+                        <button className="about-cta" onClick={() => document.getElementById('section-2')?.scrollIntoView({ behavior: 'smooth' })}>
                             What I can do for you
                         </button>
                     </div>

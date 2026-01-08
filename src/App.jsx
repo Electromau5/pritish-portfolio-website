@@ -10,36 +10,7 @@ import ContactSection from './components/ContactSection';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import CaseStudyDisplay from './components/CaseStudyDisplay';
 import CMSApp from './cms/CMSApp';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-
-const SplashScreen = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate('/home');
-    }, 7000); // 7 seconds
-    return () => clearTimeout(timer);
-  }, [navigate]);
-
-  return (
-    <div style={{ minHeight: '100vh', width: '100vw', background: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 0, padding: 0 }}>
-      <img
-        src="/pritish-welcome.gif"
-        alt="Welcome animation"
-        style={{ borderRadius: '1rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', maxWidth: 600, width: '100%', height: 'auto', background: '#fff' }}
-      />
-      <div style={{ width: 256, height: 8, background: '#e5e7eb', borderRadius: 9999, overflow: 'hidden', marginTop: 32 }}>
-        <div style={{ height: '100%', background: '#2563eb', width: '100%', animation: 'loadingBar 7s linear forwards' }} />
-      </div>
-      <style>{`
-        @keyframes loadingBar {
-          from { width: 0; }
-          to { width: 100%; }
-        }
-      `}</style>
-    </div>
-  );
-};
+import { Routes, Route } from 'react-router-dom';
 
 const UXPortfolio = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -51,41 +22,43 @@ const UXPortfolio = () => {
   }, []);
 
   const scrollToSection = (sectionIndex) => {
-    // 0: Hero, 1: About, 2: DesignJourney, 3: Contact
+    // 0: Hero, 1: About, 2: Skills, 3: Featured Work, 4: Contact
     const section = document.getElementById(`section-${sectionIndex}`);
     section?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleExploreClick = () => {
-    scrollToSection(2); // Now scrolls to AboutSection (Bridging Human Needs with AI Possibilities)
+    scrollToSection(1); // Scrolls to AboutSection
   };
 
   const handleScrollDown = () => {
-    scrollToSection(2); // Now scrolls to AboutSection (Bridging Human Needs with AI Possibilities)
+    scrollToSection(1); // Scrolls to AboutSection
   };
 
   return (
     <ThemeProvider>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<SplashScreen />} />
-          <Route path="/home" element={
-            <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-light transition-colors duration-200">
-              <Navigation onNavigate={scrollToSection} name="Pritish Sai" />
-              <HeroSection
-                scrollY={scrollY}
-                onExploreClick={handleExploreClick}
-                onScrollDown={handleScrollDown}
-              />
-              <AboutSection />
-              <SkillsSection />
-              <DesignJourney />
-              <ContactSection
-                email="pritish@example.com"
-                linkedinUrl="https://linkedin.com/in/pritishpatel"
-              />
-            </div>
-          } />
+          <Route
+            path="/"
+            element={
+              <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-light transition-colors duration-200">
+                <Navigation onNavigate={scrollToSection} name="Pritish Sai" />
+                <HeroSection
+                  scrollY={scrollY}
+                  onExploreClick={handleExploreClick}
+                  onScrollDown={handleScrollDown}
+                />
+                <AboutSection />
+                <SkillsSection />
+                <DesignJourney />
+                <ContactSection
+                  email="pritish@example.com"
+                  linkedinUrl="https://linkedin.com/in/pritishpatel"
+                />
+              </div>
+            }
+          />
           <Route path="/project/:projectId" element={<ProjectDetailPage />} />
           <Route path="/case-study/:slug" element={<CaseStudyDisplay />} />
           <Route path="/cms/*" element={<CMSApp />} />

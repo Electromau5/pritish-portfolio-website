@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 const Navigation = ({ onNavigate, name = "Pritish Sai" }) => {
     const navItems = [
         { label: "Home", sectionIndex: 0 },
-        { label: "About", sectionIndex: 2 },
-        { label: "Featured Work", sectionIndex: 1 },
+        { label: "About", sectionIndex: 1 },
+        { label: "Featured Work", sectionIndex: 3 },
         { label: "Resume", href: "/resume.pdf" },
         { label: "Blog", href: "https://medium.com/ai-ui" },
-        { label: "Contact", sectionIndex: 3 }
+        { label: "Contact", sectionIndex: 4 }
     ];
     const navigate = useNavigate();
 

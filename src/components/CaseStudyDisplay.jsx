@@ -103,7 +103,7 @@ const StatsBlock = ({ data, colors, template }) => {
   // Moritz style - Step indicators
   if (template === 'moritz') {
     return (
-      <div className="flex flex-wrap gap-6 mb-12 py-6 border-y border-yellow-400">
+      <div className="flex flex-wrap gap-6 mb-12 py-6 border-y border-gray-200">
         {data.items?.map((stat, index) => (
           <div key={index} className="flex items-center space-x-3">
             <div className={`w-12 h-12 rounded-full ${colors.primary} flex items-center justify-center text-white font-bold`}>
@@ -266,7 +266,7 @@ const GridBlock = ({ data, colors, template }) => {
         <div className="space-y-4">
           {data.items?.map((item, index) => (
             <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-gray-900 font-bold flex-shrink-0 text-sm">
+              <div className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center text-white font-bold flex-shrink-0 text-sm">
                 {index + 1}
               </div>
               <div>
@@ -292,7 +292,7 @@ const GridBlock = ({ data, colors, template }) => {
             <div key={index} className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all">
               <div className={`h-2 ${colors.primary}`}></div>
               <div className="p-6">
-                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2 group-hover:text-pink-500 transition-colors">{item.title}</h4>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2 group-hover:text-gray-900 transition-colors">{item.title}</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
               </div>
             </div>
@@ -466,7 +466,7 @@ const SimonPanLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs })
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           {!isPreview && (
             <button
-              onClick={() => navigate('/home')}
+              onClick={() => navigate('/')}
               className="flex items-center space-x-2 hover:opacity-70 transition-opacity"
               style={{ color: spColors.text }}
             >
@@ -1052,6 +1052,8 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   const [loading, setLoading] = useState(!caseStudyData);
   const [error, setError] = useState(null);
   const sectionRefs = useRef([]);
+
+  // no-op
 
   // Load case study from database
   useEffect(() => {

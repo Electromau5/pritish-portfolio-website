@@ -1,21 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import db from '../services/db';
 
 const DesignJourney = () => {
     const navigate = useNavigate();
     const testImage = "/images/hands-ai/hands-ai-cover.png";
+    const [publishedCaseStudies, setPublishedCaseStudies] = useState([]);
 
-    const projects = [
-        {
-            id: 1,
-            title: "Transforming Healthcare with Smart Automation",
-            subtitle: "Healthcare • AI Chatbot",
-            year: "2024",
-            description: "Redefining healthcare case management by embedding an intelligent assistant that turns complex case workflows into seamless, insight-driven experiences.",
-            tags: ["Healthcare", "Conversational AI", "Case Automation"],
-            image: "/images/hands-ai/hands-ai-cover.png",
-            hasCaseStudy: true
-        },
+    // Fallback projects for those without CMS case studies yet
+    const fallbackProjects = [
         {
             id: 2,
             title: "AI for Smarter School Decisions",
@@ -39,7 +32,7 @@ const DesignJourney = () => {
             title: "Structuring Network Data for Greater Clarity and Speed",
             subtitle: "Enterprise • Monitoring Dashboard",
             year: "2021",
-            description: "Reengineered Verizon’s diagnostic interface by flattening overloaded network hierarchies into a modular, intuitive experience.",
+            description: "Reengineered Verizon's diagnostic interface by flattening overloaded network hierarchies into a modular, intuitive experience.",
             tags: ["Real-time Data", "Operations", "Data Visibility"],
             image: testImage
         },
@@ -54,14 +47,50 @@ const DesignJourney = () => {
         }
     ];
 
+    useEffect(() => {
+        const fetchPublishedCaseStudies = async () => {
+            try {
+                const published = await db.caseStudies
+                    .where('status')
+                    .equals('published')
+                    .toArray();
+                setPublishedCaseStudies(published);
+            } catch (error) {
+                console.error('Error fetching published case studies:', error);
+            }
+        };
+        fetchPublishedCaseStudies();
+    }, []);
+
+    // Convert CMS case studies to project format
+    const cmsProjects = publishedCaseStudies.map((cs, index) => ({
+        id: `cms-${cs.id}`,
+        title: cs.title,
+        subtitle: cs.subtitle || 'Case Study',
+        year: new Date(cs.createdAt).getFullYear().toString(),
+        description: cs.sections?.[0]?.content?.[0]?.data?.description || cs.subtitle || '',
+        tags: cs.tags || [],
+        image: cs.coverImage || testImage,
+        hasCaseStudy: true,
+        slug: cs.slug,
+        isCMS: true
+    }));
+
+    // Combine CMS projects (shown first) with fallback projects
+    const projects = [...cmsProjects, ...fallbackProjects];
+
     const handleProjectClick = (project) => {
-        if (project.hasCaseStudy && project.id === 1) {
-            navigate(`/project/${project.id}`);
+        if (project.hasCaseStudy) {
+            if (project.isCMS && project.slug) {
+                navigate(`/case-study/${project.slug}`);
+            } else {
+                navigate(`/project/${project.id}`);
+            }
         }
     };
 
     return (
-        <section id="section-1" className="py-24 bg-black text-white border-t border-white/10">
+        <section id="section-3" className="py-24 bg-black text-white border-t border-white/10">
             <div className="max-w-6xl mx-auto px-6 space-y-12">
                 <div className="space-y-4">
                     <div className="section-divider" />
