@@ -181,6 +181,77 @@ export const templates = {
     },
     contentOrder: ['overview', 'problem', 'research', 'design', 'solution', 'impact'],
     emphasis: 'user-centered'
+  },
+
+  // Template 6: Carex UX Case Study Template
+  // Based on Figma Community template by Kailash S R & Mohamed Arshad
+  // Key traits: Comprehensive UX process, Double Diamond, personas, analysis frameworks
+  carex: {
+    id: 'carex',
+    name: 'Carex Complete',
+    description: 'Comprehensive UX case study template with full research & analysis sections. Based on the popular Figma community template.',
+    thumbnail: 'carex',
+    inspiration: 'Figma Community - Carex Template',
+    layout: {
+      hero: 'centered-minimal',
+      sections: 'full-process',
+      spacing: 'generous',
+      maxWidth: '1200px'
+    },
+    colors: {
+      background: '#ffffff',
+      text: '#1a1a1a',
+      textSecondary: '#666666',
+      accent: '#6366f1', // Indigo accent
+      divider: '#e5e5e5',
+      highlight: '#f0f9ff'
+    },
+    typography: {
+      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      heroTitle: '48px',
+      sectionTitle: '36px',
+      body: '16px',
+      lineHeight: '1.6'
+    },
+    features: ['Double Diamond', 'User Personas', 'Competitor Analysis', 'Root Cause Analysis', 'Taskflows'],
+    colorSchemes: ['light', 'dark'],
+    sectionStyles: {
+      hero: {
+        padding: 'py-16 md:py-24',
+        titleSize: 'text-4xl md:text-6xl',
+        layout: 'centered-minimal',
+        showTag: true
+      },
+      content: {
+        padding: 'py-12',
+        layout: 'comprehensive'
+      }
+    },
+    contentOrder: [
+      'hero',
+      'problem-statement',
+      'objectives-goals',
+      'process',
+      'business-challenges',
+      'product-users',
+      'quantitative-research',
+      'user-needs',
+      'features-functionalities',
+      'user-challenges',
+      'competitor-analysis',
+      'unique-features',
+      'user-persona',
+      'task-mapping',
+      'prioritization-matrix',
+      'five-why-analysis',
+      'root-cause-analysis',
+      'taskflows',
+      'sketches',
+      'major-screens',
+      'final-screens',
+      'thank-you'
+    ],
+    emphasis: 'comprehensive-ux-process'
   }
 };
 
@@ -365,6 +436,136 @@ export const templateSections = {
       title: 'Impact & Metrics',
       description: 'Measurable outcomes and user feedback',
       contentTypes: ['stats', 'quote', 'text']
+    }
+  ],
+
+  // Carex style - Comprehensive UX process (from Figma community template)
+  'carex-comprehensive': [
+    {
+      id: 'problem-statement',
+      title: 'Problem Statement',
+      description: 'Define the core problem and context',
+      contentTypes: ['text', 'quote']
+    },
+    {
+      id: 'objectives-goals',
+      title: 'Objectives & Goals',
+      description: 'What we aim to achieve',
+      contentTypes: ['text', 'grid']
+    },
+    {
+      id: 'process',
+      title: 'Our Process',
+      description: 'Double Diamond: Discover, Define, Ideate, Design',
+      contentTypes: ['grid', 'image']
+    },
+    {
+      id: 'business-challenges',
+      title: 'Business Challenges',
+      description: 'Key business pain points and constraints',
+      contentTypes: ['text', 'grid']
+    },
+    {
+      id: 'product-users',
+      title: 'Product Users',
+      description: 'Target audience and user segments',
+      contentTypes: ['text', 'image', 'grid']
+    },
+    {
+      id: 'quantitative-research',
+      title: 'Quantitative Research',
+      description: 'Survey data, analytics, and statistics',
+      contentTypes: ['stats', 'grid', 'text']
+    },
+    {
+      id: 'user-needs',
+      title: 'User Needs',
+      description: 'Core user requirements and desires',
+      contentTypes: ['text', 'grid']
+    },
+    {
+      id: 'features-functionalities',
+      title: 'Features & Functionalities',
+      description: 'Key features to address user needs',
+      contentTypes: ['grid', 'text']
+    },
+    {
+      id: 'user-challenges',
+      title: 'Product User Challenges',
+      description: 'Pain points users face with current solutions',
+      contentTypes: ['text', 'grid', 'quote']
+    },
+    {
+      id: 'competitor-analysis',
+      title: 'Competitor Analysis',
+      description: 'Market landscape and competitive positioning',
+      contentTypes: ['grid', 'image', 'text']
+    },
+    {
+      id: 'unique-features',
+      title: 'Unique Features',
+      description: 'Differentiating features and value propositions',
+      contentTypes: ['grid', 'text']
+    },
+    {
+      id: 'user-persona',
+      title: 'User Persona',
+      description: 'Detailed user archetype with demographics and behaviors',
+      contentTypes: ['image', 'grid', 'text']
+    },
+    {
+      id: 'task-mapping',
+      title: 'Task Mapping',
+      description: 'User tasks and workflows',
+      contentTypes: ['image', 'grid']
+    },
+    {
+      id: 'prioritization-matrix',
+      title: 'Eisenhower Matrix',
+      description: 'Feature prioritization by urgency and importance',
+      contentTypes: ['grid', 'image']
+    },
+    {
+      id: 'five-why-analysis',
+      title: '5 Why Analysis',
+      description: 'Root cause discovery through iterative questioning',
+      contentTypes: ['text', 'grid']
+    },
+    {
+      id: 'root-cause-analysis',
+      title: 'Root Cause Analysis',
+      description: 'Deep dive into underlying problems',
+      contentTypes: ['text', 'image']
+    },
+    {
+      id: 'taskflows',
+      title: 'Taskflows',
+      description: 'User journey and task flow diagrams',
+      contentTypes: ['image', 'text']
+    },
+    {
+      id: 'sketches',
+      title: 'Sketches',
+      description: 'Early ideation and concept sketches',
+      contentTypes: ['image', 'text']
+    },
+    {
+      id: 'major-screens',
+      title: 'Major Screens',
+      description: 'Key UI screens and interactions',
+      contentTypes: ['image', 'grid']
+    },
+    {
+      id: 'final-screens',
+      title: 'Final Screens',
+      description: 'Polished high-fidelity designs',
+      contentTypes: ['image', 'grid']
+    },
+    {
+      id: 'thank-you',
+      title: 'Thank You',
+      description: 'Closing and credits',
+      contentTypes: ['text']
     }
   ],
 

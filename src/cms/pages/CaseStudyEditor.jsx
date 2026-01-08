@@ -118,6 +118,48 @@ const templatePreviews = {
       </div>
     </div>
   ),
+  // Carex style - Comprehensive UX Process (Double Diamond, personas, analysis)
+  carex: (
+    <div className="w-full h-full bg-white flex flex-col">
+      {/* Hero with centered title */}
+      <div className="h-10 bg-gradient-to-b from-indigo-50 to-white flex flex-col items-center justify-center">
+        <div className="w-10 h-1.5 bg-indigo-500 rounded mb-1" />
+        <div className="px-1.5 py-0.5 bg-indigo-100 rounded-full">
+          <span className="text-[5px] text-indigo-600 font-medium">UX Case Study</span>
+        </div>
+      </div>
+      {/* Double Diamond Process */}
+      <div className="flex justify-center gap-0.5 py-1 px-2">
+        <div className="w-3 h-3 bg-indigo-200 rounded-sm flex items-center justify-center">
+          <span className="text-[4px] text-indigo-700">D</span>
+        </div>
+        <div className="w-3 h-3 bg-indigo-300 rounded-sm flex items-center justify-center">
+          <span className="text-[4px] text-indigo-700">D</span>
+        </div>
+        <div className="w-3 h-3 bg-indigo-400 rounded-sm flex items-center justify-center">
+          <span className="text-[4px] text-white">I</span>
+        </div>
+        <div className="w-3 h-3 bg-indigo-500 rounded-sm flex items-center justify-center">
+          <span className="text-[4px] text-white">D</span>
+        </div>
+      </div>
+      {/* Content sections */}
+      <div className="flex-1 p-1.5 flex flex-col gap-1">
+        <div className="flex gap-1">
+          <div className="flex-1 h-4 bg-gray-100 rounded-sm" />
+          <div className="flex-1 h-4 bg-gray-100 rounded-sm" />
+        </div>
+        <div className="h-5 bg-indigo-50 rounded-sm flex items-center justify-center">
+          <div className="w-4 h-3 bg-gray-200 rounded-full" />
+        </div>
+        <div className="flex gap-1">
+          <div className="w-3 h-3 bg-green-100 rounded-sm" />
+          <div className="w-3 h-3 bg-blue-100 rounded-sm" />
+          <div className="w-3 h-3 bg-purple-100 rounded-sm" />
+        </div>
+      </div>
+    </div>
+  ),
 };
 
 const CaseStudyEditor = () => {
