@@ -26,12 +26,34 @@ export default async function handler(req, res) {
   // Log that we have a key (but not the key itself for security)
   console.log('API key found, length:', apiKey.length);
 
-  const systemPrompt = `You are a case study content structurer for a UX design portfolio. Transform the provided document content into a structured case study JSON.
+  const systemPrompt = `You are a case study content structurer for a UX design portfolio. Transform the provided document content into a structured case study JSON AND generate a user journey map based on the content.
 
 Output this exact JSON structure:
 {
   "title": "Project title extracted from content",
   "subtitle": "One-line summary of the project",
+  "journeyMap": {
+    "title": "User Journey",
+    "personas": [
+      { "name": "Primary Persona", "role": "e.g., Caseworker", "goals": ["...","..."] }
+    ],
+    "stages": [
+      {
+        "name": "Discover",
+        "steps": [
+          {
+            "action": "What the user does",
+            "thoughts": "What the user thinks",
+            "feelings": "One or two words e.g., 'confused', 'confident'",
+            "emotion": 1,
+            "painPoints": ["..."],
+            "opportunities": ["..."],
+            "touchpoints": ["web", "email"]
+          }
+        ]
+      }
+    ]
+  },
   "sections": [
     {
       "title": "Section Name",
@@ -40,7 +62,8 @@ Output this exact JSON structure:
         { "type": "stats", "data": { "items": [{ "value": "85%", "label": "..." }] } },
         { "type": "grid", "data": { "title": "...", "columns": 2, "items": [{ "title": "...", "description": "..." }] } },
         { "type": "text", "data": { "title": "...", "paragraphs": ["...", "..."] } },
-        { "type": "quote", "data": { "text": "...", "author": "..." } }
+        { "type": "quote", "data": { "text": "...", "author": "..." } },
+        { "type": "journey", "data": { "ref": "journeyMap" } }
       ]
     }
   ]
@@ -53,6 +76,8 @@ Guidelines:
 - Use "grid" for lists of features, methods, or comparisons
 - Use "text" for detailed explanations
 - Use "quote" for testimonials or key insights
+- Build a realistic "journeyMap" with 4-6 stages covering end-to-end flow and 3-6 steps per stage. For each step, include action, thoughts, feelings, emotion (1-5 scale), painPoints, opportunities, touchpoints.
+- Include a "journey" content block in at least one section so UIs can render the journey map easily. Reference the top-level journeyMap using { "ref": "journeyMap" }.
 - Keep content concise and impactful
 - Return ONLY valid JSON, no markdown formatting`;
 

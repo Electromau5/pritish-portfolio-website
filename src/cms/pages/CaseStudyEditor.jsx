@@ -180,13 +180,30 @@ const CaseStudyEditor = () => {
       }
 
       // Update case study with structured data
-      setCaseStudy(prev => ({
-        ...prev,
-        title: result.data.title || '',
-        subtitle: result.data.subtitle || '',
-        sections: result.data.sections || [],
-        slug: (result.data.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-      }));
+      setCaseStudy(prev => {
+        const incomingSections = Array.isArray(result.data.sections) ? result.data.sections : [];
+        const hasJourneyBlock = incomingSections.some(
+          s => Array.isArray(s.content) && s.content.some(b => b.type === 'journey')
+        );
+        const sectionsWithJourney = hasJourneyBlock
+          ? incomingSections
+          : [
+              ...incomingSections,
+              {
+                title: 'User Journey',
+                content: [{ type: 'journey', data: { ref: 'journeyMap' } }]
+              }
+            ];
+
+        return ({
+          ...prev,
+          title: result.data.title || '',
+          subtitle: result.data.subtitle || '',
+          sections: sectionsWithJourney,
+          journeyMap: result.data.journeyMap || null,
+          slug: (result.data.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+        });
+      });
 
       setProcessingStatus('success');
       setStep('edit');

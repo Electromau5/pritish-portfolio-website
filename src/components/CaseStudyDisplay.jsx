@@ -386,8 +386,143 @@ const ImageBlock = ({ data, template }) => {
   );
 };
 
+// ============================================
+// JOURNEY MAP RENDERER
+// ============================================
+const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
+  // Resolve journey data
+  const journey =
+    data?.ref === 'journeyMap'
+      ? caseStudy?.journeyMap
+      : data;
+
+  if (!journey || !Array.isArray(journey.stages) || journey.stages.length === 0) {
+    return null;
+  }
+
+  const personaLabel =
+    Array.isArray(journey.personas) && journey.personas.length > 0
+      ? `${journey.personas[0].name}${journey.personas[0].role ? ' — ' + journey.personas[0].role : ''}`
+      : 'Primary Persona';
+
+  const stageCount = journey.stages.length;
+
+  // Style variants per template (subtle)
+  const containerClasses = {
+    simonpan: 'max-w-2xl mx-auto',
+    moritz: 'max-w-3xl mx-auto',
+    lola: 'max-w-5xl mx-auto',
+    gloria: 'max-w-4xl mx-auto',
+    pratibha: 'max-w-6xl mx-auto',
+  }[template] || 'max-w-4xl mx-auto';
+
+  const accent = colors?.text?.replace('text-', '') || 'blue-600';
+  const emotionToBar = (n) => Math.max(1, Math.min(5, Number(n || 1)));
+
+  return (
+    <div className={`mb-16 ${containerClasses}`}>
+      <div className="mb-6">
+        <h3 className="text-2xl md:text-3xl font-light text-gray-900 dark:text-white mb-2">
+          {journey.title || 'User Journey'}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          {personaLabel}
+        </p>
+      </div>
+
+      {/* Stage headers */}
+      <div className={`grid gap-3`} style={{ gridTemplateColumns: `repeat(${stageCount}, minmax(0,1fr))` }}>
+        {journey.stages.map((stage, idx) => (
+          <div key={idx} className="text-center">
+            <div className={`inline-flex items-center justify-center px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-xs uppercase tracking-wide`}>
+              {stage.name}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Steps grid */}
+      <div className="mt-4 grid gap-4" style={{ gridTemplateColumns: `repeat(${stageCount}, minmax(0,1fr))` }}>
+        {journey.stages.map((stage, idx) => (
+          <div key={idx} className="space-y-3">
+            {(stage.steps || []).map((step, sIdx) => (
+              <div
+                key={sIdx}
+                className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm"
+              >
+                <div className="mb-2">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Action</div>
+                  <div className="text-sm text-gray-900 dark:text-white">{step.action}</div>
+                </div>
+                <div className="mb-2">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Thoughts</div>
+                  <div className="text-sm text-gray-700 dark:text-gray-300">{step.thoughts}</div>
+                </div>
+                <div className="mb-3">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Feelings</div>
+                  <div className="text-sm text-gray-700 dark:text-gray-300">{step.feelings}</div>
+                </div>
+                {/* Emotion bar */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+                    <span>Emotion</span>
+                    <span>{emotionToBar(step.emotion)}/5</span>
+                  </div>
+                  <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded">
+                    <div
+                      className={`h-2 rounded ${colors?.primary || 'bg-blue-600'}`}
+                      style={{ width: `${(emotionToBar(step.emotion) / 5) * 100}%` }}
+                    />
+                  </div>
+                </div>
+                {/* Chips */}
+                {(Array.isArray(step.painPoints) && step.painPoints.length > 0) && (
+                  <div className="mb-2">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Pain Points</div>
+                    <div className="flex flex-wrap gap-2">
+                      {step.painPoints.map((p, i) => (
+                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-800">
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {(Array.isArray(step.opportunities) && step.opportunities.length > 0) && (
+                  <div className="mb-2">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Opportunities</div>
+                    <div className="flex flex-wrap gap-2">
+                      {step.opportunities.map((o, i) => (
+                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-100 dark:border-green-800">
+                          {o}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {(Array.isArray(step.touchpoints) && step.touchpoints.length > 0) && (
+                  <div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Touchpoints</div>
+                    <div className="flex flex-wrap gap-2">
+                      {step.touchpoints.map((t, i) => (
+                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // Content block renderer with template support
-const ContentBlock = ({ block, colors, template }) => {
+const ContentBlock = ({ block, colors, template, caseStudy }) => {
   switch (block.type) {
     case 'hero':
       return <HeroBlock data={block.data} colors={colors} template={template} />;
@@ -401,6 +536,8 @@ const ContentBlock = ({ block, colors, template }) => {
       return <QuoteBlock data={block.data} colors={colors} template={template} />;
     case 'image':
       return <ImageBlock data={block.data} template={template} />;
+    case 'journey':
+      return <JourneyMapBlock data={block.data} caseStudy={caseStudy} colors={colors} template={template} />;
     default:
       return null;
   }
@@ -814,7 +951,7 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
             </h2>
           </div>
           {section.content?.map((block, blockIndex) => (
-            <ContentBlock key={blockIndex} block={block} colors={colors} template="moritz" />
+            <ContentBlock key={blockIndex} block={block} colors={colors} template="moritz" caseStudy={caseStudy} />
           ))}
         </section>
       ))}
@@ -887,7 +1024,7 @@ const LolaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => 
             {section.title}
           </h2>
           {section.content?.map((block, blockIndex) => (
-            <ContentBlock key={blockIndex} block={block} colors={colors} template="lola" />
+            <ContentBlock key={blockIndex} block={block} colors={colors} template="lola" caseStudy={caseStudy} />
           ))}
         </section>
       ))}
@@ -932,7 +1069,7 @@ const GloriaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
             {section.title}
           </h2>
           {section.content?.map((block, blockIndex) => (
-            <ContentBlock key={blockIndex} block={block} colors={colors} template="gloria" />
+            <ContentBlock key={blockIndex} block={block} colors={colors} template="gloria" caseStudy={caseStudy} />
           ))}
         </section>
       ))}
@@ -1003,7 +1140,7 @@ const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, a
               </div>
               <div className="pl-6">
                 {section.content?.map((block, blockIndex) => (
-                  <ContentBlock key={blockIndex} block={block} colors={colors} template="pratibha" />
+                  <ContentBlock key={blockIndex} block={block} colors={colors} template="pratibha" caseStudy={caseStudy} />
                 ))}
               </div>
             </section>
