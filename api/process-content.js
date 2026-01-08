@@ -81,7 +81,16 @@ Guidelines:
 - Keep content concise and impactful
 - Return ONLY valid JSON, no markdown formatting`;
 
+  // Cap input size to help keep latency under Vercel’s 60s limit
+  const trimmedText = typeof text === 'string' && text.length > 15000 ? text.slice(0, 15000) : text;
+
   try {
+    // Abort after 50s to avoid platform 504 and return a controlled timeout
+    const controller = new AbortController();
+    const timeout = setTimeout(() => {
+      try { controller.abort(); } catch {}
+    }, 50000);
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -90,17 +99,21 @@ Guidelines:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 4096,
+        // Faster model and fewer tokens to reduce latency
+        model: 'claude-3-haiku-20240307',
+        max_tokens: 1200,
+        temperature: 0.2,
         system: systemPrompt,
         messages: [
           {
             role: 'user',
-            content: `Please structure this case study content into the JSON format:\n\n${text.substring(0, 100000)}` // Limit to 100k chars
+            content: `Please structure this case study content into the JSON format:\n\n${trimmedText}`
           }
         ]
-      })
+      }),
+      signal: controller.signal
     });
+    clearTimeout(timeout);
 
     if (!response.ok) {
       const errorData = await response.text();
@@ -124,18 +137,35 @@ Guidelines:
     }
 
     const data = await response.json();
-    const content = data.content[0].text;
+    const content = data?.content?.[0]?.text ?? '';
 
     // Extract JSON from response (handle markdown code blocks if present)
-    let jsonString = content.trim();
+    let jsonString = (content || '').trim();
     if (jsonString.startsWith('```')) {
       jsonString = jsonString.replace(/^```(?:json)?\n/, '').replace(/\n```$/, '');
     }
 
-    const structuredData = JSON.parse(jsonString);
+    let structuredData;
+    try {
+      structuredData = JSON.parse(jsonString);
+    } catch (e) {
+      // Fallback: attempt to extract JSON substring
+      const s = jsonString.indexOf('{');
+      const eIdx = jsonString.lastIndexOf('}');
+      if (s !== -1 && eIdx !== -1 && eIdx > s) {
+        structuredData = JSON.parse(jsonString.slice(s, eIdx + 1));
+      } else {
+        throw e;
+      }
+    }
 
     return res.status(200).json({ success: true, data: structuredData });
   } catch (error) {
+    if (error?.name === 'AbortError') {
+      return res.status(504).json({
+        error: 'Processing timed out. Try again with a shorter document or retry shortly.'
+      });
+    }
     console.error('Error processing content:', error);
     return res.status(500).json({ 
       error: 'Failed to process content',

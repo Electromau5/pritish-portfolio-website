@@ -48,6 +48,10 @@ export const processContentWithClaude = async (text) => {
 
     if (!response.ok) {
       let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+      if (response.status === 504) {
+        // Custom, clearer timeout message for user
+        throw new Error('Processing timed out. Your document may be large or the AI was slow. Please try a shorter PDF or try again shortly.');
+      }
       try {
         const errorData = await response.json();
         errorMessage = errorData.error || errorData.details || JSON.stringify(errorData);
