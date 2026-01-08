@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import db from '../services/db';
 import { getTemplate } from '../templates/caseStudyTemplates';
+import CarexLayout from './CarexTemplate';
 
 // ============================================
 // CONTENT BLOCK RENDERERS
@@ -1281,6 +1282,8 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
       return <LolaLayout {...layoutProps} />;
     case 'gloria':
       return <GloriaLayout {...layoutProps} />;
+    case 'carex':
+      return <CarexLayout {...layoutProps} />;
     case 'pratibha':
     default:
       return <PratibhaLayout {...layoutProps} />;
