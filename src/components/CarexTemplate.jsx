@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 // ============================================
 // CAREX TEMPLATE - Exact Figma Replica
 // Based on UX Case Study Template by Kailash S R & Mohamed Arshad
+// All 15 sections implemented from Figma Blocks page
 // ============================================
 
 // Carex Color Palette (from Figma Styling page)
@@ -17,6 +18,11 @@ const carexColors = {
   extraLightSecondary: '#EDF6FE',
   cons: '#F57878',
   white: '#FFFFFF',
+  // Eisenhower Matrix colors
+  matrixGreen: '#4CAF50',
+  matrixYellow: '#FFC107',
+  matrixBlue: '#2196F3',
+  matrixRed: '#F44336',
 };
 
 // Carex Typography Styles (Poppins font from Figma)
@@ -66,8 +72,34 @@ const carexTypography = {
   },
 };
 
+// Arrow Icon Component (used in multiple sections)
+const ArrowBullet = ({ color = carexColors.primary }) => (
+  <svg
+    className="w-6 h-6 flex-shrink-0 mt-1"
+    style={{ color }}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+  </svg>
+);
+
+// X Icon Component (for challenges/cons)
+const XBullet = ({ color = carexColors.cons }) => (
+  <svg
+    className="w-6 h-6 flex-shrink-0 mt-1"
+    style={{ color }}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+  </svg>
+);
+
 // ============================================
-// SECTION COMPONENTS
+// SECTION COMPONENTS (All 15 from Figma Blocks)
 // ============================================
 
 // Hero Section - Centered title with tag
@@ -129,60 +161,19 @@ const CarexHero = ({ title, subtitle, tag = 'UX Case Study' }) => (
       </p>
     )}
 
-    {/* Decorative screens preview (optional) */}
+    {/* Decorative screens preview */}
     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-32 bg-gradient-to-t from-gray-100 to-transparent opacity-50" />
   </section>
 );
 
-// Problem Statement Section
+// 1. Problem Statement Section (Figma: 52:2415)
+// Centered heading + body text with decorative box
 const CarexProblemStatement = ({ title = 'Problem Statement', description }) => (
   <section
     className="py-24 px-6"
     style={{ backgroundColor: carexColors.white }}
   >
-    <div className="max-w-4xl mx-auto">
-      <div className="flex items-start gap-12">
-        <div className="flex-1">
-          <h2
-            style={{
-              ...carexTypography.heading,
-              color: carexColors.dark,
-              fontSize: 'clamp(32px, 5vw, 48px)',
-              marginBottom: '24px',
-            }}
-          >
-            {title}
-          </h2>
-          <p
-            style={{
-              ...carexTypography.body,
-              color: carexColors.dark,
-              fontSize: 'clamp(16px, 2.5vw, 26px)',
-            }}
-          >
-            {description}
-          </p>
-        </div>
-        {/* Decorative 3D Box */}
-        <div
-          className="hidden md:block w-32 h-32 rounded-2xl transform rotate-12"
-          style={{
-            backgroundColor: carexColors.extraLight,
-            boxShadow: '0 20px 40px rgba(24, 138, 236, 0.1)',
-          }}
-        />
-      </div>
-    </div>
-  </section>
-);
-
-// Objectives & Goals Section
-const CarexObjectives = ({ title = 'Objectives & Goals', items = [] }) => (
-  <section
-    className="py-24 px-6"
-    style={{ backgroundColor: carexColors.white }}
-  >
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto text-center">
       <h2
         style={{
           ...carexTypography.heading,
@@ -193,13 +184,54 @@ const CarexObjectives = ({ title = 'Objectives & Goals', items = [] }) => (
       >
         {title}
       </h2>
-      <ul className="space-y-4">
+      <div className="relative">
+        <p
+          style={{
+            ...carexTypography.body,
+            color: carexColors.dark,
+            fontSize: 'clamp(16px, 2.5vw, 26px)',
+          }}
+        >
+          {description}
+        </p>
+        {/* Decorative 3D Box - positioned to the right */}
+        <div
+          className="absolute -right-16 top-1/2 -translate-y-1/2 w-24 h-24 rounded-2xl transform rotate-12 hidden lg:block"
+          style={{
+            backgroundColor: carexColors.extraLight,
+            boxShadow: '0 20px 40px rgba(24, 138, 236, 0.15)',
+          }}
+        />
+      </div>
+    </div>
+  </section>
+);
+
+// 2. Objectives & Goals Section (Figma: 52:2474)
+// Left-aligned heading with 2-column layout (gap: 104px)
+const CarexObjectives = ({ title = 'Objectives & Goals', items = [] }) => (
+  <section
+    className="py-24 px-6"
+    style={{ backgroundColor: carexColors.white }}
+  >
+    <div className="max-w-5xl mx-auto">
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '48px',
+        }}
+      >
+        {title}
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-6">
         {items.map((item, index) => (
-          <li
+          <div
             key={index}
             className="flex items-start gap-4"
           >
-            <span
+            <div
               className="w-2 h-2 rounded-full mt-3 flex-shrink-0"
               style={{ backgroundColor: carexColors.primary }}
             />
@@ -212,15 +244,16 @@ const CarexObjectives = ({ title = 'Objectives & Goals', items = [] }) => (
             >
               {item}
             </span>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   </section>
 );
 
-// Our Process Section - Double Diamond (Discover, Define, Ideate, Design)
-const CarexProcess = ({ title = 'Our Process', steps = ['Discover', 'Define', 'Ideate', 'Design'] }) => (
+// 3. Our Process Section (Figma: 52:2475)
+// Centered heading with 4 process steps: Discover, Define, Ideate, Design
+const CarexProcess = ({ title = 'Our Process', steps = ['Discover', 'Define', 'Ideate', 'Design'], descriptions = [] }) => (
   <section
     className="py-24 px-6"
     style={{ backgroundColor: carexColors.white }}
@@ -237,25 +270,40 @@ const CarexProcess = ({ title = 'Our Process', steps = ['Discover', 'Define', 'I
       >
         {title}
       </h2>
-      <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+      <div className="flex flex-wrap justify-center gap-8 md:gap-12">
         {steps.map((step, index) => (
-          <div key={index} className="flex flex-col items-center">
+          <div key={index} className="flex flex-col items-center text-center max-w-[180px]">
             {/* Icon Circle */}
             <div
-              className="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center mb-4 relative"
+              className="w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center mb-4 relative"
               style={{ backgroundColor: carexColors.extraLight }}
             >
-              {/* Process Icon (simplified representation) */}
-              <div
-                className="w-12 h-12 md:w-16 md:h-16 rounded-lg"
-                style={{
-                  backgroundColor: carexColors.primary,
-                  opacity: 0.2 + (index * 0.2),
-                }}
-              />
-              {/* Step number */}
+              {/* Process Icon */}
+              <div className="flex items-center justify-center">
+                {index === 0 && (
+                  <svg className="w-10 h-10" style={{ color: carexColors.primary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                )}
+                {index === 1 && (
+                  <svg className="w-10 h-10" style={{ color: carexColors.primary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                )}
+                {index === 2 && (
+                  <svg className="w-10 h-10" style={{ color: carexColors.primary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                )}
+                {index === 3 && (
+                  <svg className="w-10 h-10" style={{ color: carexColors.primary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                  </svg>
+                )}
+              </div>
+              {/* Step number badge */}
               <span
-                className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center text-white text-sm font-bold"
                 style={{ backgroundColor: carexColors.primary }}
               >
                 {index + 1}
@@ -266,11 +314,25 @@ const CarexProcess = ({ title = 'Our Process', steps = ['Discover', 'Define', 'I
               style={{
                 ...carexTypography.subheading,
                 color: carexColors.dark,
-                fontSize: 'clamp(18px, 3vw, 32px)',
+                fontSize: 'clamp(18px, 3vw, 28px)',
+                marginBottom: '8px',
               }}
             >
               {step}
             </span>
+            {/* Step Description */}
+            {descriptions[index] && (
+              <span
+                style={{
+                  ...carexTypography.bodySmall,
+                  color: carexColors.dark,
+                  fontSize: 'clamp(12px, 2vw, 18px)',
+                  opacity: 0.7,
+                }}
+              >
+                {descriptions[index]}
+              </span>
+            )}
           </div>
         ))}
       </div>
@@ -278,8 +340,9 @@ const CarexProcess = ({ title = 'Our Process', steps = ['Discover', 'Define', 'I
   </section>
 );
 
-// Business Challenges Section
-const CarexChallenges = ({ title = 'Business Challenges', items = [] }) => (
+// 4. Business Challenges Section (Figma: 52:2476)
+// List with red X icons (#F57878)
+const CarexBusinessChallenges = ({ title = 'Business Challenges', items = [] }) => (
   <section
     className="py-24 px-6"
     style={{ backgroundColor: carexColors.white }}
@@ -295,22 +358,13 @@ const CarexChallenges = ({ title = 'Business Challenges', items = [] }) => (
       >
         {title}
       </h2>
-      <ul className="space-y-4">
+      <ul className="space-y-5">
         {items.map((item, index) => (
           <li
             key={index}
             className="flex items-start gap-4"
           >
-            {/* X Icon for challenges */}
-            <svg
-              className="w-6 h-6 flex-shrink-0 mt-1"
-              style={{ color: carexColors.cons }}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <XBullet />
             <span
               style={{
                 ...carexTypography.body,
@@ -327,157 +381,50 @@ const CarexChallenges = ({ title = 'Business Challenges', items = [] }) => (
   </section>
 );
 
-// Product Users Section
-const CarexProductUsers = ({ title = 'Product Users', description, users = [] }) => (
-  <section
-    className="py-24 px-6"
-    style={{ backgroundColor: carexColors.extraLight }}
-  >
-    <div className="max-w-5xl mx-auto">
-      <div className="flex flex-col md:flex-row items-center gap-12">
-        <div className="flex-1">
-          <h2
-            style={{
-              ...carexTypography.heading,
-              color: carexColors.dark,
-              fontSize: 'clamp(32px, 5vw, 48px)',
-              marginBottom: '16px',
-            }}
-          >
-            {title}
-          </h2>
-          <p
-            style={{
-              ...carexTypography.body,
-              color: carexColors.dark,
-              fontSize: 'clamp(16px, 2.5vw, 26px)',
-            }}
-          >
-            {description}
-          </p>
-        </div>
-        {/* User Avatars */}
-        <div className="flex gap-4">
-          {[1, 2, 3].map((_, index) => (
-            <div
-              key={index}
-              className="w-20 h-20 md:w-28 md:h-28 rounded-full"
-              style={{
-                backgroundColor: carexColors.lightSecondary,
-                border: `3px solid ${carexColors.white}`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-// Quantitative Research Section
-const CarexQuantitativeResearch = ({ title = 'Quantitative Research', subtitle = 'Observations', stats = [] }) => (
+// 5. User Needs Section (Figma: 52:2479)
+// Heading with blue arrow bullets pointing right
+const CarexUserNeeds = ({ title = 'User Needs', items = [] }) => (
   <section
     className="py-24 px-6"
     style={{ backgroundColor: carexColors.white }}
   >
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       <h2
         style={{
           ...carexTypography.heading,
           color: carexColors.dark,
           fontSize: 'clamp(32px, 5vw, 48px)',
-          marginBottom: '16px',
+          marginBottom: '32px',
         }}
       >
         {title}
       </h2>
-      <h3
-        style={{
-          ...carexTypography.subheading,
-          color: carexColors.dark,
-          fontSize: 'clamp(24px, 4vw, 32px)',
-          marginBottom: '32px',
-        }}
-      >
-        {subtitle}
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {stats.map((stat, index) => (
-          <div key={index} className="flex items-start gap-4">
+      <ul className="space-y-5">
+        {items.map((item, index) => (
+          <li
+            key={index}
+            className="flex items-start gap-4"
+          >
+            <ArrowBullet />
             <span
-              style={{
-                ...carexTypography.heading,
-                color: carexColors.primary,
-                fontSize: 'clamp(32px, 5vw, 48px)',
-              }}
-            >
-              {stat.value}
-            </span>
-            <p
-              className="pt-2"
               style={{
                 ...carexTypography.body,
                 color: carexColors.dark,
                 fontSize: 'clamp(16px, 2.5vw, 26px)',
               }}
             >
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-// User Needs Section
-const CarexUserNeeds = ({ title = 'User Needs', items = [] }) => (
-  <section
-    className="py-24 px-6"
-    style={{ backgroundColor: carexColors.white }}
-  >
-    <div className="max-w-5xl mx-auto">
-      <h2
-        style={{
-          ...carexTypography.heading,
-          color: carexColors.dark,
-          fontSize: 'clamp(32px, 5vw, 48px)',
-          marginBottom: '32px',
-        }}
-      >
-        {title}
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="p-6 rounded-2xl"
-            style={{ backgroundColor: carexColors.extraLight }}
-          >
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
-              style={{ backgroundColor: carexColors.primary }}
-            >
-              <span className="text-white font-bold">{index + 1}</span>
-            </div>
-            <p
-              style={{
-                ...carexTypography.body,
-                color: carexColors.dark,
-                fontSize: 'clamp(16px, 2vw, 22px)',
-              }}
-            >
               {item}
-            </p>
-          </div>
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 );
 
-// Features & Functionalities Section
-const CarexFeatures = ({ title = 'Features & Functionalities', features = [] }) => (
+// 6. Features & Functionalities Section (Figma: 52:2480)
+// Centered heading, subtitle, 3 feature cards with icons
+const CarexFeatures = ({ title = 'Features & Functionalities', subtitle, features = [] }) => (
   <section
     className="py-24 px-6"
     style={{ backgroundColor: carexColors.extraLightSecondary }}
@@ -489,11 +436,25 @@ const CarexFeatures = ({ title = 'Features & Functionalities', features = [] }) 
           ...carexTypography.heading,
           color: carexColors.dark,
           fontSize: 'clamp(32px, 5vw, 48px)',
-          marginBottom: '48px',
+          marginBottom: '16px',
         }}
       >
         {title}
       </h2>
+      {subtitle && (
+        <p
+          className="text-center max-w-2xl mx-auto"
+          style={{
+            ...carexTypography.body,
+            color: carexColors.dark,
+            fontSize: 'clamp(16px, 2.5vw, 22px)',
+            marginBottom: '48px',
+            opacity: 0.8,
+          }}
+        >
+          {subtitle}
+        </p>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature, index) => (
           <div
@@ -506,16 +467,15 @@ const CarexFeatures = ({ title = 'Features & Functionalities', features = [] }) 
               className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
               style={{ backgroundColor: carexColors.extraLight }}
             >
-              <div
-                className="w-8 h-8 rounded"
-                style={{ backgroundColor: carexColors.primary }}
-              />
+              <svg className="w-8 h-8" style={{ color: carexColors.primary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
             </div>
             <h3
               style={{
                 ...carexTypography.subheading,
                 color: carexColors.dark,
-                fontSize: 'clamp(20px, 3vw, 28px)',
+                fontSize: 'clamp(18px, 3vw, 24px)',
                 marginBottom: '12px',
               }}
             >
@@ -525,7 +485,8 @@ const CarexFeatures = ({ title = 'Features & Functionalities', features = [] }) 
               style={{
                 ...carexTypography.bodySmall,
                 color: carexColors.dark,
-                fontSize: 'clamp(14px, 2vw, 20px)',
+                fontSize: 'clamp(14px, 2vw, 18px)',
+                opacity: 0.8,
               }}
             >
               {feature.description}
@@ -537,7 +498,49 @@ const CarexFeatures = ({ title = 'Features & Functionalities', features = [] }) 
   </section>
 );
 
-// Competitor Analysis Section
+// 7. Product User Challenges Section (Figma: 52:2481)
+// Heading with blue arrows and challenge items
+const CarexProductUserChallenges = ({ title = 'Product User Challenges', items = [] }) => (
+  <section
+    className="py-24 px-6"
+    style={{ backgroundColor: carexColors.white }}
+  >
+    <div className="max-w-4xl mx-auto">
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '32px',
+        }}
+      >
+        {title}
+      </h2>
+      <ul className="space-y-5">
+        {items.map((item, index) => (
+          <li
+            key={index}
+            className="flex items-start gap-4"
+          >
+            <ArrowBullet />
+            <span
+              style={{
+                ...carexTypography.body,
+                color: carexColors.dark,
+                fontSize: 'clamp(16px, 2.5vw, 26px)',
+              }}
+            >
+              {item}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
+
+// 8. Competitor Analysis Section (Figma: 52:2482)
+// Competitor sections with name, features, descriptions
 const CarexCompetitorAnalysis = ({ title = 'Competitor Analysis', competitors = [] }) => (
   <section
     className="py-24 px-6"
@@ -555,51 +558,122 @@ const CarexCompetitorAnalysis = ({ title = 'Competitor Analysis', competitors = 
       >
         {title}
       </h2>
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[600px]">
-          <thead>
-            <tr style={{ backgroundColor: carexColors.extraLight }}>
-              <th className="p-4 text-left rounded-tl-2xl" style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '18px' }}>Feature</th>
-              {competitors.map((comp, index) => (
-                <th
-                  key={index}
-                  className={`p-4 text-center ${index === competitors.length - 1 ? 'rounded-tr-2xl' : ''}`}
-                  style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '18px' }}
-                >
-                  {comp.name}
-                </th>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {competitors.map((comp, index) => (
+          <div
+            key={index}
+            className="rounded-2xl overflow-hidden"
+            style={{ backgroundColor: carexColors.extraLight }}
+          >
+            {/* Competitor Header */}
+            <div
+              className="p-6"
+              style={{ backgroundColor: carexColors.primary }}
+            >
+              <h3
+                className="text-white text-center"
+                style={{
+                  ...carexTypography.subheading,
+                  fontSize: 'clamp(18px, 3vw, 24px)',
+                }}
+              >
+                {comp.name}
+              </h3>
+            </div>
+            {/* Features List */}
+            <div className="p-6 space-y-4">
+              {comp.features?.map((feature, fIndex) => (
+                <div key={fIndex} className="flex items-start gap-3">
+                  {comp.hasFeature?.[fIndex] !== false ? (
+                    <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <XBullet color={carexColors.cons} />
+                  )}
+                  <span
+                    style={{
+                      ...carexTypography.bodySmall,
+                      color: carexColors.dark,
+                      fontSize: '16px',
+                    }}
+                  >
+                    {feature}
+                  </span>
+                </div>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            {competitors[0]?.features?.map((feature, fIndex) => (
-              <tr key={fIndex} style={{ backgroundColor: fIndex % 2 === 0 ? carexColors.white : carexColors.extraLight }}>
-                <td className="p-4" style={{ ...carexTypography.body, color: carexColors.dark, fontSize: '16px' }}>{feature}</td>
-                {competitors.map((comp, cIndex) => (
-                  <td key={cIndex} className="p-4 text-center">
-                    {comp.hasFeature?.[fIndex] ? (
-                      <span className="text-green-500 text-xl">✓</span>
-                    ) : (
-                      <span style={{ color: carexColors.cons }} className="text-xl">✗</span>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 );
 
-// User Persona Section
+// 9. Unique Features Section (Figma: 52:2483)
+// Extra Light background (#F6FAFE) with arrow bullets
+const CarexUniqueFeatures = ({ title = 'Unique Features', items = [] }) => (
+  <section
+    className="py-24 px-6"
+    style={{ backgroundColor: carexColors.extraLight }}
+  >
+    <div className="max-w-4xl mx-auto">
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '32px',
+        }}
+      >
+        {title}
+      </h2>
+      <ul className="space-y-5">
+        {items.map((item, index) => (
+          <li
+            key={index}
+            className="flex items-start gap-4"
+          >
+            <ArrowBullet />
+            <div>
+              <span
+                style={{
+                  ...carexTypography.bodyBold,
+                  color: carexColors.dark,
+                  fontSize: 'clamp(16px, 2.5vw, 24px)',
+                }}
+              >
+                {item.title || item}
+              </span>
+              {item.description && (
+                <p
+                  style={{
+                    ...carexTypography.body,
+                    color: carexColors.dark,
+                    fontSize: 'clamp(14px, 2vw, 20px)',
+                    opacity: 0.8,
+                    marginTop: '4px',
+                  }}
+                >
+                  {item.description}
+                </p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
+
+// 10. User Persona Section (Figma: 52:2484)
+// Profile picture, name, occupation, About, Pain Points, Maslow Pyramid, Quotes
 const CarexUserPersona = ({ persona }) => (
   <section
     className="py-24 px-6"
     style={{ backgroundColor: carexColors.extraLight }}
   >
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-6xl mx-auto">
       <h2
         className="text-center"
         style={{
@@ -615,22 +689,19 @@ const CarexUserPersona = ({ persona }) => (
         className="rounded-3xl p-8 md:p-12"
         style={{ backgroundColor: carexColors.white }}
       >
-        <div className="flex flex-col md:flex-row gap-8">
+        {/* Top Section: Profile + Demographics */}
+        <div className="flex flex-col md:flex-row gap-8 mb-12">
           {/* Avatar */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 text-center">
             <div
-              className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto"
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4"
               style={{ backgroundColor: carexColors.lightSecondary }}
             />
-          </div>
-          {/* Info */}
-          <div className="flex-1">
             <h3
               style={{
                 ...carexTypography.subheading,
                 color: carexColors.dark,
-                fontSize: 'clamp(24px, 4vw, 32px)',
-                marginBottom: '8px',
+                fontSize: 'clamp(20px, 3vw, 28px)',
               }}
             >
               {persona?.name || 'User Name'}
@@ -639,19 +710,31 @@ const CarexUserPersona = ({ persona }) => (
               style={{
                 ...carexTypography.body,
                 color: carexColors.primary,
-                fontSize: 'clamp(16px, 2.5vw, 22px)',
-                marginBottom: '24px',
+                fontSize: 'clamp(14px, 2vw, 18px)',
               }}
             >
               {persona?.occupation || 'Occupation'}
             </p>
-            {/* Demographics Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          </div>
+
+          {/* About Section (Demographics) */}
+          <div className="flex-1">
+            <h4
+              style={{
+                ...carexTypography.bodyBold,
+                color: carexColors.dark,
+                fontSize: '20px',
+                marginBottom: '16px',
+              }}
+            >
+              About
+            </h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 { label: 'Age', value: persona?.age || '25-35' },
                 { label: 'Location', value: persona?.location || 'City' },
                 { label: 'Education', value: persona?.education || 'Graduate' },
-                { label: 'Family', value: persona?.family || 'Single' },
+                { label: 'Occupation', value: persona?.occupation || 'Professional' },
               ].map((item, index) => (
                 <div key={index}>
                   <div
@@ -675,11 +758,148 @@ const CarexUserPersona = ({ persona }) => (
                 </div>
               ))}
             </div>
+
+            {/* Description */}
+            {persona?.description && (
+              <p
+                className="mt-6"
+                style={{
+                  ...carexTypography.body,
+                  color: carexColors.dark,
+                  fontSize: '16px',
+                  opacity: 0.8,
+                }}
+              >
+                {persona.description}
+              </p>
+            )}
           </div>
         </div>
-        {/* Goals & Frustrations */}
-        <div className="grid md:grid-cols-2 gap-8 mt-8 pt-8 border-t" style={{ borderColor: carexColors.lightSecondary }}>
+
+        {/* Middle Section: A Day in Life + Pain Points */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12 pt-8 border-t" style={{ borderColor: carexColors.lightSecondary }}>
+          {/* A Day in Their Life */}
+          {persona?.dayInLife && (
+            <div>
+              <h4
+                style={{
+                  ...carexTypography.bodyBold,
+                  color: carexColors.dark,
+                  fontSize: '20px',
+                  marginBottom: '16px',
+                }}
+              >
+                A Day in Their Life
+              </h4>
+              <p
+                style={{
+                  ...carexTypography.body,
+                  color: carexColors.dark,
+                  fontSize: '16px',
+                  opacity: 0.8,
+                }}
+              >
+                {persona.dayInLife}
+              </p>
+            </div>
+          )}
+
+          {/* Pain Points */}
           <div>
+            <h4
+              style={{
+                ...carexTypography.bodyBold,
+                color: carexColors.cons,
+                fontSize: '20px',
+                marginBottom: '16px',
+              }}
+            >
+              Pain Points
+            </h4>
+            <ul className="space-y-3">
+              {(persona?.painPoints || persona?.frustrations || ['Pain point 1', 'Pain point 2']).map((point, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <XBullet color={carexColors.cons} />
+                  <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section: Maslow Pyramid + Quotes */}
+        <div className="grid md:grid-cols-2 gap-8 pt-8 border-t" style={{ borderColor: carexColors.lightSecondary }}>
+          {/* Maslow Pyramid */}
+          <div>
+            <h4
+              style={{
+                ...carexTypography.bodyBold,
+                color: carexColors.dark,
+                fontSize: '20px',
+                marginBottom: '16px',
+              }}
+            >
+              Maslow's Hierarchy
+            </h4>
+            <div className="flex flex-col items-center">
+              {['Self-Actualization', 'Esteem', 'Love/Belonging', 'Safety', 'Physiological'].map((level, index) => {
+                const isHighlighted = persona?.maslowLevel === level || persona?.maslowLevels?.includes(level);
+                const width = 100 - (index * 15);
+                return (
+                  <div
+                    key={index}
+                    className="text-center py-2 px-4 mb-1 rounded"
+                    style={{
+                      width: `${width}%`,
+                      backgroundColor: isHighlighted ? carexColors.primary : carexColors.extraLight,
+                      color: isHighlighted ? carexColors.white : carexColors.dark,
+                    }}
+                  >
+                    <span style={{ fontSize: '14px', fontWeight: isHighlighted ? 600 : 400 }}>{level}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Quotes */}
+          <div>
+            <h4
+              style={{
+                ...carexTypography.bodyBold,
+                color: carexColors.dark,
+                fontSize: '20px',
+                marginBottom: '16px',
+              }}
+            >
+              Quotes
+            </h4>
+            <div className="space-y-4">
+              {(persona?.quotes || ['"I need a solution that fits my lifestyle."', '"Time is precious, make it count."']).map((quote, index) => (
+                <div
+                  key={index}
+                  className="p-4 rounded-xl"
+                  style={{ backgroundColor: carexColors.extraLight }}
+                >
+                  <p
+                    className="italic"
+                    style={{
+                      ...carexTypography.body,
+                      color: carexColors.dark,
+                      fontSize: '16px',
+                    }}
+                  >
+                    {quote}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Goals Section */}
+        {persona?.goals && (
+          <div className="pt-8 mt-8 border-t" style={{ borderColor: carexColors.lightSecondary }}>
             <h4
               style={{
                 ...carexTypography.bodyBold,
@@ -690,31 +910,243 @@ const CarexUserPersona = ({ persona }) => (
             >
               Goals
             </h4>
-            <ul className="space-y-2">
-              {(persona?.goals || ['Goal 1', 'Goal 2']).map((goal, index) => (
+            <ul className="grid md:grid-cols-2 gap-3">
+              {persona.goals.map((goal, index) => (
                 <li key={index} className="flex items-start gap-2">
-                  <span className="text-green-500">✓</span>
+                  <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
                   <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>{goal}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div>
+        )}
+      </div>
+    </div>
+  </section>
+);
+
+// 11. Task Mapping Section (Figma: 52:2485)
+// Table with columns: Task, Steps, Environment, Challenges, Emotions, Thoughts, Urgency Level, Design Opportunity
+const CarexTaskMapping = ({ title = 'Task Mapping', tasks = [] }) => (
+  <section
+    className="py-24 px-6"
+    style={{ backgroundColor: carexColors.white }}
+  >
+    <div className="max-w-7xl mx-auto">
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '48px',
+        }}
+      >
+        {title}
+      </h2>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[1000px] border-collapse">
+          <thead>
+            <tr style={{ backgroundColor: carexColors.extraLight }}>
+              {['Task', 'Steps', 'Environment', 'Challenges', 'Emotions', 'Thoughts', 'Urgency', 'Design Opportunity'].map((header, index) => (
+                <th
+                  key={index}
+                  className={`p-4 text-left ${index === 0 ? 'rounded-tl-xl' : ''} ${index === 7 ? 'rounded-tr-xl' : ''}`}
+                  style={{
+                    ...carexTypography.bodyBold,
+                    color: carexColors.dark,
+                    fontSize: '14px',
+                  }}
+                >
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((task, tIndex) => (
+              <tr
+                key={tIndex}
+                style={{
+                  backgroundColor: tIndex % 2 === 0 ? carexColors.white : carexColors.extraLight,
+                }}
+              >
+                <td className="p-4 align-top" style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '14px' }}>
+                  {task.task}
+                </td>
+                <td className="p-4 align-top" style={{ ...carexTypography.body, color: carexColors.dark, fontSize: '14px' }}>
+                  {Array.isArray(task.steps) ? task.steps.join(' → ') : task.steps}
+                </td>
+                <td className="p-4 align-top" style={{ ...carexTypography.body, color: carexColors.dark, fontSize: '14px' }}>
+                  {task.environment}
+                </td>
+                <td className="p-4 align-top" style={{ ...carexTypography.body, color: carexColors.dark, fontSize: '14px' }}>
+                  {task.challenges}
+                </td>
+                <td className="p-4 align-top" style={{ ...carexTypography.body, color: carexColors.dark, fontSize: '14px' }}>
+                  {task.emotions}
+                </td>
+                <td className="p-4 align-top" style={{ ...carexTypography.body, color: carexColors.dark, fontSize: '14px' }}>
+                  {task.thoughts}
+                </td>
+                <td className="p-4 align-top">
+                  <span
+                    className="px-3 py-1 rounded-full text-xs font-medium"
+                    style={{
+                      backgroundColor: task.urgency === 'High' ? '#FEE2E2' : task.urgency === 'Medium' ? '#FEF3C7' : '#D1FAE5',
+                      color: task.urgency === 'High' ? '#DC2626' : task.urgency === 'Medium' ? '#D97706' : '#059669',
+                    }}
+                  >
+                    {task.urgency || 'Medium'}
+                  </span>
+                </td>
+                <td className="p-4 align-top" style={{ ...carexTypography.body, color: carexColors.primary, fontSize: '14px' }}>
+                  {task.designOpportunity}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+);
+
+// 12. Eisenhower Matrix Section (Figma: 52:2486)
+// 2x2 colored grid: Urgent+Important (green), Not Urgent+Important (blue), Urgent+Not Important (yellow), Not Urgent+Not Important (red)
+const CarexEisenhowerMatrix = ({ title = 'Eisenhower Matrix', quadrants = {} }) => (
+  <section
+    className="py-24 px-6"
+    style={{ backgroundColor: carexColors.white }}
+  >
+    <div className="max-w-4xl mx-auto">
+      <h2
+        className="text-center"
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '48px',
+        }}
+      >
+        {title}
+      </h2>
+
+      {/* Matrix Labels */}
+      <div className="flex justify-center mb-4">
+        <div className="w-1/2 text-center" style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '16px' }}>
+          Urgent
+        </div>
+        <div className="w-1/2 text-center" style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '16px' }}>
+          Not Urgent
+        </div>
+      </div>
+
+      <div className="flex">
+        {/* Left Label */}
+        <div className="flex flex-col justify-around pr-4">
+          <div className="transform -rotate-90 whitespace-nowrap" style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '14px' }}>
+            Important
+          </div>
+          <div className="transform -rotate-90 whitespace-nowrap" style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '14px' }}>
+            Not Important
+          </div>
+        </div>
+
+        {/* Matrix Grid */}
+        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2 aspect-square max-w-lg mx-auto">
+          {/* Q1: Urgent + Important (DO - Green) */}
+          <div
+            className="rounded-2xl p-6 flex flex-col"
+            style={{ backgroundColor: '#E8F5E9' }}
+          >
             <h4
+              className="mb-2"
               style={{
                 ...carexTypography.bodyBold,
-                color: carexColors.cons,
-                fontSize: '20px',
-                marginBottom: '16px',
+                color: '#2E7D32',
+                fontSize: '16px',
               }}
             >
-              Frustrations
+              Do First
             </h4>
-            <ul className="space-y-2">
-              {(persona?.frustrations || ['Frustration 1', 'Frustration 2']).map((frustration, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span style={{ color: carexColors.cons }}>✗</span>
-                  <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>{frustration}</span>
+            <ul className="space-y-2 flex-1">
+              {(quadrants.doFirst || ['Crisis tasks', 'Deadlines', 'Problems']).map((item, index) => (
+                <li key={index} style={{ ...carexTypography.bodySmall, color: '#388E3C', fontSize: '13px' }}>
+                  • {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Q2: Not Urgent + Important (SCHEDULE - Blue) */}
+          <div
+            className="rounded-2xl p-6 flex flex-col"
+            style={{ backgroundColor: '#E3F2FD' }}
+          >
+            <h4
+              className="mb-2"
+              style={{
+                ...carexTypography.bodyBold,
+                color: '#1565C0',
+                fontSize: '16px',
+              }}
+            >
+              Schedule
+            </h4>
+            <ul className="space-y-2 flex-1">
+              {(quadrants.schedule || ['Planning', 'Improvement', 'Development']).map((item, index) => (
+                <li key={index} style={{ ...carexTypography.bodySmall, color: '#1976D2', fontSize: '13px' }}>
+                  • {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Q3: Urgent + Not Important (DELEGATE - Yellow) */}
+          <div
+            className="rounded-2xl p-6 flex flex-col"
+            style={{ backgroundColor: '#FFF8E1' }}
+          >
+            <h4
+              className="mb-2"
+              style={{
+                ...carexTypography.bodyBold,
+                color: '#F57F17',
+                fontSize: '16px',
+              }}
+            >
+              Delegate
+            </h4>
+            <ul className="space-y-2 flex-1">
+              {(quadrants.delegate || ['Interruptions', 'Meetings', 'Activities']).map((item, index) => (
+                <li key={index} style={{ ...carexTypography.bodySmall, color: '#FFA000', fontSize: '13px' }}>
+                  • {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Q4: Not Urgent + Not Important (ELIMINATE - Red) */}
+          <div
+            className="rounded-2xl p-6 flex flex-col"
+            style={{ backgroundColor: '#FFEBEE' }}
+          >
+            <h4
+              className="mb-2"
+              style={{
+                ...carexTypography.bodyBold,
+                color: '#C62828',
+                fontSize: '16px',
+              }}
+            >
+              Eliminate
+            </h4>
+            <ul className="space-y-2 flex-1">
+              {(quadrants.eliminate || ['Time wasters', 'Distractions', 'Trivial tasks']).map((item, index) => (
+                <li key={index} style={{ ...carexTypography.bodySmall, color: '#E53935', fontSize: '13px' }}>
+                  • {item}
                 </li>
               ))}
             </ul>
@@ -725,8 +1157,201 @@ const CarexUserPersona = ({ persona }) => (
   </section>
 );
 
-// Taskflows Section
-const CarexTaskflows = ({ title = 'Taskflows', scenarios = [] }) => (
+// 13. 5 Why Analysis Section (Figma: 52:2487)
+// Problem/Cause flowchart: Problem (Primary blue) → Causes (Light-Secondary) → Root Cause (Extra Light-Secondary)
+const CarexWhyAnalysis = ({ title = '5 Why Analysis', problem = '', whys = [] }) => (
+  <section
+    className="py-24 px-6"
+    style={{ backgroundColor: carexColors.white }}
+  >
+    <div className="max-w-4xl mx-auto">
+      <h2
+        className="text-center"
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '48px',
+        }}
+      >
+        {title}
+      </h2>
+
+      <div className="flex flex-col items-center space-y-4">
+        {/* Problem Box */}
+        <div
+          className="w-full max-w-md p-6 rounded-2xl text-center"
+          style={{ backgroundColor: carexColors.primary }}
+        >
+          <span
+            className="block text-white mb-2"
+            style={{ ...carexTypography.bodyExtraSmall, opacity: 0.8 }}
+          >
+            Problem
+          </span>
+          <p
+            className="text-white"
+            style={{ ...carexTypography.bodyBold, fontSize: '18px' }}
+          >
+            {problem || 'What is the core problem?'}
+          </p>
+        </div>
+
+        {/* Arrow */}
+        <svg className="w-8 h-8" style={{ color: carexColors.light }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+
+        {/* Why Chain */}
+        {(whys.length > 0 ? whys : ['Why 1?', 'Why 2?', 'Why 3?', 'Why 4?', 'Why 5? (Root Cause)']).map((why, index) => {
+          const isRootCause = index === (whys.length > 0 ? whys.length - 1 : 4);
+          return (
+            <React.Fragment key={index}>
+              <div
+                className="w-full max-w-md p-5 rounded-xl"
+                style={{
+                  backgroundColor: isRootCause ? carexColors.extraLightSecondary : carexColors.lightSecondary,
+                  borderLeft: `4px solid ${isRootCause ? carexColors.primary : carexColors.light}`,
+                }}
+              >
+                <span
+                  className="block mb-1"
+                  style={{
+                    ...carexTypography.bodyExtraSmall,
+                    color: carexColors.primary,
+                    fontWeight: 600,
+                  }}
+                >
+                  {isRootCause ? 'Root Cause' : `Why ${index + 1}`}
+                </span>
+                <p
+                  style={{
+                    ...carexTypography.body,
+                    color: carexColors.dark,
+                    fontSize: '16px',
+                  }}
+                >
+                  {why}
+                </p>
+              </div>
+              {index < (whys.length > 0 ? whys.length - 1 : 4) && (
+                <svg className="w-6 h-6" style={{ color: carexColors.light }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+);
+
+// 14. Root Cause Analysis Section (Figma: 52:2488)
+// Fishbone/Ishikawa diagram structure
+const CarexRootCauseAnalysis = ({ title = 'Root Cause Analysis', problem = '', categories = [] }) => (
+  <section
+    className="py-24 px-6"
+    style={{ backgroundColor: carexColors.extraLight }}
+  >
+    <div className="max-w-6xl mx-auto">
+      <h2
+        className="text-center"
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '48px',
+        }}
+      >
+        {title}
+      </h2>
+
+      {/* Fishbone Diagram */}
+      <div className="relative">
+        {/* Main Spine */}
+        <div
+          className="h-2 rounded-full mx-auto mb-8"
+          style={{
+            backgroundColor: carexColors.primary,
+            width: '80%',
+          }}
+        />
+
+        {/* Problem (Fish Head) */}
+        <div
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-6 rounded-2xl"
+          style={{
+            backgroundColor: carexColors.primary,
+            maxWidth: '200px',
+          }}
+        >
+          <p
+            className="text-white text-center"
+            style={{ ...carexTypography.bodyBold, fontSize: '16px' }}
+          >
+            {problem || 'Effect/Problem'}
+          </p>
+        </div>
+
+        {/* Categories (Bones) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mt-12">
+          {(categories.length > 0 ? categories : [
+            { name: 'People', causes: ['Cause 1', 'Cause 2'] },
+            { name: 'Process', causes: ['Cause 1', 'Cause 2'] },
+            { name: 'Technology', causes: ['Cause 1', 'Cause 2'] },
+            { name: 'Environment', causes: ['Cause 1', 'Cause 2'] },
+            { name: 'Materials', causes: ['Cause 1', 'Cause 2'] },
+            { name: 'Measurement', causes: ['Cause 1', 'Cause 2'] },
+          ]).map((category, index) => (
+            <div
+              key={index}
+              className="p-6 rounded-2xl"
+              style={{ backgroundColor: carexColors.white }}
+            >
+              <h4
+                className="mb-4"
+                style={{
+                  ...carexTypography.bodyBold,
+                  color: carexColors.primary,
+                  fontSize: '18px',
+                }}
+              >
+                {category.name}
+              </h4>
+              <ul className="space-y-2">
+                {category.causes?.map((cause, cIndex) => (
+                  <li
+                    key={cIndex}
+                    className="flex items-start gap-2"
+                  >
+                    <div
+                      className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                      style={{ backgroundColor: carexColors.primary }}
+                    />
+                    <span
+                      style={{
+                        ...carexTypography.bodySmall,
+                        color: carexColors.dark,
+                        fontSize: '14px',
+                      }}
+                    >
+                      {cause}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// 15. Taskflows Section (Figma: 52:2489)
+// Scenarios with description and flow step boxes connected by arrows
+const CarexTaskflows = ({ title = 'Task Flows', scenarios = [] }) => (
   <section
     className="py-24 px-6"
     style={{ backgroundColor: carexColors.white }}
@@ -744,48 +1369,63 @@ const CarexTaskflows = ({ title = 'Taskflows', scenarios = [] }) => (
       </h2>
       {scenarios.map((scenario, sIndex) => (
         <div key={sIndex} className="mb-16">
-          <h3
-            style={{
-              ...carexTypography.subheading,
-              color: carexColors.dark,
-              fontSize: 'clamp(20px, 3vw, 28px)',
-              marginBottom: '8px',
-            }}
-          >
-            Scenario {sIndex + 1}:
-          </h3>
+          <div className="flex items-baseline gap-4 mb-4">
+            <span
+              className="px-4 py-1 rounded-full"
+              style={{
+                backgroundColor: carexColors.primary,
+                color: carexColors.white,
+                ...carexTypography.bodyBold,
+                fontSize: '14px',
+              }}
+            >
+              Scenario {sIndex + 1}
+            </span>
+            <h3
+              style={{
+                ...carexTypography.subheading,
+                color: carexColors.dark,
+                fontSize: 'clamp(18px, 3vw, 24px)',
+              }}
+            >
+              {scenario.title}
+            </h3>
+          </div>
           <p
             style={{
               ...carexTypography.body,
               color: carexColors.dark,
-              fontSize: 'clamp(16px, 2.5vw, 22px)',
+              fontSize: 'clamp(14px, 2vw, 18px)',
               marginBottom: '24px',
+              opacity: 0.8,
             }}
           >
             {scenario.description}
           </p>
+
           {/* Flow Steps */}
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3">
             {scenario.steps?.map((step, stepIndex) => (
               <React.Fragment key={stepIndex}>
                 <div
-                  className="px-6 py-3 rounded-lg"
-                  style={{ backgroundColor: carexColors.extraLight }}
+                  className="px-6 py-4 rounded-xl min-w-[120px] text-center"
+                  style={{
+                    backgroundColor: stepIndex === 0 ? carexColors.primary : carexColors.extraLight,
+                    color: stepIndex === 0 ? carexColors.white : carexColors.dark,
+                  }}
                 >
                   <span
                     style={{
                       ...carexTypography.body,
-                      color: carexColors.dark,
-                      fontSize: 'clamp(14px, 2vw, 20px)',
+                      fontSize: 'clamp(12px, 2vw, 16px)',
+                      fontWeight: stepIndex === 0 ? 600 : 500,
                     }}
                   >
                     {step}
                   </span>
                 </div>
                 {stepIndex < scenario.steps.length - 1 && (
-                  <svg className="w-6 h-6 flex-shrink-0" style={{ color: carexColors.primary }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  <ArrowBullet color={carexColors.primary} />
                 )}
               </React.Fragment>
             ))}
@@ -816,7 +1456,6 @@ const CarexScreens = ({ title = 'Screens', screens = [] }) => (
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {screens.map((screen, index) => (
           <div key={index} className="text-center">
-            {/* Screen Mockup */}
             <div
               className="aspect-[9/19] rounded-3xl mb-4 overflow-hidden"
               style={{
@@ -832,7 +1471,6 @@ const CarexScreens = ({ title = 'Screens', screens = [] }) => (
                 </div>
               )}
             </div>
-            {/* Screen Label */}
             <span
               style={{
                 ...carexTypography.body,
@@ -855,7 +1493,6 @@ const CarexThankYou = () => (
     className="py-32 px-6 text-center relative overflow-hidden"
     style={{ backgroundColor: carexColors.extraLightSecondary }}
   >
-    {/* Decorative elements */}
     <div className="absolute inset-0 pointer-events-none">
       <div
         className="absolute top-10 right-10 w-24 h-24 rounded-full opacity-20"
@@ -889,11 +1526,15 @@ const CarexThankYou = () => (
   </section>
 );
 
-// Generic Section Renderer
-const CarexSection = ({ section, caseStudy }) => {
-  const sectionType = section.id || section.title?.toLowerCase().replace(/\s+/g, '-');
+// ============================================
+// GENERIC SECTION RENDERER
+// Maps section data to appropriate Carex components
+// ============================================
 
-  // Map section content to Carex components
+const CarexSection = ({ section, caseStudy }) => {
+  const sectionTitle = section.title?.toLowerCase() || '';
+
+  // Extract content helpers
   const getTextContent = () => {
     const textBlock = section.content?.find(b => b.type === 'text');
     return textBlock?.data?.paragraphs?.join(' ') || textBlock?.data?.description || '';
@@ -904,92 +1545,149 @@ const CarexSection = ({ section, caseStudy }) => {
     return gridBlock?.data?.items || [];
   };
 
-  const getStatsItems = () => {
-    const statsBlock = section.content?.find(b => b.type === 'stats');
-    return statsBlock?.data?.items || [];
+  const getListItems = () => {
+    const listBlock = section.content?.find(b => b.type === 'list');
+    return listBlock?.data?.items || getGridItems().map(i => i.title || i.description);
   };
 
-  // Render based on section type/title
-  switch (true) {
-    case /problem/i.test(section.title):
-      return <CarexProblemStatement title={section.title} description={getTextContent()} />;
-
-    case /objective|goal/i.test(section.title):
-      return <CarexObjectives title={section.title} items={getGridItems().map(i => i.title || i.description)} />;
-
-    case /process/i.test(section.title):
-      return <CarexProcess title={section.title} />;
-
-    case /challenge/i.test(section.title):
-      return <CarexChallenges title={section.title} items={getGridItems().map(i => i.title || i.description)} />;
-
-    case /user.*need/i.test(section.title):
-      return <CarexUserNeeds title={section.title} items={getGridItems().map(i => i.title || i.description)} />;
-
-    case /feature|functionalit/i.test(section.title):
-      return <CarexFeatures title={section.title} features={getGridItems()} />;
-
-    case /quantitative|research|observation/i.test(section.title):
-      return <CarexQuantitativeResearch title={section.title} stats={getStatsItems()} />;
-
-    case /persona/i.test(section.title):
-      return <CarexUserPersona persona={getGridItems()[0]} />;
-
-    case /taskflow|flow/i.test(section.title):
-      return <CarexTaskflows title={section.title} scenarios={getGridItems().map(i => ({ description: i.title, steps: i.description?.split(',').map(s => s.trim()) || [] }))} />;
-
-    case /screen/i.test(section.title):
-      return <CarexScreens title={section.title} screens={getGridItems().map(i => ({ label: i.title, image: i.image }))} />;
-
-    case /thank/i.test(section.title):
-      return <CarexThankYou />;
-
-    default:
-      // Generic section with Carex styling
-      return (
-        <section className="py-24 px-6" style={{ backgroundColor: carexColors.white }}>
-          <div className="max-w-4xl mx-auto">
-            <h2
-              style={{
-                ...carexTypography.heading,
-                color: carexColors.dark,
-                fontSize: 'clamp(32px, 5vw, 48px)',
-                marginBottom: '24px',
-              }}
-            >
-              {section.title}
-            </h2>
-            <p
-              style={{
-                ...carexTypography.body,
-                color: carexColors.dark,
-                fontSize: 'clamp(16px, 2.5vw, 26px)',
-              }}
-            >
-              {getTextContent()}
-            </p>
-            {getGridItems().length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                {getGridItems().map((item, index) => (
-                  <div
-                    key={index}
-                    className="p-6 rounded-2xl"
-                    style={{ backgroundColor: carexColors.extraLight }}
-                  >
-                    <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '18px', marginBottom: '8px' }}>
-                      {item.title}
-                    </h3>
-                    <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      );
+  // Match section type by title and render appropriate component
+  // 1. Problem Statement
+  if (/problem/i.test(sectionTitle)) {
+    return <CarexProblemStatement title={section.title} description={getTextContent()} />;
   }
+
+  // 2. Objectives & Goals
+  if (/objective|goal/i.test(sectionTitle)) {
+    return <CarexObjectives title={section.title} items={getListItems()} />;
+  }
+
+  // 3. Our Process
+  if (/process/i.test(sectionTitle)) {
+    return <CarexProcess title={section.title} />;
+  }
+
+  // 4. Business Challenges
+  if (/business.*challenge/i.test(sectionTitle)) {
+    return <CarexBusinessChallenges title={section.title} items={getListItems()} />;
+  }
+
+  // 5. User Needs
+  if (/user.*need/i.test(sectionTitle)) {
+    return <CarexUserNeeds title={section.title} items={getListItems()} />;
+  }
+
+  // 6. Features & Functionalities
+  if (/feature|functionalit/i.test(sectionTitle)) {
+    return <CarexFeatures title={section.title} features={getGridItems()} />;
+  }
+
+  // 7. Product User Challenges
+  if (/product.*user.*challenge|user.*challenge/i.test(sectionTitle)) {
+    return <CarexProductUserChallenges title={section.title} items={getListItems()} />;
+  }
+
+  // 8. Competitor Analysis
+  if (/competitor/i.test(sectionTitle)) {
+    return <CarexCompetitorAnalysis title={section.title} competitors={getGridItems()} />;
+  }
+
+  // 9. Unique Features
+  if (/unique.*feature/i.test(sectionTitle)) {
+    return <CarexUniqueFeatures title={section.title} items={getGridItems()} />;
+  }
+
+  // 10. User Persona
+  if (/persona/i.test(sectionTitle)) {
+    return <CarexUserPersona persona={getGridItems()[0]} />;
+  }
+
+  // 11. Task Mapping
+  if (/task.*map/i.test(sectionTitle)) {
+    return <CarexTaskMapping title={section.title} tasks={getGridItems()} />;
+  }
+
+  // 12. Eisenhower Matrix
+  if (/eisenhower|matrix/i.test(sectionTitle)) {
+    const data = getGridItems()[0] || {};
+    return <CarexEisenhowerMatrix title={section.title} quadrants={data} />;
+  }
+
+  // 13. 5 Why Analysis
+  if (/why.*analysis|5.*why/i.test(sectionTitle)) {
+    const textContent = getTextContent();
+    const items = getListItems();
+    return <CarexWhyAnalysis title={section.title} problem={textContent} whys={items} />;
+  }
+
+  // 14. Root Cause Analysis
+  if (/root.*cause/i.test(sectionTitle)) {
+    return <CarexRootCauseAnalysis title={section.title} problem={getTextContent()} categories={getGridItems()} />;
+  }
+
+  // 15. Task Flows
+  if (/taskflow|task.*flow|flow/i.test(sectionTitle)) {
+    const scenarios = getGridItems().map(i => ({
+      title: i.title,
+      description: i.description,
+      steps: i.steps || i.description?.split(',').map(s => s.trim()) || []
+    }));
+    return <CarexTaskflows title={section.title} scenarios={scenarios} />;
+  }
+
+  // Screens
+  if (/screen/i.test(sectionTitle)) {
+    return <CarexScreens title={section.title} screens={getGridItems().map(i => ({ label: i.title, image: i.image }))} />;
+  }
+
+  // Thank you
+  if (/thank/i.test(sectionTitle)) {
+    return <CarexThankYou />;
+  }
+
+  // Default: Generic section with Carex styling
+  return (
+    <section className="py-24 px-6" style={{ backgroundColor: carexColors.white }}>
+      <div className="max-w-4xl mx-auto">
+        <h2
+          style={{
+            ...carexTypography.heading,
+            color: carexColors.dark,
+            fontSize: 'clamp(32px, 5vw, 48px)',
+            marginBottom: '24px',
+          }}
+        >
+          {section.title}
+        </h2>
+        <p
+          style={{
+            ...carexTypography.body,
+            color: carexColors.dark,
+            fontSize: 'clamp(16px, 2.5vw, 26px)',
+          }}
+        >
+          {getTextContent()}
+        </p>
+        {getGridItems().length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {getGridItems().map((item, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-2xl"
+                style={{ backgroundColor: carexColors.extraLight }}
+              >
+                <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '18px', marginBottom: '8px' }}>
+                  {item.title}
+                </h3>
+                <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
 };
 
 // ============================================
