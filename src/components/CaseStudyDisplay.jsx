@@ -14,10 +14,10 @@ const HeroBlock = ({ data, colors, template }) => {
   if (template === 'simonpan') {
     return (
       <div className="mb-12">
-        <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-4">
+        <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
           {data.title}
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+        <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
           {data.description}
         </p>
       </div>
@@ -27,11 +27,11 @@ const HeroBlock = ({ data, colors, template }) => {
   // Moritz style - Conversational with tags
   if (template === 'moritz') {
     return (
-      <div className="mb-12 pb-8 border-b border-gray-200 dark:border-gray-700">
-        <h2 className="text-2xl md:text-3xl font-medium text-gray-900 dark:text-white mb-4">
+      <div className="mb-12 pb-8 border-b border-gray-200">
+        <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-4">
           {data.title}
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+        <p className="text-lg text-gray-600 leading-relaxed">
           {data.description}
         </p>
       </div>
@@ -42,13 +42,13 @@ const HeroBlock = ({ data, colors, template }) => {
   if (template === 'lola') {
     return (
       <div className="mb-16">
-        <div className="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm text-gray-600 dark:text-gray-400 mb-4">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4">
           Key Insight
         </div>
-        <h2 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-white mb-6">
+        <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">
           {data.title}
         </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-4xl">
+        <p className="text-xl text-gray-600 leading-relaxed max-w-4xl">
           {data.description}
         </p>
       </div>
@@ -62,7 +62,7 @@ const HeroBlock = ({ data, colors, template }) => {
         <h2 className={`text-4xl md:text-5xl font-light mb-6 ${colors.text}`}>
           {data.title}
         </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto italic">
+        <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto italic">
           {data.description}
         </p>
       </div>
@@ -72,10 +72,10 @@ const HeroBlock = ({ data, colors, template }) => {
   // Pratibha style - Clean professional
   return (
     <div className="mb-12">
-      <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-6">
+      <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-6">
         {data.title}
       </h2>
-      <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+      <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
         {data.description}
       </p>
     </div>
@@ -86,13 +86,13 @@ const StatsBlock = ({ data, colors, template }) => {
   // Simon Pan / Lola style - Prominent metrics
   if (template === 'simonpan' || template === 'lola') {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 p-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl">
         {data.items?.map((stat, index) => (
           <div key={index} className="text-center p-4">
             <div className={`text-3xl md:text-4xl font-bold ${colors.text} mb-2`}>
               {stat.value}
             </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+            <div className="text-sm text-gray-600 uppercase tracking-wide">
               {stat.label}
             </div>
           </div>
@@ -110,7 +110,7 @@ const StatsBlock = ({ data, colors, template }) => {
             <div className={`w-12 h-12 rounded-full ${colors.primary} flex items-center justify-center text-white font-bold`}>
               {stat.value}
             </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+            <div className="text-sm text-gray-600">
               {stat.label}
             </div>
           </div>
@@ -124,11 +124,11 @@ const StatsBlock = ({ data, colors, template }) => {
     return (
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
         {data.items?.map((stat, index) => (
-          <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+          <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
             <div className={`text-3xl font-light ${colors.text} mb-2`}>
               {stat.value}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400 uppercase">
+            <div className="text-xs text-gray-500 uppercase">
               {stat.label}
             </div>
           </div>
@@ -145,7 +145,7 @@ const StatsBlock = ({ data, colors, template }) => {
           <div className={`text-3xl md:text-4xl font-light ${colors.text} mb-2`}>
             {stat.value}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="text-sm text-gray-600">
             {stat.label}
           </div>
         </div>
@@ -158,15 +158,15 @@ const TextBlock = ({ data, template }) => {
   // Moritz style - Documented steps
   if (template === 'moritz') {
     return (
-      <div className="mb-12 pl-6 border-l-2 border-gray-200 dark:border-gray-700">
+      <div className="mb-12 pl-6 border-l-2 border-gray-200">
         {data.title && (
-          <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-4">
+          <h3 className="text-xl font-medium text-gray-900 mb-4">
             {data.title}
           </h3>
         )}
         <div className="space-y-4">
           {data.paragraphs?.map((paragraph, index) => (
-            <p key={index} className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p key={index} className="text-gray-600 leading-relaxed">
               {paragraph}
             </p>
           ))}
@@ -180,13 +180,13 @@ const TextBlock = ({ data, template }) => {
     return (
       <div className="mb-12 max-w-3xl mx-auto">
         {data.title && (
-          <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-6 text-center">
+          <h3 className="text-2xl font-light text-gray-900 mb-6 text-center">
             {data.title}
           </h3>
         )}
         <div className="space-y-6 text-center">
           {data.paragraphs?.map((paragraph, index) => (
-            <p key={index} className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p key={index} className="text-lg text-gray-600 leading-relaxed">
               {paragraph}
             </p>
           ))}
@@ -200,14 +200,14 @@ const TextBlock = ({ data, template }) => {
     return (
       <div className="mb-12">
         {data.title && (
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
             <span className="w-2 h-2 bg-black rounded-full mr-3"></span>
             {data.title}
           </h3>
         )}
         <div className="space-y-4 pl-5">
           {data.paragraphs?.map((paragraph, index) => (
-            <p key={index} className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p key={index} className="text-gray-600 leading-relaxed">
               {paragraph}
             </p>
           ))}
@@ -220,13 +220,13 @@ const TextBlock = ({ data, template }) => {
   return (
     <div className="mb-12">
       {data.title && (
-        <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-4">
+        <h3 className="text-2xl font-light text-gray-900 mb-4">
           {data.title}
         </h3>
       )}
       <div className="space-y-4">
         {data.paragraphs?.map((paragraph, index) => (
-          <p key={index} className="text-gray-600 dark:text-gray-300 leading-relaxed">
+          <p key={index} className="text-gray-600 leading-relaxed">
             {paragraph}
           </p>
         ))}
@@ -243,13 +243,13 @@ const GridBlock = ({ data, colors, template }) => {
     return (
       <div className="mb-12">
         {data.title && (
-          <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-6">{data.title}</h3>
+          <h3 className="text-xl font-medium text-gray-900 mb-6">{data.title}</h3>
         )}
         <div className={`grid grid-cols-1 md:grid-cols-${columns} gap-4`}>
           {data.items?.map((item, index) => (
-            <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-5 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <div key={index} className="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-colors">
               <h4 className={`font-medium ${colors.text} mb-2`}>{item.title}</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+              <p className="text-sm text-gray-600">{item.description}</p>
             </div>
           ))}
         </div>
@@ -262,17 +262,17 @@ const GridBlock = ({ data, colors, template }) => {
     return (
       <div className="mb-12">
         {data.title && (
-          <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-6">{data.title}</h3>
+          <h3 className="text-xl font-medium text-gray-900 mb-6">{data.title}</h3>
         )}
         <div className="space-y-4">
           {data.items?.map((item, index) => (
-            <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
               <div className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center text-white font-bold flex-shrink-0 text-sm">
                 {index + 1}
               </div>
               <div>
-                <h4 className="font-medium text-gray-900 dark:text-white mb-1">{item.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+                <h4 className="font-medium text-gray-900 mb-1">{item.title}</h4>
+                <p className="text-sm text-gray-600">{item.description}</p>
               </div>
             </div>
           ))}
@@ -286,15 +286,15 @@ const GridBlock = ({ data, colors, template }) => {
     return (
       <div className="mb-12">
         {data.title && (
-          <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-8 text-center">{data.title}</h3>
+          <h3 className="text-2xl font-light text-gray-900 mb-8 text-center">{data.title}</h3>
         )}
         <div className={`grid grid-cols-1 md:grid-cols-${columns} gap-6`}>
           {data.items?.map((item, index) => (
-            <div key={index} className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all">
+            <div key={index} className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all">
               <div className={`h-2 ${colors.primary}`}></div>
               <div className="p-6">
-                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2 group-hover:text-gray-900 transition-colors">{item.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
+                <h4 className="text-lg font-medium text-gray-900 mb-2 group-hover:text-gray-900 transition-colors">{item.title}</h4>
+                <p className="text-sm text-gray-600">{item.description}</p>
               </div>
             </div>
           ))}
@@ -307,13 +307,13 @@ const GridBlock = ({ data, colors, template }) => {
   return (
     <div className="mb-12">
       {data.title && (
-        <h3 className="text-2xl font-light text-gray-900 dark:text-white mb-6">{data.title}</h3>
+        <h3 className="text-2xl font-light text-gray-900 mb-6">{data.title}</h3>
       )}
       <div className={`grid grid-cols-1 md:grid-cols-${columns} gap-6`}>
         {data.items?.map((item, index) => (
-          <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <div key={index} className="bg-white rounded-xl p-6 border border-gray-200">
             <h4 className={`text-lg font-medium ${colors.text} mb-2`}>{item.title}</h4>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">{item.description}</p>
+            <p className="text-gray-600 text-sm">{item.description}</p>
           </div>
         ))}
       </div>
@@ -327,20 +327,20 @@ const QuoteBlock = ({ data, colors, template }) => {
     return (
       <div className="my-16 text-center">
         <div className={`text-6xl ${colors.text} mb-4`}>"</div>
-        <blockquote className="text-2xl md:text-3xl font-light italic text-gray-700 dark:text-gray-200 mb-6 max-w-3xl mx-auto">
+        <blockquote className="text-2xl md:text-3xl font-light italic text-gray-700 mb-6 max-w-3xl mx-auto">
           {data.text}
         </blockquote>
         {data.author && (
-          <cite className="text-sm text-gray-500 dark:text-gray-400 not-italic">— {data.author}</cite>
+          <cite className="text-sm text-gray-500 not-italic">— {data.author}</cite>
         )}
       </div>
     );
   }
 
-  // Lola style - Business testimonial
+  // Lola style - Business testimonial (dark bg with white text)
   if (template === 'lola') {
     return (
-      <div className="my-12 bg-gray-900 dark:bg-gray-800 rounded-xl p-8 text-white">
+      <div className="my-12 bg-gray-900 rounded-xl p-8 text-white">
         <blockquote className="text-xl mb-4 leading-relaxed">
           "{data.text}"
         </blockquote>
@@ -354,7 +354,7 @@ const QuoteBlock = ({ data, colors, template }) => {
   // Default
   return (
     <div className={`${colors.light} rounded-xl p-8 mb-12`}>
-      <blockquote className="text-xl italic text-gray-700 dark:text-gray-200 mb-4">
+      <blockquote className="text-xl italic text-gray-700 mb-4">
         "{data.text}"
       </blockquote>
       {data.author && (
@@ -381,7 +381,7 @@ const ImageBlock = ({ data, template }) => {
     <div className="mb-12">
       <img src={data.src} alt={data.alt || ''} className="w-full rounded-xl" />
       {data.caption && (
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{data.caption}</p>
+        <p className="text-sm text-gray-500 mt-2 text-center">{data.caption}</p>
       )}
     </div>
   );
@@ -423,10 +423,10 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
   return (
     <div className={`mb-16 ${containerClasses}`}>
       <div className="mb-6">
-        <h3 className="text-2xl md:text-3xl font-light text-gray-900 dark:text-white mb-2">
+        <h3 className="text-2xl md:text-3xl font-light text-gray-900 mb-2">
           {journey.title || 'User Journey'}
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-gray-600">
           {personaLabel}
         </p>
       </div>
@@ -435,7 +435,7 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
       <div className={`grid gap-3`} style={{ gridTemplateColumns: `repeat(${stageCount}, minmax(0,1fr))` }}>
         {journey.stages.map((stage, idx) => (
           <div key={idx} className="text-center">
-            <div className={`inline-flex items-center justify-center px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-xs uppercase tracking-wide`}>
+            <div className={`inline-flex items-center justify-center px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs uppercase tracking-wide`}>
               {stage.name}
             </div>
           </div>
@@ -449,27 +449,27 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
             {(stage.steps || []).map((step, sIdx) => (
               <div
                 key={sIdx}
-                className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm"
+                className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
               >
                 <div className="mb-2">
-                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Action</div>
-                  <div className="text-sm text-gray-900 dark:text-white">{step.action}</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Action</div>
+                  <div className="text-sm text-gray-900">{step.action}</div>
                 </div>
                 <div className="mb-2">
-                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Thoughts</div>
-                  <div className="text-sm text-gray-700 dark:text-gray-300">{step.thoughts}</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Thoughts</div>
+                  <div className="text-sm text-gray-700">{step.thoughts}</div>
                 </div>
                 <div className="mb-3">
-                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Feelings</div>
-                  <div className="text-sm text-gray-700 dark:text-gray-300">{step.feelings}</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Feelings</div>
+                  <div className="text-sm text-gray-700">{step.feelings}</div>
                 </div>
                 {/* Emotion bar */}
                 <div className="mb-3">
-                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+                  <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
                     <span>Emotion</span>
                     <span>{emotionToBar(step.emotion)}/5</span>
                   </div>
-                  <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded">
+                  <div className="h-2 w-full bg-gray-200 rounded">
                     <div
                       className={`h-2 rounded ${colors?.primary || 'bg-black'}`}
                       style={{ width: `${(emotionToBar(step.emotion) / 5) * 100}%` }}
@@ -479,7 +479,7 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
                 {/* Chips */}
                 {(Array.isArray(step.painPoints) && step.painPoints.length > 0) && (
                   <div className="mb-2">
-                    <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Pain Points</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">Pain Points</div>
                     <div className="flex flex-wrap gap-2">
                       {step.painPoints.map((p, i) => (
                         <span key={i} className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-300">
@@ -491,7 +491,7 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
                 )}
                 {(Array.isArray(step.opportunities) && step.opportunities.length > 0) && (
                   <div className="mb-2">
-                    <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Opportunities</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">Opportunities</div>
                     <div className="flex flex-wrap gap-2">
                       {step.opportunities.map((o, i) => (
                         <span key={i} className="text-xs px-2 py-0.5 rounded bg-gray-50 text-black border border-black">
@@ -503,10 +503,10 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
                 )}
                 {(Array.isArray(step.touchpoints) && step.touchpoints.length > 0) && (
                   <div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Touchpoints</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">Touchpoints</div>
                     <div className="flex flex-wrap gap-2">
                       {step.touchpoints.map((t, i) => (
-                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
+                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
                           {t}
                         </span>
                       ))}
@@ -893,12 +893,12 @@ const SimonPanContentBlock = ({ block, spColors }) => {
 
 // Moritz Oesterlau Style - Process Journey
 const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => (
-  <div className="min-h-screen bg-gray-50 bg-white">
+  <div className="min-h-screen bg-white">
     {/* Header with yellow accent */}
-    <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div className="bg-white border-b border-gray-200">
       <div className="max-w-3xl mx-auto px-6 py-8">
         {!isPreview && (
-          <button onClick={() => navigate('/home')} className="flex items-center space-x-2 text-gray-500 hover:text-gray-900 dark:hover:text-white mb-6">
+          <button onClick={() => navigate('/home')} className="flex items-center space-x-2 text-gray-500 hover:text-gray-900 mb-6">
             <ArrowLeft size={20} />
             <span>Back</span>
           </button>
@@ -907,32 +907,32 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           <span className="px-3 py-1 bg-yellow-400 text-gray-900 text-sm font-medium rounded">Case Study</span>
-          <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm rounded">UX Research</span>
-          <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-sm rounded">Product Design</span>
+          <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded">UX Research</span>
+          <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded">Product Design</span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-white mb-3">
+        <h1 className="text-3xl md:text-4xl font-medium text-gray-900 mb-3">
           {caseStudy.title}
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400">
+        <p className="text-lg text-gray-600">
           {caseStudy.subtitle}
         </p>
       </div>
     </div>
 
     {/* Process Steps Indicator */}
-    <div className="bg-white dark:bg-gray-800 py-4 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
+    <div className="bg-white py-4 border-b border-gray-200 sticky top-0 z-40">
       <div className="max-w-3xl mx-auto px-6">
         <div className="flex items-center justify-between overflow-x-auto">
           {caseStudy.sections?.map((section, index) => (
             <div key={index} className="flex items-center">
               <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                index === 0 ? 'bg-black text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                index === 0 ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'
               }`}>
                 {index + 1}
               </div>
               {index < caseStudy.sections.length - 1 && (
-                <div className="w-8 h-px bg-gray-200 dark:bg-gray-700 mx-1"></div>
+                <div className="w-8 h-px bg-gray-200 mx-1"></div>
               )}
             </div>
           ))}
@@ -948,7 +948,7 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
             <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold">
               {index + 1}
             </div>
-            <h2 className="text-2xl font-medium text-gray-900 dark:text-white">
+            <h2 className="text-2xl font-medium text-gray-900">
               {section.title}
             </h2>
           </div>
@@ -960,7 +960,7 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
     </div>
 
     {/* Footer */}
-    <div className="text-center py-8 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <div className="text-center py-8 border-t border-gray-200 bg-white">
       <p className="text-xs text-gray-400">Template inspired by <a href="https://moritzoesterlau.de" target="_blank" rel="noopener noreferrer" className="hover:underline">moritzoesterlau.de</a></p>
     </div>
   </div>
@@ -968,7 +968,7 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
 
 // Lola Jiang Style - Data-Driven Leadership
 const LolaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => (
-  <div className="min-h-screen bg-white bg-white">
+  <div className="min-h-screen bg-white">
     {/* Dark Hero */}
     <div className="bg-gray-900 text-white">
       <div className="max-w-5xl mx-auto px-6 py-20">
@@ -1004,13 +1004,13 @@ const LolaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => 
 
     {/* Key Metrics Banner */}
     {caseStudy.sections?.[0]?.content?.find(b => b.type === 'stats') && (
-      <div className="bg-gray-50 dark:bg-gray-800 py-8">
+      <div className="bg-gray-50 py-8">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {caseStudy.sections[0].content.find(b => b.type === 'stats').data.items?.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className={`text-3xl font-bold ${colors.text} mb-1`}>{stat.value}</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -1022,7 +1022,7 @@ const LolaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => 
     <div className="max-w-5xl mx-auto px-6 py-16">
       {caseStudy.sections?.map((section, index) => (
         <section key={index} ref={(el) => (sectionRefs.current[index] = el)} className="mb-20">
-          <h2 className="text-3xl font-medium text-gray-900 dark:text-white mb-8">
+          <h2 className="text-3xl font-medium text-gray-900 mb-8">
             {section.title}
           </h2>
           {section.content?.map((block, blockIndex) => (
@@ -1033,7 +1033,7 @@ const LolaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => 
     </div>
 
     {/* Footer */}
-    <div className="text-center py-8 border-t border-gray-200 dark:border-gray-700">
+    <div className="text-center py-8 border-t border-gray-200">
       <p className="text-xs text-gray-400">Template inspired by <a href="https://lolajiang.com" target="_blank" rel="noopener noreferrer" className="hover:underline">lolajiang.com</a></p>
     </div>
   </div>
@@ -1045,16 +1045,16 @@ const GloriaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
     {/* Visual Hero */}
     <div className="min-h-[70vh] flex flex-col items-center justify-center px-6 relative bg-gray-50">
       {!isPreview && (
-        <button onClick={() => navigate('/home')} className="absolute top-8 left-8 flex items-center space-x-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+        <button onClick={() => navigate('/home')} className="absolute top-8 left-8 flex items-center space-x-2 text-gray-600 hover:text-gray-900">
           <ArrowLeft size={20} />
           <span>Back</span>
         </button>
       )}
 
-      <h1 className="text-5xl md:text-7xl font-light text-gray-900 dark:text-white mb-6 text-center">
+      <h1 className="text-5xl md:text-7xl font-light text-gray-900 mb-6 text-center">
         {caseStudy.title}
       </h1>
-      <p className="text-xl text-gray-600 dark:text-gray-400 text-center max-w-2xl italic">
+      <p className="text-xl text-gray-600 text-center max-w-2xl italic">
         {caseStudy.subtitle}
       </p>
 
@@ -1067,7 +1067,7 @@ const GloriaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
     <div className="max-w-4xl mx-auto px-6 py-16">
       {caseStudy.sections?.map((section, index) => (
         <section key={index} ref={(el) => (sectionRefs.current[index] = el)} className="mb-24 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-12">
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-12">
             {section.title}
           </h2>
           {section.content?.map((block, blockIndex) => (
@@ -1078,7 +1078,7 @@ const GloriaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
     </div>
 
     {/* End Card */}
-    <div className="text-center py-16 bg-white dark:bg-gray-800">
+    <div className="text-center py-16 bg-white">
       <p className="text-sm text-gray-500 mb-4">Thanks for reading!</p>
       {!isPreview && (
         <button onClick={() => navigate('/home')} className={`${colors.text} hover:underline`}>
@@ -1092,7 +1092,7 @@ const GloriaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
 
 // Pratibha Joshi Style - Clean Professional (Default)
 const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, activeSection, scrollToSection }) => (
-  <div className="min-h-screen bg-white bg-white">
+  <div className="min-h-screen bg-white">
     {/* Hero */}
     <div className={`bg-gradient-to-br ${colors.gradient} text-white`}>
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -1109,7 +1109,7 @@ const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, a
 
     {/* Sticky Navigation */}
     {caseStudy.sections?.length > 1 && (
-      <div className="sticky top-0 z-40 bg-white bg-white border-b border-gray-200 dark:border-gray-700">
+      <div className="sticky top-0 z-40 bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6">
           <nav className="flex space-x-1 overflow-x-auto py-4 scrollbar-hide">
             {caseStudy.sections.map((section, index) => (
@@ -1119,7 +1119,7 @@ const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, a
                 className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                   activeSection === index
                     ? `${colors.primary} text-white`
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 {section.title}
@@ -1138,7 +1138,7 @@ const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, a
           {caseStudy.sections?.map((section, index) => (
             <section key={index} ref={(el) => (sectionRefs.current[index] = el)} className="mb-16 scroll-mt-24">
               <div className={`border-l-4 ${colors.border} pl-6 mb-8`}>
-                <h2 className="text-3xl font-light text-gray-900 dark:text-white">{section.title}</h2>
+                <h2 className="text-3xl font-light text-gray-900">{section.title}</h2>
               </div>
               <div className="pl-6">
                 {section.content?.map((block, blockIndex) => (
@@ -1153,13 +1153,13 @@ const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, a
         <div className="hidden lg:block">
           <div className="sticky top-24 space-y-6">
             <div className={`${colors.light} rounded-xl p-6`}>
-              <h3 className="font-medium text-gray-900 dark:text-white mb-4">Quick Links</h3>
+              <h3 className="font-medium text-gray-900 mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 {caseStudy.sections?.map((section, index) => (
                   <li key={index}>
                     <button
                       onClick={() => scrollToSection(index)}
-                      className={`text-sm ${activeSection === index ? colors.text : 'text-gray-600 dark:text-gray-400'} hover:${colors.text}`}
+                      className={`text-sm ${activeSection === index ? colors.text : 'text-gray-600'} hover:${colors.text}`}
                     >
                       {section.title}
                     </button>
@@ -1173,7 +1173,7 @@ const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, a
     </div>
 
     {/* Footer */}
-    <div className="text-center py-8 border-t border-gray-200 dark:border-gray-700">
+    <div className="text-center py-8 border-t border-gray-200">
       <p className="text-xs text-gray-400">Template inspired by <a href="https://pratibhajoshi.com" target="_blank" rel="noopener noreferrer" className="hover:underline">pratibhajoshi.com</a></p>
     </div>
   </div>
@@ -1252,16 +1252,16 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white bg-white">
-        <div className="text-gray-600 dark:text-gray-400">Loading case study...</div>
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-gray-600">Loading case study...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white bg-white">
-        <div className="text-gray-600 dark:text-gray-400 mb-4">{error}</div>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+        <div className="text-gray-600 mb-4">{error}</div>
         <button onClick={() => navigate('/home')} className="text-black hover:underline">
           Return to Home
         </button>
