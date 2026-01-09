@@ -11,29 +11,29 @@ import { getAllTemplates } from '../../templates/caseStudyTemplates';
 import { Save, ArrowLeft, Eye, EyeOff, Check, Palette, Layout, ChevronRight } from 'lucide-react';
 
 const colorOptions = [
-  { value: 'blue', label: 'Blue', class: 'bg-blue-600' },
-  { value: 'green', label: 'Green', class: 'bg-green-600' },
-  { value: 'purple', label: 'Purple', class: 'bg-purple-600' },
-  { value: 'orange', label: 'Orange', class: 'bg-orange-600' },
+  { value: 'blue', label: 'Black', class: 'bg-black' },
+  { value: 'green', label: 'Dark Gray', class: 'bg-gray-700' },
+  { value: 'purple', label: 'Gray', class: 'bg-gray-500' },
+  { value: 'orange', label: 'Light', class: 'bg-gray-300' },
 ];
 
-// Template preview thumbnails - Inspired by real UX portfolios
+// Template preview thumbnails - Black/white minimal style
 const templatePreviews = {
   // Simon Pan style - Outcome-Focused (Metrics first)
   simonpan: (
     <div className="w-full h-full bg-white flex flex-col">
-      <div className="h-1/3 bg-gradient-to-r from-blue-50 to-blue-100 p-2 flex items-center justify-between">
+      <div className="h-1/3 bg-gray-50 p-2 flex items-center justify-between">
         <div className="flex gap-1">
-          <div className="w-6 h-4 bg-blue-500 rounded-sm flex items-center justify-center">
+          <div className="w-6 h-4 bg-black rounded-sm flex items-center justify-center">
             <span className="text-[6px] text-white font-bold">+20%</span>
           </div>
-          <div className="w-6 h-4 bg-green-500 rounded-sm flex items-center justify-center">
+          <div className="w-6 h-4 bg-gray-600 rounded-sm flex items-center justify-center">
             <span className="text-[6px] text-white font-bold">85%</span>
           </div>
         </div>
       </div>
       <div className="flex-1 p-2 flex flex-col gap-1">
-        <div className="w-12 h-0.5 bg-gray-400" />
+        <div className="w-12 h-0.5 bg-black" />
         <div className="w-full h-0.5 bg-gray-200" />
         <div className="w-10 h-0.5 bg-gray-200" />
       </div>
@@ -43,19 +43,19 @@ const templatePreviews = {
   moritz: (
     <div className="w-full h-full bg-gray-50 flex flex-col">
       <div className="h-6 bg-white border-b border-gray-200 flex items-center px-2">
-        <div className="w-8 h-1.5 bg-yellow-400 rounded" />
+        <div className="w-8 h-1.5 bg-black rounded" />
       </div>
       <div className="flex-1 p-2 flex flex-col gap-1.5">
         <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-blue-500 rounded-full" />
+          <div className="w-2 h-2 bg-black rounded-full" />
           <div className="w-10 h-0.5 bg-gray-300" />
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-blue-400 rounded-full" />
+          <div className="w-2 h-2 bg-gray-600 rounded-full" />
           <div className="w-12 h-0.5 bg-gray-300" />
         </div>
         <div className="flex items-center gap-1">
-          <div className="w-2 h-2 bg-blue-300 rounded-full" />
+          <div className="w-2 h-2 bg-gray-400 rounded-full" />
           <div className="w-8 h-0.5 bg-gray-300" />
         </div>
       </div>
@@ -64,20 +64,20 @@ const templatePreviews = {
   // Lola style - Data-Driven (Strategic, business focused)
   lola: (
     <div className="w-full h-full bg-white flex flex-col">
-      <div className="h-10 bg-gray-900 p-2 flex flex-col justify-end">
+      <div className="h-10 bg-black p-2 flex flex-col justify-end">
         <div className="w-10 h-1 bg-white rounded" />
         <div className="w-6 h-0.5 bg-gray-400 mt-0.5" />
       </div>
       <div className="flex-1 p-2">
         <div className="grid grid-cols-3 gap-1 mb-2">
-          <div className="h-4 bg-green-100 rounded-sm flex items-center justify-center">
-            <span className="text-[5px] text-green-700 font-bold">91.7%</span>
+          <div className="h-4 bg-gray-100 rounded-sm flex items-center justify-center">
+            <span className="text-[5px] text-black font-bold">91.7%</span>
           </div>
-          <div className="h-4 bg-blue-100 rounded-sm flex items-center justify-center">
-            <span className="text-[5px] text-blue-700 font-bold">+30%</span>
+          <div className="h-4 bg-gray-200 rounded-sm flex items-center justify-center">
+            <span className="text-[5px] text-black font-bold">+30%</span>
           </div>
-          <div className="h-4 bg-purple-100 rounded-sm flex items-center justify-center">
-            <span className="text-[5px] text-purple-700 font-bold">2.5M</span>
+          <div className="h-4 bg-gray-100 rounded-sm flex items-center justify-center">
+            <span className="text-[5px] text-black font-bold">2.5M</span>
           </div>
         </div>
         <div className="w-full h-0.5 bg-gray-200" />
@@ -86,12 +86,12 @@ const templatePreviews = {
   ),
   // Gloria style - Visual Storyteller (Image-first, creative)
   gloria: (
-    <div className="w-full h-full bg-amber-50 flex flex-col">
-      <div className="h-1/2 bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center">
-        <div className="w-8 h-6 bg-white/80 rounded shadow-sm" />
+    <div className="w-full h-full bg-white flex flex-col">
+      <div className="h-1/2 bg-gray-100 flex items-center justify-center">
+        <div className="w-8 h-6 bg-white rounded shadow-sm border border-gray-200" />
       </div>
       <div className="flex-1 p-2 flex flex-col gap-1">
-        <div className="w-10 h-1 bg-gray-700 rounded" />
+        <div className="w-10 h-1 bg-black rounded" />
         <div className="flex gap-1 mt-1">
           <div className="w-4 h-4 bg-gray-200 rounded-sm" />
           <div className="w-4 h-4 bg-gray-200 rounded-sm" />
@@ -104,7 +104,7 @@ const templatePreviews = {
   pratibha: (
     <div className="w-full h-full bg-white flex flex-col">
       <div className="h-8 bg-gray-100 flex items-center justify-center">
-        <div className="w-12 h-1.5 bg-pink-500 rounded" />
+        <div className="w-12 h-1.5 bg-black rounded" />
       </div>
       <div className="flex-1 p-2">
         <div className="grid grid-cols-2 gap-1">
@@ -122,24 +122,24 @@ const templatePreviews = {
   carex: (
     <div className="w-full h-full bg-white flex flex-col">
       {/* Hero with centered title */}
-      <div className="h-10 bg-gradient-to-b from-indigo-50 to-white flex flex-col items-center justify-center">
-        <div className="w-10 h-1.5 bg-indigo-500 rounded mb-1" />
-        <div className="px-1.5 py-0.5 bg-indigo-100 rounded-full">
-          <span className="text-[5px] text-indigo-600 font-medium">UX Case Study</span>
+      <div className="h-10 bg-gray-50 flex flex-col items-center justify-center">
+        <div className="w-10 h-1.5 bg-black rounded mb-1" />
+        <div className="px-1.5 py-0.5 bg-gray-200 rounded-full">
+          <span className="text-[5px] text-black font-medium">UX Case Study</span>
         </div>
       </div>
       {/* Double Diamond Process */}
       <div className="flex justify-center gap-0.5 py-1 px-2">
-        <div className="w-3 h-3 bg-indigo-200 rounded-sm flex items-center justify-center">
-          <span className="text-[4px] text-indigo-700">D</span>
+        <div className="w-3 h-3 bg-gray-200 rounded-sm flex items-center justify-center">
+          <span className="text-[4px] text-gray-700">D</span>
         </div>
-        <div className="w-3 h-3 bg-indigo-300 rounded-sm flex items-center justify-center">
-          <span className="text-[4px] text-indigo-700">D</span>
+        <div className="w-3 h-3 bg-gray-300 rounded-sm flex items-center justify-center">
+          <span className="text-[4px] text-gray-700">D</span>
         </div>
-        <div className="w-3 h-3 bg-indigo-400 rounded-sm flex items-center justify-center">
+        <div className="w-3 h-3 bg-gray-500 rounded-sm flex items-center justify-center">
           <span className="text-[4px] text-white">I</span>
         </div>
-        <div className="w-3 h-3 bg-indigo-500 rounded-sm flex items-center justify-center">
+        <div className="w-3 h-3 bg-black rounded-sm flex items-center justify-center">
           <span className="text-[4px] text-white">D</span>
         </div>
       </div>
@@ -149,13 +149,13 @@ const templatePreviews = {
           <div className="flex-1 h-4 bg-gray-100 rounded-sm" />
           <div className="flex-1 h-4 bg-gray-100 rounded-sm" />
         </div>
-        <div className="h-5 bg-indigo-50 rounded-sm flex items-center justify-center">
+        <div className="h-5 bg-gray-50 rounded-sm flex items-center justify-center">
           <div className="w-4 h-3 bg-gray-200 rounded-full" />
         </div>
         <div className="flex gap-1">
-          <div className="w-3 h-3 bg-green-100 rounded-sm" />
-          <div className="w-3 h-3 bg-blue-100 rounded-sm" />
-          <div className="w-3 h-3 bg-purple-100 rounded-sm" />
+          <div className="w-3 h-3 bg-gray-100 rounded-sm" />
+          <div className="w-3 h-3 bg-gray-200 rounded-sm" />
+          <div className="w-3 h-3 bg-gray-100 rounded-sm" />
         </div>
       </div>
     </div>
@@ -350,7 +350,7 @@ const CaseStudyEditor = () => {
                   setPreviewTemplate(null);
                   setShowPreview(false);
                 }}
-                className="inline-flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                className="inline-flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 <Check size={16} />
                 <span>Apply Template</span>
@@ -412,7 +412,7 @@ const CaseStudyEditor = () => {
           {step === 'edit' && caseStudy.sections.length > 0 && (
             <button
               onClick={handlePublish}
-              className="inline-flex items-center space-x-2 bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition-colors"
+              className="inline-flex items-center space-x-2 bg-black text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors"
             >
               <Check size={20} />
               <span>Publish</span>
@@ -549,7 +549,7 @@ const CaseStudyEditor = () => {
                   key={template.id}
                   className={`relative border-2 rounded-xl overflow-hidden transition-all cursor-pointer ${
                     caseStudy.template === template.id
-                      ? 'border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800'
+                      ? 'border-black ring-2 ring-gray-300 dark:ring-blue-800'
                       : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                   }`}
                   onClick={() => handleTemplateChange(template.id)}

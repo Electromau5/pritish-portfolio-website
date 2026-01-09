@@ -21,7 +21,7 @@ export const templates = {
     },
     colors: {
       background: '#ffffff',
-      text: '#1a1a1a',
+      text: '#000000',
       textSecondary: '#666666',
       accent: '#000000',
       divider: '#e5e5e5'
@@ -100,7 +100,7 @@ export const templates = {
       maxWidth: '1100px'
     },
     features: ['Business metrics', 'Strategic context', 'Leadership scope', 'ROI focused'],
-    colorSchemes: ['light', 'dark'],
+    colorSchemes: ['light'],
     sectionStyles: {
       hero: {
         padding: 'py-24 md:py-32',
@@ -133,7 +133,7 @@ export const templates = {
       maxWidth: '1200px'
     },
     features: ['Visual-first', 'Image galleries', 'Personal branding', 'Creative flair'],
-    colorSchemes: ['light', 'cream'],
+    colorSchemes: ['light'],
     sectionStyles: {
       hero: {
         padding: 'py-16 md:py-24',
@@ -166,7 +166,7 @@ export const templates = {
       maxWidth: '1000px'
     },
     features: ['Clean grid', 'User-centric', 'Thorough studies', 'Professional polish'],
-    colorSchemes: ['light', 'dark'],
+    colorSchemes: ['light'],
     sectionStyles: {
       hero: {
         padding: 'py-20 md:py-28',
@@ -200,11 +200,11 @@ export const templates = {
     },
     colors: {
       background: '#ffffff',
-      text: '#1a1a1a',
+      text: '#000000',
       textSecondary: '#666666',
-      accent: '#6366f1', // Indigo accent
+      accent: '#000000',
       divider: '#e5e5e5',
-      highlight: '#f0f9ff'
+      highlight: '#f5f5f5'
     },
     typography: {
       fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -214,7 +214,7 @@ export const templates = {
       lineHeight: '1.6'
     },
     features: ['Double Diamond', 'User Personas', 'Competitor Analysis', 'Root Cause Analysis', 'Taskflows'],
-    colorSchemes: ['light', 'dark'],
+    colorSchemes: ['light'],
     sectionStyles: {
       hero: {
         padding: 'py-16 md:py-24',

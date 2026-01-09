@@ -201,7 +201,7 @@ const TextBlock = ({ data, template }) => {
       <div className="mb-12">
         {data.title && (
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-            <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+            <span className="w-2 h-2 bg-black rounded-full mr-3"></span>
             {data.title}
           </h3>
         )}
@@ -471,7 +471,7 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
                   </div>
                   <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded">
                     <div
-                      className={`h-2 rounded ${colors?.primary || 'bg-blue-600'}`}
+                      className={`h-2 rounded ${colors?.primary || 'bg-black'}`}
                       style={{ width: `${(emotionToBar(step.emotion) / 5) * 100}%` }}
                     />
                   </div>
@@ -482,7 +482,7 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
                     <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Pain Points</div>
                     <div className="flex flex-wrap gap-2">
                       {step.painPoints.map((p, i) => (
-                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-100 dark:border-red-800">
+                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-300">
                           {p}
                         </span>
                       ))}
@@ -494,7 +494,7 @@ const JourneyMapBlock = ({ data, caseStudy, colors, template }) => {
                     <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Opportunities</div>
                     <div className="flex flex-wrap gap-2">
                       {step.opportunities.map((o, i) => (
-                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-100 dark:border-green-800">
+                        <span key={i} className="text-xs px-2 py-0.5 rounded bg-gray-50 text-black border border-black">
                           {o}
                         </span>
                       ))}
@@ -548,34 +548,35 @@ const ContentBlock = ({ block, colors, template, caseStudy }) => {
 // COLOR THEMES
 // ============================================
 
+// Light mode black/white minimal color palette
 const colorThemes = {
   blue: {
-    primary: 'bg-blue-600',
-    light: 'bg-blue-50 dark:bg-blue-900/20',
-    text: 'text-blue-600 dark:text-blue-400',
-    border: 'border-blue-600',
-    gradient: 'from-blue-600 to-blue-800'
+    primary: 'bg-black',
+    light: 'bg-gray-50',
+    text: 'text-black',
+    border: 'border-black',
+    gradient: 'from-gray-800 to-black'
   },
   green: {
-    primary: 'bg-green-600',
-    light: 'bg-green-50 dark:bg-green-900/20',
-    text: 'text-green-600 dark:text-green-400',
-    border: 'border-green-600',
-    gradient: 'from-green-600 to-green-800'
+    primary: 'bg-black',
+    light: 'bg-gray-50',
+    text: 'text-black',
+    border: 'border-black',
+    gradient: 'from-gray-800 to-black'
   },
   purple: {
-    primary: 'bg-purple-600',
-    light: 'bg-purple-50 dark:bg-purple-900/20',
-    text: 'text-purple-600 dark:text-purple-400',
-    border: 'border-purple-600',
-    gradient: 'from-purple-600 to-purple-800'
+    primary: 'bg-black',
+    light: 'bg-gray-50',
+    text: 'text-black',
+    border: 'border-black',
+    gradient: 'from-gray-800 to-black'
   },
   orange: {
-    primary: 'bg-orange-600',
-    light: 'bg-orange-50 dark:bg-orange-900/20',
-    text: 'text-orange-600 dark:text-orange-400',
-    border: 'border-orange-600',
-    gradient: 'from-orange-600 to-orange-800'
+    primary: 'bg-black',
+    light: 'bg-gray-50',
+    text: 'text-black',
+    border: 'border-black',
+    gradient: 'from-gray-800 to-black'
   }
 };
 
@@ -591,7 +592,7 @@ const SimonPanLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs })
   // Simon Pan's exact color scheme
   const spColors = {
     bg: '#ffffff',
-    text: '#1a1a1a',
+    text: '#000000',
     textLight: '#666666',
     divider: '#e5e5e5',
     link: '#000000'
@@ -892,7 +893,7 @@ const SimonPanContentBlock = ({ block, spColors }) => {
 
 // Moritz Oesterlau Style - Process Journey
 const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => (
-  <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <div className="min-h-screen bg-gray-50 bg-white">
     {/* Header with yellow accent */}
     <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-3xl mx-auto px-6 py-8">
@@ -926,7 +927,7 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
           {caseStudy.sections?.map((section, index) => (
             <div key={index} className="flex items-center">
               <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                index === 0 ? 'bg-blue-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                index === 0 ? 'bg-black text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
               }`}>
                 {index + 1}
               </div>
@@ -944,7 +945,7 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
       {caseStudy.sections?.map((section, index) => (
         <section key={index} ref={(el) => (sectionRefs.current[index] = el)} className="mb-16">
           <div className="flex items-center space-x-4 mb-6">
-            <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold">
               {index + 1}
             </div>
             <h2 className="text-2xl font-medium text-gray-900 dark:text-white">
@@ -967,7 +968,7 @@ const MoritzLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
 
 // Lola Jiang Style - Data-Driven Leadership
 const LolaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => (
-  <div className="min-h-screen bg-white dark:bg-gray-900">
+  <div className="min-h-screen bg-white bg-white">
     {/* Dark Hero */}
     <div className="bg-gray-900 text-white">
       <div className="max-w-5xl mx-auto px-6 py-20">
@@ -1040,9 +1041,9 @@ const LolaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => 
 
 // Gloria Lo Style - Visual Storyteller
 const GloriaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) => (
-  <div className="min-h-screen bg-amber-50 dark:bg-gray-900">
+  <div className="min-h-screen bg-white">
     {/* Visual Hero */}
-    <div className="min-h-[70vh] flex flex-col items-center justify-center px-6 relative bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
+    <div className="min-h-[70vh] flex flex-col items-center justify-center px-6 relative bg-gray-50">
       {!isPreview && (
         <button onClick={() => navigate('/home')} className="absolute top-8 left-8 flex items-center space-x-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
           <ArrowLeft size={20} />
@@ -1091,7 +1092,7 @@ const GloriaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs }) =
 
 // Pratibha Joshi Style - Clean Professional (Default)
 const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, activeSection, scrollToSection }) => (
-  <div className="min-h-screen bg-white dark:bg-gray-900">
+  <div className="min-h-screen bg-white bg-white">
     {/* Hero */}
     <div className={`bg-gradient-to-br ${colors.gradient} text-white`}>
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -1108,7 +1109,7 @@ const PratibhaLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs, a
 
     {/* Sticky Navigation */}
     {caseStudy.sections?.length > 1 && (
-      <div className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+      <div className="sticky top-0 z-40 bg-white bg-white border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-6xl mx-auto px-6">
           <nav className="flex space-x-1 overflow-x-auto py-4 scrollbar-hide">
             {caseStudy.sections.map((section, index) => (
@@ -1251,7 +1252,7 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-white bg-white">
         <div className="text-gray-600 dark:text-gray-400">Loading case study...</div>
       </div>
     );
@@ -1259,9 +1260,9 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white bg-white">
         <div className="text-gray-600 dark:text-gray-400 mb-4">{error}</div>
-        <button onClick={() => navigate('/home')} className="text-blue-600 hover:underline">
+        <button onClick={() => navigate('/home')} className="text-black hover:underline">
           Return to Home
         </button>
       </div>

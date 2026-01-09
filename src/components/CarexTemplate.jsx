@@ -7,22 +7,22 @@ import { ArrowLeft } from 'lucide-react';
 // All 15 sections implemented from Figma Blocks page
 // ============================================
 
-// Carex Color Palette (from Figma Styling page)
+// Carex Color Palette - Light mode black/white minimal
 const carexColors = {
-  primary: '#188AEC',
-  dark: '#282D46',
-  darkSecondary: '#143D61',
-  light: '#CBD4DC',
-  lightSecondary: '#EFEFEF',
-  extraLight: '#F6FAFE',
-  extraLightSecondary: '#EDF6FE',
-  cons: '#F57878',
+  primary: '#000000',
+  dark: '#000000',
+  darkSecondary: '#1a1a1a',
+  light: '#888888',
+  lightSecondary: '#f5f5f5',
+  extraLight: '#fafafa',
+  extraLightSecondary: '#f0f0f0',
+  cons: '#666666',
   white: '#FFFFFF',
-  // Eisenhower Matrix colors
-  matrixGreen: '#4CAF50',
-  matrixYellow: '#FFC107',
-  matrixBlue: '#2196F3',
-  matrixRed: '#F44336',
+  // Eisenhower Matrix colors - muted grayscale
+  matrixGreen: '#e8e8e8',
+  matrixYellow: '#f0f0f0',
+  matrixBlue: '#e0e0e0',
+  matrixRed: '#f5f5f5',
 };
 
 // Carex Typography Styles (Poppins font from Figma)
@@ -585,7 +585,7 @@ const CarexCompetitorAnalysis = ({ title = 'Competitor Analysis', competitors = 
               {comp.features?.map((feature, fIndex) => (
                 <div key={fIndex} className="flex items-start gap-3">
                   {comp.hasFeature?.[fIndex] !== false ? (
-                    <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
@@ -913,7 +913,7 @@ const CarexUserPersona = ({ persona }) => (
             <ul className="grid md:grid-cols-2 gap-3">
               {persona.goals.map((goal, index) => (
                 <li key={index} className="flex items-start gap-2">
-                  <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                   <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>{goal}</span>
@@ -994,8 +994,8 @@ const CarexTaskMapping = ({ title = 'Task Mapping', tasks = [] }) => (
                   <span
                     className="px-3 py-1 rounded-full text-xs font-medium"
                     style={{
-                      backgroundColor: task.urgency === 'High' ? '#FEE2E2' : task.urgency === 'Medium' ? '#FEF3C7' : '#D1FAE5',
-                      color: task.urgency === 'High' ? '#DC2626' : task.urgency === 'Medium' ? '#D97706' : '#059669',
+                      backgroundColor: task.urgency === 'High' ? '#000000' : task.urgency === 'Medium' ? '#666666' : '#e0e0e0',
+                      color: task.urgency === 'High' ? '#ffffff' : task.urgency === 'Medium' ? '#ffffff' : '#000000',
                     }}
                   >
                     {task.urgency || 'Medium'}
@@ -1056,16 +1056,16 @@ const CarexEisenhowerMatrix = ({ title = 'Eisenhower Matrix', quadrants = {} }) 
 
         {/* Matrix Grid */}
         <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2 aspect-square max-w-lg mx-auto">
-          {/* Q1: Urgent + Important (DO - Green) */}
+          {/* Q1: Urgent + Important (DO) */}
           <div
-            className="rounded-2xl p-6 flex flex-col"
-            style={{ backgroundColor: '#E8F5E9' }}
+            className="rounded-2xl p-6 flex flex-col border"
+            style={{ backgroundColor: carexColors.white, borderColor: carexColors.dark }}
           >
             <h4
               className="mb-2"
               style={{
                 ...carexTypography.bodyBold,
-                color: '#2E7D32',
+                color: carexColors.dark,
                 fontSize: '16px',
               }}
             >
@@ -1073,23 +1073,23 @@ const CarexEisenhowerMatrix = ({ title = 'Eisenhower Matrix', quadrants = {} }) 
             </h4>
             <ul className="space-y-2 flex-1">
               {(quadrants.doFirst || ['Crisis tasks', 'Deadlines', 'Problems']).map((item, index) => (
-                <li key={index} style={{ ...carexTypography.bodySmall, color: '#388E3C', fontSize: '13px' }}>
+                <li key={index} style={{ ...carexTypography.bodySmall, color: carexColors.darkSecondary, fontSize: '13px' }}>
                   • {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Q2: Not Urgent + Important (SCHEDULE - Blue) */}
+          {/* Q2: Not Urgent + Important (SCHEDULE) */}
           <div
             className="rounded-2xl p-6 flex flex-col"
-            style={{ backgroundColor: '#E3F2FD' }}
+            style={{ backgroundColor: carexColors.extraLight }}
           >
             <h4
               className="mb-2"
               style={{
                 ...carexTypography.bodyBold,
-                color: '#1565C0',
+                color: carexColors.dark,
                 fontSize: '16px',
               }}
             >
@@ -1097,23 +1097,23 @@ const CarexEisenhowerMatrix = ({ title = 'Eisenhower Matrix', quadrants = {} }) 
             </h4>
             <ul className="space-y-2 flex-1">
               {(quadrants.schedule || ['Planning', 'Improvement', 'Development']).map((item, index) => (
-                <li key={index} style={{ ...carexTypography.bodySmall, color: '#1976D2', fontSize: '13px' }}>
+                <li key={index} style={{ ...carexTypography.bodySmall, color: carexColors.darkSecondary, fontSize: '13px' }}>
                   • {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Q3: Urgent + Not Important (DELEGATE - Yellow) */}
+          {/* Q3: Urgent + Not Important (DELEGATE) */}
           <div
             className="rounded-2xl p-6 flex flex-col"
-            style={{ backgroundColor: '#FFF8E1' }}
+            style={{ backgroundColor: carexColors.lightSecondary }}
           >
             <h4
               className="mb-2"
               style={{
                 ...carexTypography.bodyBold,
-                color: '#F57F17',
+                color: carexColors.dark,
                 fontSize: '16px',
               }}
             >
@@ -1121,23 +1121,23 @@ const CarexEisenhowerMatrix = ({ title = 'Eisenhower Matrix', quadrants = {} }) 
             </h4>
             <ul className="space-y-2 flex-1">
               {(quadrants.delegate || ['Interruptions', 'Meetings', 'Activities']).map((item, index) => (
-                <li key={index} style={{ ...carexTypography.bodySmall, color: '#FFA000', fontSize: '13px' }}>
+                <li key={index} style={{ ...carexTypography.bodySmall, color: carexColors.darkSecondary, fontSize: '13px' }}>
                   • {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Q4: Not Urgent + Not Important (ELIMINATE - Red) */}
+          {/* Q4: Not Urgent + Not Important (ELIMINATE) */}
           <div
             className="rounded-2xl p-6 flex flex-col"
-            style={{ backgroundColor: '#FFEBEE' }}
+            style={{ backgroundColor: carexColors.extraLightSecondary }}
           >
             <h4
               className="mb-2"
               style={{
                 ...carexTypography.bodyBold,
-                color: '#C62828',
+                color: carexColors.light,
                 fontSize: '16px',
               }}
             >
@@ -1145,7 +1145,7 @@ const CarexEisenhowerMatrix = ({ title = 'Eisenhower Matrix', quadrants = {} }) 
             </h4>
             <ul className="space-y-2 flex-1">
               {(quadrants.eliminate || ['Time wasters', 'Distractions', 'Trivial tasks']).map((item, index) => (
-                <li key={index} style={{ ...carexTypography.bodySmall, color: '#E53935', fontSize: '13px' }}>
+                <li key={index} style={{ ...carexTypography.bodySmall, color: carexColors.light, fontSize: '13px' }}>
                   • {item}
                 </li>
               ))}
