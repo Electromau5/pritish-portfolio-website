@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   // Log that we have a key (but not the key itself for security)
   console.log('API key found, length:', apiKey.length);
 
-  const systemPrompt = `You are a case study content structurer for a UX design portfolio. Transform the provided document content into a structured case study JSON AND generate a user journey map based on the content.
+  const systemPrompt = `You are a case study content structurer for a UX design portfolio. Transform the provided document content into a structured case study JSON AND generate a user journey map AND a user flow diagram based on the content.
 
 Output this exact JSON structure:
 {
@@ -54,6 +54,24 @@ Output this exact JSON structure:
       }
     ]
   },
+  "userFlow": {
+    "title": "User Flow",
+    "description": "Brief description of what this flow represents",
+    "nodes": [
+      { "id": "1", "type": "start", "label": "Entry Point" },
+      { "id": "2", "type": "action", "label": "User Action", "description": "Optional description" },
+      { "id": "3", "type": "decision", "label": "Decision Point?" },
+      { "id": "4", "type": "action", "label": "Another Action" },
+      { "id": "5", "type": "end", "label": "Goal Achieved" }
+    ],
+    "connections": [
+      { "from": "1", "to": "2" },
+      { "from": "2", "to": "3" },
+      { "from": "3", "to": "4", "label": "Yes" },
+      { "from": "3", "to": "5", "label": "No" },
+      { "from": "4", "to": "5" }
+    ]
+  },
   "sections": [
     {
       "title": "Section Name",
@@ -63,7 +81,8 @@ Output this exact JSON structure:
         { "type": "grid", "data": { "title": "...", "columns": 2, "items": [{ "title": "...", "description": "..." }] } },
         { "type": "text", "data": { "title": "...", "paragraphs": ["...", "..."] } },
         { "type": "quote", "data": { "text": "...", "author": "..." } },
-        { "type": "journey", "data": { "ref": "journeyMap" } }
+        { "type": "journey", "data": { "ref": "journeyMap" } },
+        { "type": "userflow", "data": { "ref": "userFlow" } }
       ]
     }
   ]
@@ -78,6 +97,12 @@ Guidelines:
 - Use "quote" for testimonials or key insights
 - Build a concise "journeyMap" with 3-4 stages and 2-3 steps per stage. For each step, include action, thoughts, feelings, emotion (1-5 scale), painPoints, opportunities, touchpoints.
 - Include a "journey" content block in at least one section so UIs can render the journey map easily. Reference the top-level journeyMap using { "ref": "journeyMap" }.
+- Build a "userFlow" that represents the primary user flow through the application/product:
+  - Node types: "start" (entry point, green circle), "action" (user action, rectangle), "decision" (yes/no branch, diamond), "end" (goal/exit, red circle)
+  - Create 5-8 nodes that represent the key steps in the user's journey through the product
+  - Connect nodes logically with "connections" array. For decisions, include "label" on connections ("Yes"/"No")
+  - The flow should tell a story of how a user accomplishes their goal
+- Include a "userflow" content block in the Design or Implementation section to render the flow diagram. Reference the top-level userFlow using { "ref": "userFlow" }.
 - Keep content concise and impactful
 - Return ONLY valid JSON, no markdown formatting`;
 

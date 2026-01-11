@@ -4,6 +4,7 @@ import { ArrowLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import db from '../services/db';
 import { getTemplate } from '../templates/caseStudyTemplates';
 import CarexLayout from './CarexTemplate';
+import UserFlowDiagram from './UserFlowDiagram';
 
 // ============================================
 // CONTENT BLOCK RENDERERS
@@ -539,6 +540,8 @@ const ContentBlock = ({ block, colors, template, caseStudy }) => {
       return <ImageBlock data={block.data} template={template} />;
     case 'journey':
       return <JourneyMapBlock data={block.data} caseStudy={caseStudy} colors={colors} template={template} />;
+    case 'userflow':
+      return <UserFlowDiagram data={block.data} caseStudy={caseStudy} colors={colors} template={template} />;
     default:
       return null;
   }
@@ -692,6 +695,7 @@ const SimonPanLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs })
                 key={blockIndex}
                 block={block}
                 spColors={spColors}
+                caseStudy={caseStudy}
               />
             ))}
           </section>
@@ -752,8 +756,10 @@ const SimonPanLayout = ({ caseStudy, colors, isPreview, navigate, sectionRefs })
 };
 
 // Simon Pan specific content blocks - exact styling
-const SimonPanContentBlock = ({ block, spColors }) => {
+const SimonPanContentBlock = ({ block, spColors, caseStudy }) => {
   switch (block.type) {
+    case 'userflow':
+      return <UserFlowDiagram data={block.data} caseStudy={caseStudy} colors={{ text: 'text-black', primary: 'bg-black' }} template="simonpan" />;
     case 'text':
       return (
         <div className="mb-8">

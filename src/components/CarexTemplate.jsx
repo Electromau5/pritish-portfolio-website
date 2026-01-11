@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
+import UserFlowDiagram from './UserFlowDiagram';
 
 // ============================================
 // CAREX TEMPLATE - Exact Figma Replica
@@ -1550,78 +1551,101 @@ const CarexSection = ({ section, caseStudy }) => {
     return listBlock?.data?.items || getGridItems().map(i => i.title || i.description);
   };
 
+  // Check for userflow block in section content
+  const getUserFlowBlock = () => {
+    return section.content?.find(b => b.type === 'userflow');
+  };
+
+  // Render userflow if present
+  const renderUserFlow = () => {
+    const userflowBlock = getUserFlowBlock();
+    if (!userflowBlock) return null;
+    return (
+      <div className="py-12 px-6" style={{ backgroundColor: carexColors.white }}>
+        <div className="max-w-6xl mx-auto">
+          <UserFlowDiagram
+            data={userflowBlock.data}
+            caseStudy={caseStudy}
+            colors={{ text: 'text-black', primary: 'bg-black' }}
+            template="carex"
+          />
+        </div>
+      </div>
+    );
+  };
+
   // Match section type by title and render appropriate component
   // 1. Problem Statement
   if (/problem/i.test(sectionTitle)) {
-    return <CarexProblemStatement title={section.title} description={getTextContent()} />;
+    return <><CarexProblemStatement title={section.title} description={getTextContent()} />{renderUserFlow()}</>;
   }
 
   // 2. Objectives & Goals
   if (/objective|goal/i.test(sectionTitle)) {
-    return <CarexObjectives title={section.title} items={getListItems()} />;
+    return <><CarexObjectives title={section.title} items={getListItems()} />{renderUserFlow()}</>;
   }
 
   // 3. Our Process
   if (/process/i.test(sectionTitle)) {
-    return <CarexProcess title={section.title} />;
+    return <><CarexProcess title={section.title} />{renderUserFlow()}</>;
   }
 
   // 4. Business Challenges
   if (/business.*challenge/i.test(sectionTitle)) {
-    return <CarexBusinessChallenges title={section.title} items={getListItems()} />;
+    return <><CarexBusinessChallenges title={section.title} items={getListItems()} />{renderUserFlow()}</>;
   }
 
   // 5. User Needs
   if (/user.*need/i.test(sectionTitle)) {
-    return <CarexUserNeeds title={section.title} items={getListItems()} />;
+    return <><CarexUserNeeds title={section.title} items={getListItems()} />{renderUserFlow()}</>;
   }
 
   // 6. Features & Functionalities
   if (/feature|functionalit/i.test(sectionTitle)) {
-    return <CarexFeatures title={section.title} features={getGridItems()} />;
+    return <><CarexFeatures title={section.title} features={getGridItems()} />{renderUserFlow()}</>;
   }
 
   // 7. Product User Challenges
   if (/product.*user.*challenge|user.*challenge/i.test(sectionTitle)) {
-    return <CarexProductUserChallenges title={section.title} items={getListItems()} />;
+    return <><CarexProductUserChallenges title={section.title} items={getListItems()} />{renderUserFlow()}</>;
   }
 
   // 8. Competitor Analysis
   if (/competitor/i.test(sectionTitle)) {
-    return <CarexCompetitorAnalysis title={section.title} competitors={getGridItems()} />;
+    return <><CarexCompetitorAnalysis title={section.title} competitors={getGridItems()} />{renderUserFlow()}</>;
   }
 
   // 9. Unique Features
   if (/unique.*feature/i.test(sectionTitle)) {
-    return <CarexUniqueFeatures title={section.title} items={getGridItems()} />;
+    return <><CarexUniqueFeatures title={section.title} items={getGridItems()} />{renderUserFlow()}</>;
   }
 
   // 10. User Persona
   if (/persona/i.test(sectionTitle)) {
-    return <CarexUserPersona persona={getGridItems()[0]} />;
+    return <><CarexUserPersona persona={getGridItems()[0]} />{renderUserFlow()}</>;
   }
 
   // 11. Task Mapping
   if (/task.*map/i.test(sectionTitle)) {
-    return <CarexTaskMapping title={section.title} tasks={getGridItems()} />;
+    return <><CarexTaskMapping title={section.title} tasks={getGridItems()} />{renderUserFlow()}</>;
   }
 
   // 12. Eisenhower Matrix
   if (/eisenhower|matrix/i.test(sectionTitle)) {
     const data = getGridItems()[0] || {};
-    return <CarexEisenhowerMatrix title={section.title} quadrants={data} />;
+    return <><CarexEisenhowerMatrix title={section.title} quadrants={data} />{renderUserFlow()}</>;
   }
 
   // 13. 5 Why Analysis
   if (/why.*analysis|5.*why/i.test(sectionTitle)) {
     const textContent = getTextContent();
     const items = getListItems();
-    return <CarexWhyAnalysis title={section.title} problem={textContent} whys={items} />;
+    return <><CarexWhyAnalysis title={section.title} problem={textContent} whys={items} />{renderUserFlow()}</>;
   }
 
   // 14. Root Cause Analysis
   if (/root.*cause/i.test(sectionTitle)) {
-    return <CarexRootCauseAnalysis title={section.title} problem={getTextContent()} categories={getGridItems()} />;
+    return <><CarexRootCauseAnalysis title={section.title} problem={getTextContent()} categories={getGridItems()} />{renderUserFlow()}</>;
   }
 
   // 15. Task Flows
@@ -1631,12 +1655,12 @@ const CarexSection = ({ section, caseStudy }) => {
       description: i.description,
       steps: i.steps || i.description?.split(',').map(s => s.trim()) || []
     }));
-    return <CarexTaskflows title={section.title} scenarios={scenarios} />;
+    return <><CarexTaskflows title={section.title} scenarios={scenarios} />{renderUserFlow()}</>;
   }
 
   // Screens
   if (/screen/i.test(sectionTitle)) {
-    return <CarexScreens title={section.title} screens={getGridItems().map(i => ({ label: i.title, image: i.image }))} />;
+    return <><CarexScreens title={section.title} screens={getGridItems().map(i => ({ label: i.title, image: i.image }))} />{renderUserFlow()}</>;
   }
 
   // Thank you
@@ -1646,47 +1670,50 @@ const CarexSection = ({ section, caseStudy }) => {
 
   // Default: Generic section with Carex styling
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: carexColors.white }}>
-      <div className="max-w-4xl mx-auto">
-        <h2
-          style={{
-            ...carexTypography.heading,
-            color: carexColors.dark,
-            fontSize: 'clamp(32px, 5vw, 48px)',
-            marginBottom: '24px',
-          }}
-        >
-          {section.title}
-        </h2>
-        <p
-          style={{
-            ...carexTypography.body,
-            color: carexColors.dark,
-            fontSize: 'clamp(16px, 2.5vw, 26px)',
-          }}
-        >
-          {getTextContent()}
-        </p>
-        {getGridItems().length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            {getGridItems().map((item, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl"
-                style={{ backgroundColor: carexColors.extraLight }}
-              >
-                <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '18px', marginBottom: '8px' }}>
-                  {item.title}
-                </h3>
-                <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+    <>
+      <section className="py-24 px-6" style={{ backgroundColor: carexColors.white }}>
+        <div className="max-w-4xl mx-auto">
+          <h2
+            style={{
+              ...carexTypography.heading,
+              color: carexColors.dark,
+              fontSize: 'clamp(32px, 5vw, 48px)',
+              marginBottom: '24px',
+            }}
+          >
+            {section.title}
+          </h2>
+          <p
+            style={{
+              ...carexTypography.body,
+              color: carexColors.dark,
+              fontSize: 'clamp(16px, 2.5vw, 26px)',
+            }}
+          >
+            {getTextContent()}
+          </p>
+          {getGridItems().length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+              {getGridItems().map((item, index) => (
+                <div
+                  key={index}
+                  className="p-6 rounded-2xl"
+                  style={{ backgroundColor: carexColors.extraLight }}
+                >
+                  <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '18px', marginBottom: '8px' }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: '16px' }}>
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+      {renderUserFlow()}
+    </>
   );
 };
 
