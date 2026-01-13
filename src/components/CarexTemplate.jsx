@@ -5,7 +5,7 @@ import UserFlowDiagram from './UserFlowDiagram';
 // ============================================
 // CAREX TEMPLATE - Exact Figma Replica
 // Based on UX Case Study Template by Kailash S R & Mohamed Arshad
-// All 15 sections implemented from Figma Blocks page
+// All 15 sections implemented from Figma Blocks page + 6 new editable sections
 // ============================================
 
 // Carex Color Palette - Light mode black/white minimal
@@ -1532,6 +1532,400 @@ const CarexThankYou = () => (
 // Maps section data to appropriate Carex components
 // ============================================
 
+// ============================================
+// NEW EDITABLE SECTION COMPONENTS
+// ============================================
+
+const CarexProjectOverview = ({ title = 'Project Overview', paragraphs = [] }) => (
+  <section className="py-24 px-6" style={{ backgroundColor: carexColors.white }}>
+    <div className="max-w-4xl mx-auto">
+      <div
+        className="inline-block px-4 py-2 rounded-full mb-6"
+        style={{ backgroundColor: carexColors.extraLight }}
+      >
+        <span style={{ ...carexTypography.bodyExtraSmall, color: carexColors.light, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          Project Overview
+        </span>
+      </div>
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '32px',
+        }}
+      >
+        {title}
+      </h2>
+      <div className="space-y-6">
+        {paragraphs.map((para, idx) => (
+          <p
+            key={idx}
+            style={{
+              ...carexTypography.body,
+              color: carexColors.dark,
+              fontSize: 'clamp(16px, 2.5vw, 26px)',
+            }}
+          >
+            {para}
+          </p>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const CarexProblemSolution = ({
+  problemTitle = 'Problem',
+  problemDescription = [],
+  solutionTitle = 'Solution',
+  solutionDescription = []
+}) => (
+  <section className="py-24 px-6" style={{ backgroundColor: carexColors.white }}>
+    <div className="max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-12">
+        <div>
+          <div
+            className="inline-block px-4 py-2 rounded-full mb-6"
+            style={{ backgroundColor: '#fee', borderLeft: `4px solid #ef4444` }}
+          >
+            <span style={{ ...carexTypography.bodyExtraSmall, color: '#ef4444', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
+              Problem
+            </span>
+          </div>
+          <h3
+            style={{
+              ...carexTypography.subheading,
+              color: carexColors.dark,
+              fontSize: 'clamp(24px, 4vw, 32px)',
+              marginBottom: '24px',
+            }}
+          >
+            {problemTitle}
+          </h3>
+          <div className="space-y-4">
+            {problemDescription.map((para, idx) => (
+              <p
+                key={idx}
+                style={{
+                  ...carexTypography.bodySmall,
+                  color: carexColors.dark,
+                  fontSize: 'clamp(14px, 2vw, 22px)',
+                }}
+              >
+                {para}
+              </p>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div
+            className="inline-block px-4 py-2 rounded-full mb-6"
+            style={{ backgroundColor: '#efe', borderLeft: `4px solid #10b981` }}
+          >
+            <span style={{ ...carexTypography.bodyExtraSmall, color: '#10b981', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
+              Solution
+            </span>
+          </div>
+          <h3
+            style={{
+              ...carexTypography.subheading,
+              color: carexColors.dark,
+              fontSize: 'clamp(24px, 4vw, 32px)',
+              marginBottom: '24px',
+            }}
+          >
+            {solutionTitle}
+          </h3>
+          <div className="space-y-4">
+            {solutionDescription.map((para, idx) => (
+              <p
+                key={idx}
+                style={{
+                  ...carexTypography.bodySmall,
+                  color: carexColors.dark,
+                  fontSize: 'clamp(14px, 2vw, 22px)',
+                }}
+              >
+                {para}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const CarexTeamInfo = ({ title = 'Team Information', members = [] }) => (
+  <section className="py-24 px-6" style={{ backgroundColor: carexColors.extraLight }}>
+    <div className="max-w-4xl mx-auto">
+      <div
+        className="inline-block px-4 py-2 rounded-full mb-6"
+        style={{ backgroundColor: carexColors.white }}
+      >
+        <span style={{ ...carexTypography.bodyExtraSmall, color: carexColors.light, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          Team
+        </span>
+      </div>
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '32px',
+        }}
+      >
+        {title}
+      </h2>
+      <div className="grid md:grid-cols-2 gap-6">
+        {members.map((member, idx) => (
+          <div
+            key={idx}
+            className="flex items-center gap-4 p-6 rounded-2xl"
+            style={{ backgroundColor: carexColors.white }}
+          >
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: carexColors.primary }}
+            >
+              <span style={{ ...carexTypography.bodyBold, color: carexColors.white, fontSize: '24px' }}>
+                {member.name?.charAt(0) || '?'}
+              </span>
+            </div>
+            <div>
+              <div style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: '20px' }}>
+                {member.name}
+              </div>
+              <div style={{ ...carexTypography.bodySmall, color: carexColors.light, fontSize: '16px' }}>
+                {member.role}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const CarexSuccessMetrics = ({ title = 'Success Metrics', items = [] }) => (
+  <section className="py-24 px-6" style={{ backgroundColor: carexColors.white }}>
+    <div className="max-w-5xl mx-auto">
+      <div
+        className="inline-block px-4 py-2 rounded-full mb-6"
+        style={{ backgroundColor: carexColors.extraLight }}
+      >
+        <span style={{ ...carexTypography.bodyExtraSmall, color: carexColors.light, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          Success Metrics
+        </span>
+      </div>
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '48px',
+        }}
+      >
+        {title}
+      </h2>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {items.map((metric, idx) => (
+          <div key={idx} className="text-center">
+            <div
+              style={{
+                ...carexTypography.title,
+                color: carexColors.primary,
+                fontSize: 'clamp(32px, 6vw, 56px)',
+                marginBottom: '12px',
+              }}
+            >
+              {metric.value}
+            </div>
+            <div
+              style={{
+                ...carexTypography.bodySmall,
+                color: carexColors.light,
+                fontSize: 'clamp(12px, 1.5vw, 18px)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+              }}
+            >
+              {metric.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const CarexUserResearch = ({ title = 'User Research', paragraphs = [], findings = [] }) => (
+  <section className="py-24 px-6" style={{ backgroundColor: carexColors.extraLight }}>
+    <div className="max-w-4xl mx-auto">
+      <div
+        className="inline-block px-4 py-2 rounded-full mb-6"
+        style={{ backgroundColor: '#dbeafe', borderLeft: `4px solid #3b82f6` }}
+      >
+        <span style={{ ...carexTypography.bodyExtraSmall, color: '#3b82f6', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
+          User Research
+        </span>
+      </div>
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '32px',
+        }}
+      >
+        {title}
+      </h2>
+      <div className="space-y-6 mb-12">
+        {paragraphs.map((para, idx) => (
+          <p
+            key={idx}
+            style={{
+              ...carexTypography.body,
+              color: carexColors.dark,
+              fontSize: 'clamp(16px, 2.5vw, 26px)',
+            }}
+          >
+            {para}
+          </p>
+        ))}
+      </div>
+      {findings && findings.length > 0 && (
+        <>
+          <h3
+            style={{
+              ...carexTypography.subheading,
+              color: carexColors.dark,
+              fontSize: 'clamp(24px, 4vw, 32px)',
+              marginBottom: '24px',
+            }}
+          >
+            Key Findings
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {findings.map((finding, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-4 p-6 rounded-2xl"
+                style={{ backgroundColor: '#dbeafe' }}
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: '#3b82f6' }}
+                >
+                  <span style={{ ...carexTypography.bodyBold, color: carexColors.white, fontSize: '16px' }}>
+                    {idx + 1}
+                  </span>
+                </div>
+                <p
+                  style={{
+                    ...carexTypography.bodySmall,
+                    color: carexColors.dark,
+                    fontSize: 'clamp(14px, 2vw, 20px)',
+                    marginTop: '6px',
+                  }}
+                >
+                  {finding}
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+);
+
+const CarexConclusion = ({ title = 'Conclusion', paragraphs = [], takeaways = [] }) => (
+  <section className="py-24 px-6" style={{ backgroundColor: carexColors.white, borderTop: `2px solid ${carexColors.lightSecondary}` }}>
+    <div className="max-w-4xl mx-auto">
+      <div
+        className="inline-block px-4 py-2 rounded-full mb-6"
+        style={{ backgroundColor: carexColors.extraLight }}
+      >
+        <span style={{ ...carexTypography.bodyExtraSmall, color: carexColors.light, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          Conclusion
+        </span>
+      </div>
+      <h2
+        style={{
+          ...carexTypography.heading,
+          color: carexColors.dark,
+          fontSize: 'clamp(32px, 5vw, 48px)',
+          marginBottom: '32px',
+        }}
+      >
+        {title}
+      </h2>
+      <div className="space-y-6 mb-12">
+        {paragraphs.map((para, idx) => (
+          <p
+            key={idx}
+            style={{
+              ...carexTypography.body,
+              color: carexColors.dark,
+              fontSize: 'clamp(16px, 2.5vw, 26px)',
+            }}
+          >
+            {para}
+          </p>
+        ))}
+      </div>
+      {takeaways && takeaways.length > 0 && (
+        <>
+          <h3
+            style={{
+              ...carexTypography.subheading,
+              color: carexColors.dark,
+              fontSize: 'clamp(24px, 4vw, 32px)',
+              marginBottom: '24px',
+            }}
+          >
+            Key Takeaways
+          </h3>
+          <div className="space-y-4">
+            {takeaways.map((takeaway, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-4 p-6 rounded-2xl"
+                style={{ backgroundColor: carexColors.extraLight }}
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: carexColors.primary }}
+                >
+                  <span style={{ ...carexTypography.bodyBold, color: carexColors.white, fontSize: '16px' }}>
+                    {idx + 1}
+                  </span>
+                </div>
+                <p
+                  style={{
+                    ...carexTypography.bodySmall,
+                    color: carexColors.dark,
+                    fontSize: 'clamp(14px, 2vw, 22px)',
+                    marginTop: '6px',
+                  }}
+                >
+                  {takeaway}
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+);
+
+// ============================================
+// CAREX SECTION ROUTER
+// ============================================
+
 const CarexSection = ({ section, caseStudy }) => {
   const sectionTitle = section.title?.toLowerCase() || '';
 
@@ -1573,6 +1967,58 @@ const CarexSection = ({ section, caseStudy }) => {
       </div>
     );
   };
+
+  // Check for specific content block types first (new editable sections)
+  const hasBlockType = (type) => section.content?.some(b => b.type === type);
+
+  // NEW: Project Overview
+  if (hasBlockType('projectOverview')) {
+    const block = section.content.find(b => b.type === 'projectOverview');
+    return <><CarexProjectOverview title={block.data.title} paragraphs={block.data.paragraphs} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Problem & Solution (check before generic "problem" to avoid conflict)
+  if (hasBlockType('problemSolution')) {
+    const block = section.content.find(b => b.type === 'problemSolution');
+    return <><CarexProblemSolution
+      problemTitle={block.data.problemTitle}
+      problemDescription={block.data.problemDescription}
+      solutionTitle={block.data.solutionTitle}
+      solutionDescription={block.data.solutionDescription}
+    />{renderUserFlow()}</>;
+  }
+
+  // NEW: Team Information
+  if (hasBlockType('teamInfo')) {
+    const block = section.content.find(b => b.type === 'teamInfo');
+    return <><CarexTeamInfo title={block.data.title} members={block.data.members} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Success Metrics
+  if (hasBlockType('successMetrics')) {
+    const block = section.content.find(b => b.type === 'successMetrics');
+    return <><CarexSuccessMetrics title={section.title} items={block.data.items} />{renderUserFlow()}</>;
+  }
+
+  // NEW: User Research
+  if (hasBlockType('userResearch')) {
+    const block = section.content.find(b => b.type === 'userResearch');
+    return <><CarexUserResearch
+      title={block.data.title}
+      paragraphs={block.data.paragraphs}
+      findings={block.data.findings}
+    />{renderUserFlow()}</>;
+  }
+
+  // NEW: Conclusion
+  if (hasBlockType('conclusion')) {
+    const block = section.content.find(b => b.type === 'conclusion');
+    return <><CarexConclusion
+      title={block.data.title}
+      paragraphs={block.data.paragraphs}
+      takeaways={block.data.takeaways}
+    />{renderUserFlow()}</>;
+  }
 
   // Match section type by title and render appropriate component
   // 1. Problem Statement

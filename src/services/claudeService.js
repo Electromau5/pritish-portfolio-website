@@ -80,3 +80,156 @@ export const processContentWithClaude = async (text) => {
   }
 };
 
+// Generate content for a specific section type
+export const generateSectionContent = async (sectionType, caseStudyContext) => {
+  const prompts = {
+    projectOverview: `Based on the following case study context, generate a comprehensive Project Overview section.
+
+Context:
+Title: ${caseStudyContext.title}
+Subtitle: ${caseStudyContext.subtitle}
+Existing sections: ${caseStudyContext.sections?.map(s => s.title).join(', ')}
+
+Return ONLY valid JSON in this exact format:
+{
+  "title": "A compelling title for the project overview",
+  "paragraphs": [
+    "First paragraph introducing the project...",
+    "Second paragraph with more context...",
+    "Third paragraph with objectives..."
+  ]
+}`,
+
+    problemSolution: `Based on the following case study context, generate a Problem & Solution section with clear problem statement and solution description.
+
+Context:
+Title: ${caseStudyContext.title}
+Subtitle: ${caseStudyContext.subtitle}
+Existing sections: ${caseStudyContext.sections?.map(s => s.title).join(', ')}
+
+Return ONLY valid JSON in this exact format:
+{
+  "problemTitle": "Clear problem title",
+  "problemDescription": [
+    "First paragraph describing the problem...",
+    "Second paragraph with impact..."
+  ],
+  "solutionTitle": "Solution approach title",
+  "solutionDescription": [
+    "First paragraph describing the solution...",
+    "Second paragraph with implementation details..."
+  ]
+}`,
+
+    teamInfo: `Based on the following case study context, generate team member information. Include realistic UX roles.
+
+Context:
+Title: ${caseStudyContext.title}
+Subtitle: ${caseStudyContext.subtitle}
+
+Return ONLY valid JSON in this exact format:
+{
+  "title": "Team Information",
+  "members": [
+    { "name": "Team Member Name", "role": "UX Designer" },
+    { "name": "Team Member Name", "role": "Product Manager" },
+    { "name": "Team Member Name", "role": "Engineer" }
+  ]
+}`,
+
+    successMetrics: `Based on the following case study context, generate 4 success metrics with realistic numbers and labels.
+
+Context:
+Title: ${caseStudyContext.title}
+Subtitle: ${caseStudyContext.subtitle}
+
+Return ONLY valid JSON in this exact format:
+{
+  "items": [
+    { "value": "85%", "label": "User Satisfaction" },
+    { "value": "2.5x", "label": "Engagement Increase" },
+    { "value": "40%", "label": "Task Completion Time Reduced" },
+    { "value": "95%", "label": "Positive Feedback" }
+  ]
+}`,
+
+    userResearch: `Based on the following case study context, generate a User Research section with research findings.
+
+Context:
+Title: ${caseStudyContext.title}
+Subtitle: ${caseStudyContext.subtitle}
+Existing sections: ${caseStudyContext.sections?.map(s => s.title).join(', ')}
+
+Return ONLY valid JSON in this exact format:
+{
+  "title": "User Research",
+  "paragraphs": [
+    "First paragraph about research methodology...",
+    "Second paragraph about research approach..."
+  ],
+  "findings": [
+    "Key finding 1 from user research",
+    "Key finding 2 from user research",
+    "Key finding 3 from user research",
+    "Key finding 4 from user research"
+  ]
+}`,
+
+    conclusion: `Based on the following case study context, generate a Conclusion section with key takeaways.
+
+Context:
+Title: ${caseStudyContext.title}
+Subtitle: ${caseStudyContext.subtitle}
+Existing sections: ${caseStudyContext.sections?.map(s => s.title).join(', ')}
+
+Return ONLY valid JSON in this exact format:
+{
+  "title": "Conclusion",
+  "paragraphs": [
+    "First paragraph summarizing the project outcomes...",
+    "Second paragraph about impact and learnings..."
+  ],
+  "takeaways": [
+    "Key takeaway 1 from the project",
+    "Key takeaway 2 from the project",
+    "Key takeaway 3 from the project"
+  ]
+}`
+  };
+
+  const prompt = prompts[sectionType];
+  if (!prompt) {
+    throw new Error(`Unknown section type: ${sectionType}`);
+  }
+
+  try {
+    const response = await fetch('/api/process-content', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: prompt,
+        customSystemPrompt: `You are a UX case study content generator. Generate realistic, professional content based on the context provided. Return ONLY valid JSON with no markdown formatting or code blocks.`
+      }),
+    });
+
+    if (!response.ok) {
+      let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.error || errorData.details || JSON.stringify(errorData);
+      } catch (e) {
+        // Keep default errorMessage
+      }
+      throw new Error(`API error: ${errorMessage}`);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error generating section content:', error);
+    throw new Error(error.message || 'Failed to generate section content.');
+  }
+};
+

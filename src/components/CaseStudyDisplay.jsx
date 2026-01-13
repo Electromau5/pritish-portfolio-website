@@ -388,6 +388,628 @@ const ImageBlock = ({ data, template }) => {
   );
 };
 
+// NEW SECTION BLOCKS
+const ProjectOverviewBlock = ({ data, colors, template }) => {
+  // Similar to HeroBlock but with additional context for project overview
+  if (template === 'simonpan') {
+    return (
+      <div className="mb-12">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Project Overview
+        </div>
+        <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-6">
+          {data.title}
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed max-w-3xl">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'moritz') {
+    return (
+      <div className="mb-12 pb-8 border-b border-gray-200">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Project Overview
+        </div>
+        <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-4">
+          {data.title}
+        </h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'lola') {
+    return (
+      <div className="mb-16">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Project Overview
+        </div>
+        <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">
+          {data.title}
+        </h2>
+        <div className="space-y-4 text-xl text-gray-600 leading-relaxed max-w-4xl">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'gloria') {
+    return (
+      <div className="mb-12 text-center">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Project Overview
+        </div>
+        <h2 className={`text-4xl md:text-5xl font-light mb-6 ${colors.text}`}>
+          {data.title}
+        </h2>
+        <div className="space-y-4 text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index} className="italic">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Default (Pratibha)
+  return (
+    <div className="mb-12">
+      <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+        Project Overview
+      </div>
+      <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-6">
+        {data.title}
+      </h2>
+      <div className="space-y-4 text-lg text-gray-600 leading-relaxed max-w-3xl">
+        {data.paragraphs?.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ProblemSolutionBlock = ({ data, colors, template }) => {
+  // Combined Problem & Solution section
+  if (template === 'simonpan') {
+    return (
+      <div className="mb-12">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <div className="inline-block px-3 py-1 bg-red-50 rounded text-sm text-red-700 mb-4 uppercase tracking-wide">
+              Problem
+            </div>
+            <h3 className="text-2xl font-medium text-gray-900 mb-4">{data.problemTitle}</h3>
+            <div className="space-y-3 text-gray-600 leading-relaxed">
+              {data.problemDescription?.map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="inline-block px-3 py-1 bg-green-50 rounded text-sm text-green-700 mb-4 uppercase tracking-wide">
+              Solution
+            </div>
+            <h3 className="text-2xl font-medium text-gray-900 mb-4">{data.solutionTitle}</h3>
+            <div className="space-y-3 text-gray-600 leading-relaxed">
+              {data.solutionDescription?.map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'moritz') {
+    return (
+      <div className="mb-12">
+        <div className="mb-8 pl-6 border-l-4 border-red-500">
+          <div className="inline-block px-3 py-1 bg-red-50 rounded text-sm text-red-700 mb-4 uppercase tracking-wide">
+            Problem
+          </div>
+          <h3 className="text-xl font-medium text-gray-900 mb-4">{data.problemTitle}</h3>
+          <div className="space-y-3 text-gray-600 leading-relaxed">
+            {data.problemDescription?.map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
+        </div>
+        <div className="pl-6 border-l-4 border-green-500">
+          <div className="inline-block px-3 py-1 bg-green-50 rounded text-sm text-green-700 mb-4 uppercase tracking-wide">
+            Solution
+          </div>
+          <h3 className="text-xl font-medium text-gray-900 mb-4">{data.solutionTitle}</h3>
+          <div className="space-y-3 text-gray-600 leading-relaxed">
+            {data.solutionDescription?.map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'lola') {
+    return (
+      <div className="mb-16">
+        <div className="bg-gradient-to-r from-red-50 to-transparent rounded-xl p-8 mb-8">
+          <div className="inline-block px-3 py-1 bg-red-100 rounded text-sm text-red-800 mb-4 uppercase tracking-wide">
+            Problem
+          </div>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-4">{data.problemTitle}</h3>
+          <div className="space-y-3 text-gray-700 leading-relaxed">
+            {data.problemDescription?.map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
+        </div>
+        <div className="bg-gradient-to-r from-green-50 to-transparent rounded-xl p-8">
+          <div className="inline-block px-3 py-1 bg-green-100 rounded text-sm text-green-800 mb-4 uppercase tracking-wide">
+            Solution
+          </div>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-4">{data.solutionTitle}</h3>
+          <div className="space-y-3 text-gray-700 leading-relaxed">
+            {data.solutionDescription?.map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'gloria') {
+    return (
+      <div className="mb-12">
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <div className="text-center mb-6">
+            <div className="inline-block px-4 py-2 bg-red-50 rounded-full text-sm text-red-700 uppercase tracking-wide">
+              Problem
+            </div>
+          </div>
+          <h3 className="text-2xl font-light text-gray-900 mb-4 text-center">{data.problemTitle}</h3>
+          <div className="space-y-4 text-gray-600 leading-relaxed text-center max-w-2xl mx-auto">
+            {data.problemDescription?.map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
+        </div>
+        <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="text-center mb-6">
+            <div className="inline-block px-4 py-2 bg-green-50 rounded-full text-sm text-green-700 uppercase tracking-wide">
+              Solution
+            </div>
+          </div>
+          <h3 className="text-2xl font-light text-gray-900 mb-4 text-center">{data.solutionTitle}</h3>
+          <div className="space-y-4 text-gray-600 leading-relaxed text-center max-w-2xl mx-auto">
+            {data.solutionDescription?.map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Default (Pratibha)
+  return (
+    <div className="mb-12">
+      <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
+        <div className="inline-block px-3 py-1 bg-red-100 rounded text-sm text-red-800 mb-4 uppercase tracking-wide">
+          Problem
+        </div>
+        <h3 className="text-2xl font-light text-gray-900 mb-4">{data.problemTitle}</h3>
+        <div className="space-y-3 text-gray-700 leading-relaxed">
+          {data.problemDescription?.map((para, idx) => (
+            <p key={idx}>{para}</p>
+          ))}
+        </div>
+      </div>
+      <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+        <div className="inline-block px-3 py-1 bg-green-100 rounded text-sm text-green-800 mb-4 uppercase tracking-wide">
+          Solution
+        </div>
+        <h3 className="text-2xl font-light text-gray-900 mb-4">{data.solutionTitle}</h3>
+        <div className="space-y-3 text-gray-700 leading-relaxed">
+          {data.solutionDescription?.map((para, idx) => (
+            <p key={idx}>{para}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TeamInfoBlock = ({ data, colors, template }) => {
+  // Simple text list of team members
+  if (template === 'simonpan') {
+    return (
+      <div className="mb-12">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Team
+        </div>
+        <h2 className="text-3xl font-light text-gray-900 mb-6">{data.title || 'Team Information'}</h2>
+        <div className="space-y-3">
+          {data.members?.map((member, idx) => (
+            <div key={idx} className="flex items-baseline space-x-3 text-gray-700">
+              <span className="font-medium">{member.name}</span>
+              <span className="text-gray-400">—</span>
+              <span className="text-gray-600">{member.role}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'moritz') {
+    return (
+      <div className="mb-12 pb-8 border-b border-gray-200">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Team
+        </div>
+        <h2 className="text-2xl font-medium text-gray-900 mb-6">{data.title || 'Team Information'}</h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          {data.members?.map((member, idx) => (
+            <div key={idx} className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+              <div className="w-2 h-2 bg-black rounded-full mt-2"></div>
+              <div>
+                <div className="font-medium text-gray-900">{member.name}</div>
+                <div className="text-sm text-gray-600">{member.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'lola') {
+    return (
+      <div className="mb-16">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Team
+        </div>
+        <h2 className="text-3xl font-medium text-gray-900 mb-6">{data.title || 'Team Information'}</h2>
+        <div className="space-y-4">
+          {data.members?.map((member, idx) => (
+            <div key={idx} className="flex items-center space-x-4 p-5 bg-gray-50 rounded-lg">
+              <div className={`w-10 h-10 rounded-full ${colors.primary} flex items-center justify-center text-white font-bold`}>
+                {member.name.charAt(0)}
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900">{member.name}</div>
+                <div className="text-sm text-gray-600">{member.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (template === 'gloria') {
+    return (
+      <div className="mb-12 text-center">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Team
+        </div>
+        <h2 className={`text-4xl font-light mb-8 ${colors.text}`}>{data.title || 'Team Information'}</h2>
+        <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          {data.members?.map((member, idx) => (
+            <div key={idx} className="bg-white rounded-xl shadow-md p-6">
+              <div className="text-lg font-medium text-gray-900 mb-1">{member.name}</div>
+              <div className="text-sm text-gray-600">{member.role}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Default (Pratibha)
+  return (
+    <div className="mb-12">
+      <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+        Team
+      </div>
+      <h2 className="text-3xl font-light text-gray-900 mb-6">{data.title || 'Team Information'}</h2>
+      <div className="grid md:grid-cols-2 gap-4">
+        {data.members?.map((member, idx) => (
+          <div key={idx} className="flex items-center space-x-4 p-5 bg-white border border-gray-200 rounded-xl">
+            <div className={`w-12 h-12 rounded-full ${colors.light} flex items-center justify-center ${colors.text} font-medium text-lg`}>
+              {member.name.charAt(0)}
+            </div>
+            <div>
+              <div className="font-medium text-gray-900">{member.name}</div>
+              <div className="text-sm text-gray-600">{member.role}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const UserResearchBlock = ({ data, template }) => {
+  // Research findings section
+  if (template === 'moritz') {
+    return (
+      <div className="mb-12 pl-6 border-l-2 border-gray-200">
+        <div className="inline-block px-3 py-1 bg-blue-50 rounded text-sm text-blue-700 mb-4 uppercase tracking-wide">
+          User Research
+        </div>
+        <h2 className="text-2xl font-medium text-gray-900 mb-6">{data.title || 'User Research'}</h2>
+        <div className="space-y-4">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index} className="text-gray-600 leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+        {data.findings && data.findings.length > 0 && (
+          <div className="mt-6 space-y-3">
+            {data.findings.map((finding, idx) => (
+              <div key={idx} className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg">
+                <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0 text-xs">
+                  {idx + 1}
+                </div>
+                <p className="text-sm text-gray-700">{finding}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (template === 'gloria') {
+    return (
+      <div className="mb-12">
+        <div className="text-center mb-8">
+          <div className="inline-block px-4 py-2 bg-blue-50 rounded-full text-sm text-blue-700 uppercase tracking-wide mb-4">
+            User Research
+          </div>
+          <h2 className="text-3xl font-light text-gray-900">{data.title || 'User Research'}</h2>
+        </div>
+        <div className="space-y-6 max-w-3xl mx-auto text-center">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index} className="text-lg text-gray-600 leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+        {data.findings && data.findings.length > 0 && (
+          <div className="mt-8 grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {data.findings.map((finding, idx) => (
+              <div key={idx} className="bg-blue-50 rounded-xl p-6 text-left">
+                <div className="flex items-center space-x-3 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs">
+                    {idx + 1}
+                  </div>
+                  <span className="text-xs text-blue-700 uppercase tracking-wide">Finding</span>
+                </div>
+                <p className="text-sm text-gray-700">{finding}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (template === 'lola') {
+    return (
+      <div className="mb-16">
+        <div className="inline-block px-3 py-1 bg-blue-100 rounded text-sm text-blue-800 mb-4 uppercase tracking-wide">
+          User Research
+        </div>
+        <h2 className="text-3xl font-medium text-gray-900 mb-6">{data.title || 'User Research'}</h2>
+        <div className="space-y-4 mb-8">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index} className="text-gray-600 leading-relaxed text-lg">{paragraph}</p>
+          ))}
+        </div>
+        {data.findings && data.findings.length > 0 && (
+          <div className="bg-gradient-to-r from-blue-50 to-transparent rounded-xl p-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Findings</h3>
+            <div className="space-y-3">
+              {data.findings.map((finding, idx) => (
+                <div key={idx} className="flex items-start space-x-3">
+                  <span className="w-2 h-2 bg-blue-600 rounded-full mt-2"></span>
+                  <p className="text-gray-700">{finding}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Default (Pratibha / Simon Pan)
+  return (
+    <div className="mb-12">
+      <div className="inline-block px-3 py-1 bg-blue-50 rounded text-sm text-blue-700 mb-4 uppercase tracking-wide">
+        User Research
+      </div>
+      <h2 className="text-3xl font-light text-gray-900 mb-6">{data.title || 'User Research'}</h2>
+      <div className="space-y-4">
+        {data.paragraphs?.map((paragraph, index) => (
+          <p key={index} className="text-gray-600 leading-relaxed">{paragraph}</p>
+        ))}
+      </div>
+      {data.findings && data.findings.length > 0 && (
+        <div className="mt-6 grid md:grid-cols-2 gap-4">
+          {data.findings.map((finding, idx) => (
+            <div key={idx} className="bg-blue-50 border border-blue-200 rounded-xl p-5">
+              <div className="flex items-start space-x-3">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0 text-sm">
+                  {idx + 1}
+                </div>
+                <p className="text-sm text-gray-700 mt-1">{finding}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ConclusionBlock = ({ data, colors, template }) => {
+  // Closing thoughts section
+  if (template === 'simonpan') {
+    return (
+      <div className="mb-12 pt-8 border-t-2 border-gray-200">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Conclusion
+        </div>
+        <h2 className="text-3xl font-light text-gray-900 mb-6">{data.title || 'Conclusion'}</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed max-w-3xl">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+        {data.takeaways && data.takeaways.length > 0 && (
+          <div className="mt-8 space-y-3">
+            <h3 className="text-xl font-medium text-gray-900 mb-4">Key Takeaways</h3>
+            {data.takeaways.map((takeaway, idx) => (
+              <div key={idx} className="flex items-start space-x-3">
+                <span className={`${colors.text} font-bold`}>•</span>
+                <p className="text-gray-700">{takeaway}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (template === 'moritz') {
+    return (
+      <div className="mb-12 pt-8 border-t border-gray-200">
+        <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+          Conclusion
+        </div>
+        <h2 className="text-2xl font-medium text-gray-900 mb-6">{data.title || 'Conclusion'}</h2>
+        <div className="space-y-4 text-gray-600 leading-relaxed">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+        {data.takeaways && data.takeaways.length > 0 && (
+          <div className="mt-6 pl-6 border-l-2 border-gray-300">
+            <h3 className="text-lg font-medium text-gray-900 mb-3">Key Takeaways</h3>
+            <div className="space-y-2">
+              {data.takeaways.map((takeaway, idx) => (
+                <p key={idx} className="text-sm text-gray-700">• {takeaway}</p>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (template === 'lola') {
+    return (
+      <div className="mb-16 bg-gradient-to-r from-gray-50 to-transparent rounded-xl p-8">
+        <div className="inline-block px-3 py-1 bg-gray-200 rounded text-sm text-gray-700 mb-4 uppercase tracking-wide">
+          Conclusion
+        </div>
+        <h2 className="text-3xl font-semibold text-gray-900 mb-6">{data.title || 'Conclusion'}</h2>
+        <div className="space-y-4 text-gray-700 leading-relaxed text-lg">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+        {data.takeaways && data.takeaways.length > 0 && (
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Takeaways</h3>
+            <div className="space-y-3">
+              {data.takeaways.map((takeaway, idx) => (
+                <div key={idx} className="flex items-start space-x-3">
+                  <span className="w-2 h-2 bg-black rounded-full mt-2"></span>
+                  <p className="text-gray-700">{takeaway}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (template === 'gloria') {
+    return (
+      <div className="mb-12 text-center bg-white rounded-xl shadow-lg p-12">
+        <div className="inline-block px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-600 uppercase tracking-wide mb-6">
+          Conclusion
+        </div>
+        <h2 className={`text-4xl font-light mb-8 ${colors.text}`}>{data.title || 'Conclusion'}</h2>
+        <div className="space-y-6 text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          {data.paragraphs?.map((paragraph, index) => (
+            <p key={index} className="italic">{paragraph}</p>
+          ))}
+        </div>
+        {data.takeaways && data.takeaways.length > 0 && (
+          <div className="mt-10">
+            <h3 className="text-2xl font-light text-gray-900 mb-6">Key Takeaways</h3>
+            <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+              {data.takeaways.map((takeaway, idx) => (
+                <div key={idx} className="bg-gray-50 rounded-lg p-5 text-left">
+                  <p className="text-sm text-gray-700">{takeaway}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Default (Pratibha)
+  return (
+    <div className="mb-12 pt-8 border-t border-gray-200">
+      <div className="inline-block px-3 py-1 bg-gray-100 rounded text-sm text-gray-600 mb-4 uppercase tracking-wide">
+        Conclusion
+      </div>
+      <h2 className="text-3xl font-light text-gray-900 mb-6">{data.title || 'Conclusion'}</h2>
+      <div className="space-y-4 text-lg text-gray-600 leading-relaxed max-w-3xl">
+        {data.paragraphs?.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+      </div>
+      {data.takeaways && data.takeaways.length > 0 && (
+        <div className="mt-8">
+          <h3 className="text-xl font-light text-gray-900 mb-4">Key Takeaways</h3>
+          <div className="space-y-3">
+            {data.takeaways.map((takeaway, idx) => (
+              <div key={idx} className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
+                <div className={`w-6 h-6 rounded-full ${colors.primary} flex items-center justify-center text-white font-bold flex-shrink-0 text-xs`}>
+                  {idx + 1}
+                </div>
+                <p className="text-gray-700 mt-0.5">{takeaway}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 // ============================================
 // JOURNEY MAP RENDERER
 // ============================================
@@ -542,6 +1164,19 @@ const ContentBlock = ({ block, colors, template, caseStudy }) => {
       return <JourneyMapBlock data={block.data} caseStudy={caseStudy} colors={colors} template={template} />;
     case 'userflow':
       return <UserFlowDiagram data={block.data} caseStudy={caseStudy} colors={colors} template={template} />;
+    // New section types
+    case 'projectOverview':
+      return <ProjectOverviewBlock data={block.data} colors={colors} template={template} />;
+    case 'problemSolution':
+      return <ProblemSolutionBlock data={block.data} colors={colors} template={template} />;
+    case 'teamInfo':
+      return <TeamInfoBlock data={block.data} colors={colors} template={template} />;
+    case 'successMetrics':
+      return <StatsBlock data={block.data} colors={colors} template={template} />;
+    case 'userResearch':
+      return <UserResearchBlock data={block.data} template={template} />;
+    case 'conclusion':
+      return <ConclusionBlock data={block.data} colors={colors} template={template} />;
     default:
       return null;
   }

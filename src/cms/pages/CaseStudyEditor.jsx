@@ -2,19 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { parseDocument } from '../../services/fileParser';
-import { processContentWithClaude } from '../../services/claudeService';
+import { processContentWithClaude, generateSectionContent } from '../../services/claudeService';
 import db from '../../services/db';
 import ContentUploader from '../components/ContentUploader';
 import AIProcessingStatus from '../components/AIProcessingStatus';
 import CaseStudyDisplay from '../../components/CaseStudyDisplay';
 import { getAllTemplates } from '../../templates/caseStudyTemplates';
-import { Save, ArrowLeft, Eye, EyeOff, Check, Palette, Layout, ChevronRight } from 'lucide-react';
+import { Save, ArrowLeft, Eye, EyeOff, Check, Palette, Layout, ChevronRight, Plus, Trash2, ChevronUp, ChevronDown, Edit2, Sparkles } from 'lucide-react';
 
 const colorOptions = [
   { value: 'blue', label: 'Black', class: 'bg-black' },
   { value: 'green', label: 'Dark Gray', class: 'bg-gray-700' },
   { value: 'purple', label: 'Gray', class: 'bg-gray-500' },
   { value: 'orange', label: 'Light', class: 'bg-gray-300' },
+];
+
+const sectionTypeOptions = [
+  { value: 'projectOverview', label: 'Project Overview', description: 'Comprehensive introduction to the project' },
+  { value: 'problemSolution', label: 'Problem & Solution', description: 'Combined problem statement and solution approach' },
+  { value: 'teamInfo', label: 'Team Information', description: 'Team members and their roles' },
+  { value: 'successMetrics', label: 'Success Metrics', description: 'Key performance indicators and results' },
+  { value: 'userResearch', label: 'User Research', description: 'Research findings and insights' },
+  { value: 'conclusion', label: 'Conclusion', description: 'Closing thoughts and key takeaways' },
 ];
 
 // Template preview thumbnails - Black/white minimal style
@@ -173,6 +182,10 @@ const CaseStudyEditor = () => {
   const [processingError, setProcessingError] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
   const [previewTemplate, setPreviewTemplate] = useState(null); // For previewing templates before applying
+  const [showAddSectionModal, setShowAddSectionModal] = useState(false);
+  const [addingSectionType, setAddingSectionType] = useState(null);
+  const [generatingSection, setGeneratingSection] = useState(false);
+  const [editingSection, setEditingSection] = useState(null);
   const [caseStudy, setCaseStudy] = useState({
     id: id || uuidv4(),
     slug: '',
@@ -348,6 +361,66 @@ const CaseStudyEditor = () => {
     await db.caseStudies.put(updatedCaseStudy);
     setCaseStudy(updatedCaseStudy);
     alert('Case study published successfully!');
+  };
+
+  // Section management handlers
+  const handleAddSection = async (sectionType) => {
+    setGeneratingSection(true);
+    try {
+      const result = await generateSectionContent(sectionType, caseStudy);
+
+      // Create new section with AI-generated content
+      const newSection = {
+        title: result.title || sectionTypeOptions.find(s => s.value === sectionType)?.label || 'New Section',
+        content: [
+          {
+            type: sectionType,
+            data: result
+          }
+        ]
+      };
+
+      setCaseStudy(prev => ({
+        ...prev,
+        sections: [...prev.sections, newSection],
+        updatedAt: new Date().toISOString()
+      }));
+
+      setShowAddSectionModal(false);
+      setAddingSectionType(null);
+    } catch (error) {
+      console.error('Error generating section:', error);
+      alert('Failed to generate section content: ' + error.message);
+    } finally {
+      setGeneratingSection(false);
+    }
+  };
+
+  const handleDeleteSection = (index) => {
+    if (window.confirm('Are you sure you want to delete this section?')) {
+      setCaseStudy(prev => ({
+        ...prev,
+        sections: prev.sections.filter((_, i) => i !== index),
+        updatedAt: new Date().toISOString()
+      }));
+    }
+  };
+
+  const handleMoveSection = (index, direction) => {
+    const newSections = [...caseStudy.sections];
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+
+    if (targetIndex < 0 || targetIndex >= newSections.length) {
+      return;
+    }
+
+    [newSections[index], newSections[targetIndex]] = [newSections[targetIndex], newSections[index]];
+
+    setCaseStudy(prev => ({
+      ...prev,
+      sections: newSections,
+      updatedAt: new Date().toISOString()
+    }));
   };
 
   // Preview mode
@@ -632,28 +705,124 @@ const CaseStudyEditor = () => {
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-8">
-            <h2 className="text-2xl font-light text-gray-900 dark:text-white mb-6">
-              Sections ({caseStudy.sections.length})
-            </h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-light text-gray-900 dark:text-white">
+                Sections ({caseStudy.sections.length})
+              </h2>
+              <button
+                onClick={() => setShowAddSectionModal(true)}
+                className="inline-flex items-center space-x-2 bg-black dark:bg-white text-white dark:text-black px-4 py-2 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+              >
+                <Plus size={16} />
+                <span>Add Section</span>
+              </button>
+            </div>
             {caseStudy.sections.length === 0 ? (
-              <p className="text-gray-600 dark:text-gray-400">
-                No sections yet. Upload a document to generate sections automatically.
-              </p>
+              <div className="text-center py-12 text-gray-600 dark:text-gray-400">
+                <Sparkles size={48} className="mx-auto mb-4 text-gray-400" />
+                <p className="text-lg mb-2">No sections yet</p>
+                <p className="text-sm">Upload a document to generate sections automatically, or click "Add Section" to add custom sections.</p>
+              </div>
             ) : (
               <div className="space-y-4">
                 {caseStudy.sections.map((section, index) => (
-                  <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                    <h3 className="font-medium text-gray-900 dark:text-white mb-2">
-                      {section.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {section.content?.length || 0} content blocks
-                    </p>
+                  <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex items-start justify-between">
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-900 dark:text-white mb-2">
+                        {section.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {section.content?.length || 0} content blocks
+                      </p>
+                    </div>
+                    <div className="flex items-center space-x-2 ml-4">
+                      <button
+                        onClick={() => handleMoveSection(index, 'up')}
+                        disabled={index === 0}
+                        className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+                        title="Move up"
+                      >
+                        <ChevronUp size={18} />
+                      </button>
+                      <button
+                        onClick={() => handleMoveSection(index, 'down')}
+                        disabled={index === caseStudy.sections.length - 1}
+                        className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+                        title="Move down"
+                      >
+                        <ChevronDown size={18} />
+                      </button>
+                      <button
+                        onClick={() => setEditingSection(index)}
+                        className="p-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                        title="Edit section"
+                      >
+                        <Edit2 size={18} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteSection(index)}
+                        className="p-2 text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300"
+                        title="Delete section"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
             )}
           </div>
+
+          {/* Add Section Modal */}
+          {showAddSectionModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[80vh] overflow-auto p-8">
+                <h2 className="text-2xl font-light text-gray-900 dark:text-white mb-6">
+                  Add Section
+                </h2>
+                <div className="space-y-4">
+                  {sectionTypeOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => handleAddSection(option.value)}
+                      disabled={generatingSection}
+                      className="w-full text-left p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-black dark:hover:border-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="font-medium text-gray-900 dark:text-white mb-1">
+                            {option.label}
+                          </h3>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {option.description}
+                          </p>
+                        </div>
+                        {generatingSection ? (
+                          <div className="ml-4 flex-shrink-0">
+                            <div className="animate-spin rounded-full h-5 w-5 border-2 border-gray-300 border-t-black dark:border-t-white"></div>
+                          </div>
+                        ) : (
+                          <Plus size={20} className="ml-4 flex-shrink-0 text-gray-400" />
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-6 flex justify-end">
+                  <button
+                    onClick={() => {
+                      setShowAddSectionModal(false);
+                      setAddingSectionType(null);
+                    }}
+                    disabled={generatingSection}
+                    className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
