@@ -11,9 +11,22 @@ import ProjectDetailPage from './components/ProjectDetailPage';
 import CaseStudyDisplay from './components/CaseStudyDisplay';
 import CMSApp from './cms/CMSApp';
 import { Routes, Route } from 'react-router-dom';
+import { migrateToArtifactsSystem } from './services/db';
 
 const UXPortfolio = () => {
   const [scrollY, setScrollY] = useState(0);
+
+  // Run database migration on app load
+  useEffect(() => {
+    migrateToArtifactsSystem()
+      .then(result => {
+        if (result.success) {
+          console.log('✓ Artifacts migration:', result.message);
+        } else {
+          console.error('✗ Artifacts migration failed:', result.error);
+        }
+      });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);

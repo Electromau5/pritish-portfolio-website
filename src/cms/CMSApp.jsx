@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import CaseStudyList from './pages/CaseStudyList';
 import CaseStudyEditor from './pages/CaseStudyEditor';
+import ArtifactsList from './pages/ArtifactsList';
 import Settings from './pages/Settings';
 
 const ProtectedRoute = ({ children }) => {
@@ -72,6 +73,14 @@ const CMSApp = () => {
         element={
           <ProtectedRoute>
             <CaseStudyEditor />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="artifacts"
+        element={
+          <ProtectedRoute>
+            <ArtifactsList />
           </ProtectedRoute>
         }
       />

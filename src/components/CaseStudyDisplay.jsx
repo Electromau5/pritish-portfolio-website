@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import db from '../services/db';
-import { getTemplate } from '../templates/caseStudyTemplates';
+import { getTemplate, templates } from '../templates/caseStudyTemplates';
 import CarexLayout from './CarexTemplate';
 import UserFlowDiagram from './UserFlowDiagram';
 
@@ -1193,6 +1193,7 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [caseStudy, setCaseStudy] = useState(caseStudyData || null);
+  const [artifacts, setArtifacts] = useState([]);
   const [activeSection, setActiveSection] = useState(0);
   const [loading, setLoading] = useState(!caseStudyData);
   const [error, setError] = useState(null);
@@ -1231,6 +1232,25 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
     loadCaseStudy();
   }, [slug, caseStudyData, isPreview]);
 
+  // Load artifacts for this case study
+  useEffect(() => {
+    if (!caseStudy?.id || isPreview) return;
+
+    const loadArtifacts = async () => {
+      try {
+        const loadedArtifacts = await db.artifacts
+          .where('caseStudyId')
+          .equals(caseStudy.id)
+          .toArray();
+        setArtifacts(loadedArtifacts);
+      } catch (err) {
+        console.error('Error loading artifacts:', err);
+      }
+    };
+
+    loadArtifacts();
+  }, [caseStudy?.id, isPreview]);
+
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -1256,6 +1276,44 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   const colors = colorThemes[caseStudy?.accentColor] || colorThemes.blue;
   const template = caseStudy?.template || 'pratibha';
 
+  // Inject artifacts into sections based on template configuration
+  const injectArtifacts = (sections, artifacts, template) => {
+    if (!sections || !Array.isArray(sections)) return sections;
+    if (!artifacts || artifacts.length === 0) return sections;
+
+    const enabledArtifacts = artifacts.filter(a => a.enabled);
+    if (enabledArtifacts.length === 0) return sections;
+
+    const placements = templates[template]?.artifactPlacements || {};
+    const result = [];
+
+    sections.forEach((section, idx) => {
+      result.push(section);
+
+      // Check if any artifacts should be inserted after this section
+      enabledArtifacts.forEach(artifact => {
+        const placementKey = placements[artifact.type];
+        if (placementKey === `after-section-${idx}`) {
+          result.push({
+            title: artifact.name,
+            content: [{
+              type: artifact.type === 'journeyMap' ? 'journey' : 'userflow',
+              data: artifact.data
+            }],
+            isArtifact: true
+          });
+        }
+      });
+    });
+
+    return result;
+  };
+
+  // Get sections with injected artifacts
+  const sectionsToRender = caseStudy?.sections
+    ? injectArtifacts(caseStudy.sections, artifacts, template)
+    : [];
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
@@ -1278,7 +1336,15 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   if (!caseStudy) return null;
 
   // Render based on template
-  const layoutProps = { caseStudy, colors, isPreview, navigate, sectionRefs, activeSection, scrollToSection };
+  const layoutProps = {
+    caseStudy: { ...caseStudy, sections: sectionsToRender },
+    colors,
+    isPreview,
+    navigate,
+    sectionRefs,
+    activeSection,
+    scrollToSection
+  };
 
   switch (template) {
     case 'simonpan':

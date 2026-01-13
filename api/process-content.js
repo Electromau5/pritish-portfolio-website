@@ -80,9 +80,13 @@ Output this exact JSON structure:
         { "type": "stats", "data": { "items": [{ "value": "85%", "label": "..." }] } },
         { "type": "grid", "data": { "title": "...", "columns": 2, "items": [{ "title": "...", "description": "..." }] } },
         { "type": "text", "data": { "title": "...", "paragraphs": ["...", "..."] } },
+<<<<<<< HEAD
         { "type": "quote", "data": { "text": "...", "author": "..." } },
         { "type": "journey", "data": { "ref": "journeyMap" } },
         { "type": "userflow", "data": { "ref": "userFlow" } }
+=======
+        { "type": "quote", "data": { "text": "...", "author": "..." } }
+>>>>>>> cc071c0 (Added customer journey map)
       ]
     }
   ]
@@ -96,13 +100,20 @@ Guidelines:
 - Use "text" for detailed explanations
 - Use "quote" for testimonials or key insights
 - Build a concise "journeyMap" with 3-4 stages and 2-3 steps per stage. For each step, include action, thoughts, feelings, emotion (1-5 scale), painPoints, opportunities, touchpoints.
+<<<<<<< HEAD
 - Include a "journey" content block in at least one section so UIs can render the journey map easily. Reference the top-level journeyMap using { "ref": "journeyMap" }.
+=======
+>>>>>>> cc071c0 (Added customer journey map)
 - Build a "userFlow" that represents the primary user flow through the application/product:
   - Node types: "start" (entry point, green circle), "action" (user action, rectangle), "decision" (yes/no branch, diamond), "end" (goal/exit, red circle)
   - Create 5-8 nodes that represent the key steps in the user's journey through the product
   - Connect nodes logically with "connections" array. For decisions, include "label" on connections ("Yes"/"No")
   - The flow should tell a story of how a user accomplishes their goal
+<<<<<<< HEAD
 - Include a "userflow" content block in the Design or Implementation section to render the flow diagram. Reference the top-level userFlow using { "ref": "userFlow" }.
+=======
+- DO NOT include "journey" or "userflow" content blocks in sections. These will be stored as separate artifacts that users can toggle on/off.
+>>>>>>> cc071c0 (Added customer journey map)
 - Keep content concise and impactful
 - Return ONLY valid JSON, no markdown formatting`;
 

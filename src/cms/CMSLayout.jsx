@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Plus, 
-  Settings, 
+import {
+  LayoutDashboard,
+  FileText,
+  Plus,
+  Settings,
   LogOut,
-  ArrowLeft
+  ArrowLeft,
+  Package
 } from 'lucide-react';
 
 const CMSLayout = ({ children }) => {
@@ -24,6 +25,7 @@ const CMSLayout = ({ children }) => {
     { path: '/cms/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/cms/case-studies', icon: FileText, label: 'Case Studies' },
     { path: '/cms/case-studies/new', icon: Plus, label: 'New Case Study' },
+    { path: '/cms/artifacts', icon: Package, label: 'Artifacts' },
     { path: '/cms/settings', icon: Settings, label: 'Settings' },
   ];
 

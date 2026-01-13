@@ -48,7 +48,11 @@ export const templates = {
       }
     },
     contentOrder: ['hero-image', 'title', 'overview', 'challenge', 'role', 'process', 'solution', 'results'],
-    emphasis: 'storytelling-with-data'
+    emphasis: 'storytelling-with-data',
+    artifactPlacements: {
+      journeyMap: 'after-section-2',
+      userFlow: 'after-section-3'
+    }
   },
 
   // Template 2: Moritz Oesterlau Style - Process-Documented
@@ -81,7 +85,11 @@ export const templates = {
       }
     },
     contentOrder: ['overview', 'research', 'ideation', 'design', 'testing', 'results', 'learnings'],
-    emphasis: 'methodology'
+    emphasis: 'methodology',
+    artifactPlacements: {
+      journeyMap: 'after-section-1',
+      userFlow: 'after-section-3'
+    }
   },
 
   // Template 3: Lola Jiang Style - Data-Driven Leadership
@@ -114,7 +122,11 @@ export const templates = {
       }
     },
     contentOrder: ['context', 'challenge', 'approach', 'solution', 'impact'],
-    emphasis: 'business-value'
+    emphasis: 'business-value',
+    artifactPlacements: {
+      journeyMap: 'after-section-2',
+      userFlow: 'after-section-3'
+    }
   },
 
   // Template 4: Gloria Lo Style - Visual-First Personal
@@ -147,7 +159,11 @@ export const templates = {
       }
     },
     contentOrder: ['hero', 'overview', 'process', 'showcase', 'results'],
-    emphasis: 'visual-impact'
+    emphasis: 'visual-impact',
+    artifactPlacements: {
+      journeyMap: 'after-section-2',
+      userFlow: 'after-section-4'
+    }
   },
 
   // Template 5: Pratibha Joshi Style - Clean Grid Storytelling
@@ -180,7 +196,11 @@ export const templates = {
       }
     },
     contentOrder: ['overview', 'problem', 'research', 'design', 'solution', 'impact'],
-    emphasis: 'user-centered'
+    emphasis: 'user-centered',
+    artifactPlacements: {
+      journeyMap: 'after-section-2',
+      userFlow: 'after-section-3'
+    }
   },
 
   // Template 6: Carex UX Case Study Template
@@ -251,7 +271,11 @@ export const templates = {
       'final-screens',
       'thank-you'
     ],
-    emphasis: 'comprehensive-ux-process'
+    emphasis: 'comprehensive-ux-process',
+    artifactPlacements: {
+      journeyMap: 'after-section-3',
+      userFlow: 'after-section-4'
+    }
   }
 };
 

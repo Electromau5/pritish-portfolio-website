@@ -224,28 +224,53 @@ const CaseStudyEditor = () => {
       // Update case study with structured data
       setCaseStudy(prev => {
         const incomingSections = Array.isArray(result.data.sections) ? result.data.sections : [];
-        const hasJourneyBlock = incomingSections.some(
-          s => Array.isArray(s.content) && s.content.some(b => b.type === 'journey')
-        );
-        const sectionsWithJourney = hasJourneyBlock
-          ? incomingSections
-          : [
-              ...incomingSections,
-              {
-                title: 'User Journey',
-                content: [{ type: 'journey', data: { ref: 'journeyMap' } }]
-              }
-            ];
 
-        return ({
+        const updatedCaseStudy = {
           ...prev,
           title: result.data.title || '',
           subtitle: result.data.subtitle || '',
-          sections: sectionsWithJourney,
-          journeyMap: result.data.journeyMap || null,
+          sections: incomingSections,
           slug: (result.data.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-        });
+        };
+
+        return updatedCaseStudy;
       });
+
+      // Create artifacts for journeyMap and userFlow
+      const artifactsToCreate = [];
+
+      if (result.data.journeyMap) {
+        artifactsToCreate.push({
+          id: uuidv4(),
+          caseStudyId: caseStudy.id,
+          type: 'journeyMap',
+          name: 'Customer Journey Map',
+          enabled: false,
+          data: result.data.journeyMap,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      }
+
+      if (result.data.userFlow) {
+        artifactsToCreate.push({
+          id: uuidv4(),
+          caseStudyId: caseStudy.id,
+          type: 'userFlow',
+          name: 'User Flow Diagram',
+          enabled: false,
+          data: result.data.userFlow,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      }
+
+      // Store artifacts in database
+      if (artifactsToCreate.length > 0) {
+        db.artifacts.bulkAdd(artifactsToCreate).catch(error => {
+          console.error('Error creating artifacts:', error);
+        });
+      }
 
       setProcessingStatus('success');
       setStep('edit');
