@@ -39,6 +39,41 @@ const SectionPreviewCard = ({ section, sectionType, onAccept, onReject }) => {
     if (content.takeaways) {
       return `${content.takeaways.length} key takeaways`;
     }
+    // Carex-specific section types
+    if (content.challenges) {
+      return `${content.challenges.length} challenges: ${content.challenges.slice(0, 2).join(', ')}${content.challenges.length > 2 ? '...' : ''}`;
+    }
+    if (content.needs) {
+      return `${content.needs.length} user needs: ${content.needs.slice(0, 2).join(', ')}${content.needs.length > 2 ? '...' : ''}`;
+    }
+    if (content.features) {
+      return `${content.features.length} features: ${content.features.slice(0, 2).join(', ')}${content.features.length > 2 ? '...' : ''}`;
+    }
+    if (content.competitors) {
+      return `${content.competitors.length} competitors analyzed`;
+    }
+    if (content.observations) {
+      return `${content.observations.length} research observations`;
+    }
+    if (content.statement) {
+      return content.statement.slice(0, 150) + '...';
+    }
+    if (content.objectives && content.goals) {
+      return `${content.objectives.length} objectives, ${content.goals.length} goals`;
+    }
+    if (content.persona) {
+      return `Persona: ${content.persona.name || 'User'} - ${content.persona.role || 'Role'}`;
+    }
+    if (content.quadrants) {
+      const total = (content.quadrants.doFirst?.length || 0) +
+                    (content.quadrants.schedule?.length || 0) +
+                    (content.quadrants.delegate?.length || 0) +
+                    (content.quadrants.eliminate?.length || 0);
+      return `Eisenhower matrix with ${total} items`;
+    }
+    if (content.problems) {
+      return `${content.problems.length} problem${content.problems.length > 1 ? 's' : ''} analyzed with root cause`;
+    }
     return null;
   };
 

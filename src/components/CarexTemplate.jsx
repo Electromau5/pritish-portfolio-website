@@ -2020,6 +2020,77 @@ const CarexSection = ({ section, caseStudy }) => {
     />{renderUserFlow()}</>;
   }
 
+  // NEW: Business Challenges (AI-generated with challenges array)
+  if (hasBlockType('businessChallenges')) {
+    const block = section.content.find(b => b.type === 'businessChallenges');
+    return <><CarexBusinessChallenges title={block.data.title || section.title} items={block.data.challenges || []} />{renderUserFlow()}</>;
+  }
+
+  // NEW: User Needs (AI-generated with needs array)
+  if (hasBlockType('userNeeds')) {
+    const block = section.content.find(b => b.type === 'userNeeds');
+    return <><CarexUserNeeds title={block.data.title || section.title} items={block.data.needs || []} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Unique Features (AI-generated with features array)
+  if (hasBlockType('uniqueFeatures')) {
+    const block = section.content.find(b => b.type === 'uniqueFeatures');
+    return <><CarexUniqueFeatures title={block.data.title || section.title} items={block.data.features || []} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Competitor Analysis (AI-generated with competitors array)
+  if (hasBlockType('competitorAnalysis')) {
+    const block = section.content.find(b => b.type === 'competitorAnalysis');
+    return <><CarexCompetitorAnalysis title={block.data.title || section.title} competitors={block.data.competitors || []} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Quantitative Research (AI-generated with observations array)
+  if (hasBlockType('quantitativeResearch')) {
+    const block = section.content.find(b => b.type === 'quantitativeResearch');
+    return <><CarexQuantitativeResearch
+      title={block.data.title || section.title}
+      description={block.data.description}
+      observations={block.data.observations || []}
+    />{renderUserFlow()}</>;
+  }
+
+  // NEW: User Persona (AI-generated with persona object)
+  if (hasBlockType('userPersona')) {
+    const block = section.content.find(b => b.type === 'userPersona');
+    return <><CarexUserPersona persona={block.data.persona || block.data} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Eisenhower Matrix (AI-generated with quadrants object)
+  if (hasBlockType('eisenhowerMatrix')) {
+    const block = section.content.find(b => b.type === 'eisenhowerMatrix');
+    return <><CarexEisenhowerMatrix title={block.data.title || section.title} quadrants={block.data.quadrants || block.data} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Five Why Analysis (AI-generated with problems array)
+  if (hasBlockType('fiveWhyAnalysis')) {
+    const block = section.content.find(b => b.type === 'fiveWhyAnalysis');
+    const problem = block.data.problems?.[0];
+    return <><CarexWhyAnalysis
+      title={block.data.title || section.title}
+      problem={problem?.statement || ''}
+      whys={problem?.whys || []}
+      rootCause={problem?.rootCause}
+    />{renderUserFlow()}</>;
+  }
+
+  // NEW: Problem Statement (AI-generated with statement string)
+  if (hasBlockType('problemStatement')) {
+    const block = section.content.find(b => b.type === 'problemStatement');
+    return <><CarexProblemStatement title={block.data.title || section.title} description={block.data.statement || ''} />{renderUserFlow()}</>;
+  }
+
+  // NEW: Objectives & Goals (AI-generated with objectives and goals arrays)
+  if (hasBlockType('objectivesGoals')) {
+    const block = section.content.find(b => b.type === 'objectivesGoals');
+    const combinedItems = [...(block.data.objectives || []), ...(block.data.goals || [])];
+    return <><CarexObjectives title={block.data.title || section.title} items={combinedItems} />{renderUserFlow()}</>;
+  }
+
   // Match section type by title and render appropriate component
   // 1. Problem Statement
   if (/problem/i.test(sectionTitle)) {
