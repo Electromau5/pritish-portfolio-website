@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ChevronRight, ExternalLink, Sparkles } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ExternalLink, Sparkles, Settings2 } from 'lucide-react';
+import { arrayMove } from '@dnd-kit/sortable';
 import db from '../services/db';
 import { getTemplate, templates } from '../templates/caseStudyTemplates';
 import CarexLayout from './CarexTemplate';
 import UserFlowDiagram from './UserFlowDiagram';
 import { AIChatSidebar } from './AIChatSidebar';
+import EditableSectionsPanel from './EditableSectionsPanel';
+import SectionEditModal from './SectionEditModal';
 
 // ============================================
 // CONTENT BLOCK RENDERERS
@@ -1840,6 +1843,11 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   const [localSections, setLocalSections] = useState([]);
   const [hasLocalChanges, setHasLocalChanges] = useState(false);
 
+  // Edit panel and modal state
+  const [isEditPanelOpen, setIsEditPanelOpen] = useState(false);
+  const [editModalSection, setEditModalSection] = useState(null);
+  const [editModalIndex, setEditModalIndex] = useState(null);
+
   // Initialize local sections when case study loads
   useEffect(() => {
     if (caseStudy?.sections) {
@@ -1862,6 +1870,33 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   const handleDeleteSection = (index) => {
     setLocalSections(prev => prev.filter((_, i) => i !== index));
     setHasLocalChanges(true);
+  };
+
+  // Handler for reordering sections via drag and drop
+  const handleReorderSections = (oldIndex, newIndex) => {
+    setLocalSections(prev => arrayMove(prev, oldIndex, newIndex));
+    setHasLocalChanges(true);
+  };
+
+  // Handler for opening edit modal
+  const handleOpenEditModal = (index) => {
+    const currentSections = hasLocalChanges ? localSections : (caseStudy?.sections || []);
+    setEditModalSection(currentSections[index]);
+    setEditModalIndex(index);
+  };
+
+  // Handler for saving edited section
+  const handleSaveEditedSection = (editedSection) => {
+    if (editModalIndex !== null) {
+      setLocalSections(prev => {
+        const updated = [...prev];
+        updated[editModalIndex] = editedSection;
+        return updated;
+      });
+      setHasLocalChanges(true);
+    }
+    setEditModalSection(null);
+    setEditModalIndex(null);
   };
 
   // Load case study from database
@@ -2046,22 +2081,31 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
             template={template}
           />
 
-          {/* Chat Toggle Button */}
-          <button
-            data-chat-toggle
-            onClick={() => setIsChatOpen(true)}
-            className={`
-              fixed bottom-6 right-6 w-14 h-14 rounded-full
-              bg-gradient-to-br from-purple-500 to-blue-500 text-white
-              shadow-lg hover:shadow-xl hover:scale-105
-              transition-all duration-200
-              flex items-center justify-center z-40
-              ${isChatOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}
-            `}
-            title="Add sections with AI"
-          >
-            <Sparkles size={24} />
-          </button>
+          {/* Action Buttons */}
+          <div className={`
+            fixed bottom-6 right-6 flex flex-col gap-3 z-40
+            transition-all duration-200
+            ${isChatOpen || isEditPanelOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+          `}>
+            {/* Edit Sections Button */}
+            <button
+              onClick={() => setIsEditPanelOpen(true)}
+              className="w-14 h-14 rounded-full bg-gray-900 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center justify-center"
+              title="Edit sections"
+            >
+              <Settings2 size={24} />
+            </button>
+
+            {/* Chat Toggle Button */}
+            <button
+              data-chat-toggle
+              onClick={() => setIsChatOpen(true)}
+              className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center justify-center"
+              title="Add sections with AI"
+            >
+              <Sparkles size={24} />
+            </button>
+          </div>
 
         {/* Unsaved changes indicator */}
         {hasLocalChanges && (
@@ -2069,6 +2113,27 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
             Unsaved changes - sections will reset on page refresh
           </div>
         )}
+
+        {/* Editable Sections Panel */}
+        <EditableSectionsPanel
+          isOpen={isEditPanelOpen}
+          sections={hasLocalChanges ? localSections : (caseStudy?.sections || [])}
+          onClose={() => setIsEditPanelOpen(false)}
+          onReorder={handleReorderSections}
+          onEdit={handleOpenEditModal}
+          onDelete={handleDeleteSection}
+        />
+
+        {/* Section Edit Modal */}
+        <SectionEditModal
+          isOpen={editModalSection !== null}
+          section={editModalSection}
+          onSave={handleSaveEditedSection}
+          onClose={() => {
+            setEditModalSection(null);
+            setEditModalIndex(null);
+          }}
+        />
       </>
     </>
   );
