@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ExternalLink, Sparkles } from 'lucide-react';
 import db from '../services/db';
 import { getTemplate, templates } from '../templates/caseStudyTemplates';
 import CarexLayout from './CarexTemplate';
 import UserFlowDiagram from './UserFlowDiagram';
+import { AIChatSidebar } from './AIChatSidebar';
 
 // ============================================
 // CONTENT BLOCK RENDERERS
@@ -1834,7 +1835,28 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   const [error, setError] = useState(null);
   const sectionRefs = useRef([]);
 
-  // no-op
+  // Chat sidebar state
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [localSections, setLocalSections] = useState([]);
+  const [hasLocalChanges, setHasLocalChanges] = useState(false);
+
+  // Initialize local sections when case study loads
+  useEffect(() => {
+    if (caseStudy?.sections) {
+      setLocalSections([...caseStudy.sections]);
+      setHasLocalChanges(false);
+    }
+  }, [caseStudy?.id]);
+
+  // Handler for inserting new sections from chat
+  const handleInsertSection = (newSection, index) => {
+    setLocalSections(prev => {
+      const updated = [...prev];
+      updated.splice(index, 0, newSection);
+      return updated;
+    });
+    setHasLocalChanges(true);
+  };
 
   // Load case study from database
   useEffect(() => {
@@ -1945,8 +1967,10 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
   };
 
   // Get sections with injected artifacts
-  const sectionsToRender = caseStudy?.sections
-    ? injectArtifacts(caseStudy.sections, artifacts, template)
+  // Use localSections if there are local changes, otherwise use original sections
+  const baseSections = hasLocalChanges ? localSections : (caseStudy?.sections || []);
+  const sectionsToRender = baseSections.length > 0
+    ? injectArtifacts(baseSections, artifacts, template)
     : [];
 
   if (loading) {
@@ -1981,21 +2005,68 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
     scrollToSection
   };
 
-  switch (template) {
-    case 'simonpan':
-      return <SimonPanLayout {...layoutProps} />;
-    case 'moritz':
-      return <MoritzLayout {...layoutProps} />;
-    case 'lola':
-      return <LolaLayout {...layoutProps} />;
-    case 'gloria':
-      return <GloriaLayout {...layoutProps} />;
-    case 'carex':
-      return <CarexLayout {...layoutProps} />;
-    case 'pratibha':
-    default:
-      return <PratibhaLayout {...layoutProps} />;
-  }
+  // Determine which layout to render
+  const renderLayout = () => {
+    switch (template) {
+      case 'simonpan':
+        return <SimonPanLayout {...layoutProps} />;
+      case 'moritz':
+        return <MoritzLayout {...layoutProps} />;
+      case 'lola':
+        return <LolaLayout {...layoutProps} />;
+      case 'gloria':
+        return <GloriaLayout {...layoutProps} />;
+      case 'carex':
+        return <CarexLayout {...layoutProps} />;
+      case 'pratibha':
+      default:
+        return <PratibhaLayout {...layoutProps} />;
+    }
+  };
+
+  return (
+    <>
+      {renderLayout()}
+
+      {/* AI Chat Sidebar - available on public pages */}
+      {!isPreview && (
+        <>
+          <AIChatSidebar
+            isOpen={isChatOpen}
+            onClose={() => setIsChatOpen(false)}
+            caseStudy={caseStudy}
+            sections={hasLocalChanges ? localSections : (caseStudy?.sections || [])}
+            onInsertSection={handleInsertSection}
+            template={template}
+          />
+
+          {/* Chat Toggle Button */}
+          <button
+            data-chat-toggle
+            onClick={() => setIsChatOpen(true)}
+            className={`
+              fixed bottom-6 right-6 w-14 h-14 rounded-full
+              bg-gradient-to-br from-purple-500 to-blue-500 text-white
+              shadow-lg hover:shadow-xl hover:scale-105
+              transition-all duration-200
+              flex items-center justify-center z-40
+              ${isChatOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}
+            `}
+            title="Add sections with AI"
+          >
+            <Sparkles size={24} />
+          </button>
+
+          {/* Unsaved changes indicator */}
+          {hasLocalChanges && (
+            <div className="fixed bottom-6 left-6 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-2 rounded-lg shadow-lg z-40 text-sm">
+              Unsaved changes - sections will reset on page refresh
+            </div>
+          )}
+        </>
+      )}
+    </>
+  );
 };
 
 export default CaseStudyDisplay;

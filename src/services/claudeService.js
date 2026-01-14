@@ -233,3 +233,50 @@ Return ONLY valid JSON in this exact format:
   }
 };
 
+// Generate section content from chat message
+export const generateSectionFromChat = async (userMessage, caseStudyContext, conversationHistory = []) => {
+  try {
+    const response = await fetch('/api/chat-section', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userMessage,
+        caseStudyContext: {
+          title: caseStudyContext.title,
+          subtitle: caseStudyContext.subtitle,
+          template: caseStudyContext.template
+        },
+        existingSections: caseStudyContext.sections || [],
+        conversationHistory
+      }),
+    });
+
+    if (!response.ok) {
+      let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+      if (response.status === 504) {
+        throw new Error('Request timed out. Please try again.');
+      }
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.error || errorData.message || JSON.stringify(errorData);
+      } catch (e) {
+        // Keep default errorMessage
+      }
+      throw new Error(errorMessage);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error in chat section generation:', error);
+
+    if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+      throw new Error('Cannot connect to API. For local development, run "vercel dev" instead of "npm run dev".');
+    }
+
+    throw new Error(error.message || 'Failed to process chat message.');
+  }
+};
+
