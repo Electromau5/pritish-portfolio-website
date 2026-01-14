@@ -307,7 +307,7 @@ export const templates = {
         title: 'Reflection & Learnings',
         type: 'outcome',
         page: 13,
-        description: 'What you learned and what's next',
+        description: "What you learned and what's next",
         contentTypes: ['text'],
         guidelines: [
           'Keep brief: one short section max',
