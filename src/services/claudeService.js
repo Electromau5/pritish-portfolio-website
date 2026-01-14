@@ -234,7 +234,7 @@ Return ONLY valid JSON in this exact format:
 };
 
 // Generate section content from chat message
-export const generateSectionFromChat = async (userMessage, caseStudyContext, conversationHistory = []) => {
+export const generateSectionFromChat = async (userMessage, caseStudyContext, conversationHistory = [], documentContent = null) => {
   try {
     const response = await fetch('/api/chat-section', {
       method: 'POST',
@@ -249,7 +249,8 @@ export const generateSectionFromChat = async (userMessage, caseStudyContext, con
           template: caseStudyContext.template
         },
         existingSections: caseStudyContext.sections || [],
-        conversationHistory
+        conversationHistory,
+        documentContent // Pass parsed document content if available
       }),
     });
 

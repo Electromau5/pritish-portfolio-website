@@ -2028,10 +2028,9 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
     <>
       {renderLayout()}
 
-      {/* AI Chat Sidebar - available on public pages */}
-      {!isPreview && (
-        <>
-          <AIChatSidebar
+      {/* AI Chat Sidebar - available on all pages */}
+      <>
+        <AIChatSidebar
             isOpen={isChatOpen}
             onClose={() => setIsChatOpen(false)}
             caseStudy={caseStudy}
@@ -2057,14 +2056,13 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
             <Sparkles size={24} />
           </button>
 
-          {/* Unsaved changes indicator */}
-          {hasLocalChanges && (
-            <div className="fixed bottom-6 left-6 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-2 rounded-lg shadow-lg z-40 text-sm">
-              Unsaved changes - sections will reset on page refresh
-            </div>
-          )}
-        </>
-      )}
+        {/* Unsaved changes indicator */}
+        {hasLocalChanges && (
+          <div className="fixed bottom-6 left-6 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-2 rounded-lg shadow-lg z-40 text-sm">
+            Unsaved changes - sections will reset on page refresh
+          </div>
+        )}
+      </>
     </>
   );
 };

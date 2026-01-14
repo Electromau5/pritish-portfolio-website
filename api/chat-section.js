@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { userMessage, caseStudyContext, existingSections, conversationHistory } = req.body;
+  const { userMessage, caseStudyContext, existingSections, conversationHistory, documentContent } = req.body;
 
   if (!userMessage) {
     return res.status(400).json({ error: 'User message is required' });
@@ -24,6 +24,12 @@ export default async function handler(req, res) {
   }
 
   const sectionNames = existingSections?.map(s => s.title).join(', ') || 'None';
+  const hasDocument = documentContent && documentContent.length > 0;
+
+  // Trim document content to avoid timeout (max 8000 chars)
+  const trimmedDocContent = hasDocument && documentContent.length > 8000
+    ? documentContent.slice(0, 8000) + '\n\n[Content truncated for processing...]'
+    : documentContent;
 
   const systemPrompt = `You are an AI assistant helping users add sections to their UX case study portfolio. You help parse natural language requests and generate appropriate content.
 
@@ -32,7 +38,13 @@ Current case study context:
 - Subtitle: ${caseStudyContext?.subtitle || ''}
 - Template: ${caseStudyContext?.template || 'default'}
 - Existing sections: ${sectionNames}
+${hasDocument ? `
+IMPORTANT: The user has attached a document. Use the content from this document to generate accurate, relevant sections. Extract real information from the document rather than making up generic content.
 
+=== ATTACHED DOCUMENT CONTENT ===
+${trimmedDocContent}
+=== END DOCUMENT ===
+` : ''}
 Available section types you can generate:
 - projectOverview: Comprehensive project introduction with title and paragraphs
 - problemSolution: Problem statement and solution description
@@ -46,6 +58,7 @@ When the user asks to add a section:
 1. Identify what type of section they want
 2. Determine where they want it (look for phrases like "above X", "below Y", "after Z", "before W", "at the beginning", "at the end")
 3. Generate realistic, professional UX case study content for that section
+${hasDocument ? '4. USE THE ATTACHED DOCUMENT CONTENT to extract real project details, metrics, findings, etc.' : ''}
 
 IMPORTANT: Return ONLY valid JSON in this exact format:
 {
@@ -65,7 +78,7 @@ IMPORTANT: Return ONLY valid JSON in this exact format:
       }
     }]
   },
-  "message": "I've created a Project Overview section to introduce your case study. Would you like me to add it above Problem Statement?"
+  "message": "I've created a Project Overview section based on your document. Would you like me to add it?"
 }
 
 For different section types, use these data formats:

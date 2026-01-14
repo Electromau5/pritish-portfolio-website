@@ -4,16 +4,16 @@ import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import SectionPreviewCard from './SectionPreviewCard';
 import { generateSectionFromChat } from '../../services/claudeService';
+import { parseDocument } from '../../services/fileParser';
 import { calculateInsertionIndex, getInsertionDescription } from '../../utils/sectionMatcher';
 
 const INITIAL_MESSAGE = {
   role: 'assistant',
-  content: `Hi! I can help you add sections to this case study. Try saying things like:
+  content: `Hi! I can help you add sections to this case study. You can:
 
-- "Add a Project Overview at the beginning"
-- "Insert team information after the Research section"
-- "Add success metrics above the Conclusion"
-- "Create a user research section at the end"`
+- Type requests like "Add a Project Overview at the beginning"
+- Attach a PDF/DOCX and ask me to create sections from it
+- Say "Create all sections from the document" after attaching a file`
 };
 
 const AIChatSidebar = ({
@@ -28,6 +28,9 @@ const AIChatSidebar = ({
   const [inputValue, setInputValue] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [pendingSection, setPendingSection] = useState(null);
+  const [attachedFile, setAttachedFile] = useState(null);
+  const [parsedFileContent, setParsedFileContent] = useState(null);
+  const [isParsingFile, setIsParsingFile] = useState(false);
   const messagesEndRef = useRef(null);
   const sidebarRef = useRef(null);
 
@@ -62,10 +65,49 @@ const AIChatSidebar = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen, onClose]);
 
-  const handleSend = async () => {
-    if (!inputValue.trim() || isGenerating) return;
+  // Handle file attachment
+  const handleFileAttach = async (file) => {
+    setAttachedFile(file);
+    setIsParsingFile(true);
+    setParsedFileContent(null);
 
-    const userMessage = inputValue.trim();
+    try {
+      const result = await parseDocument(file);
+      if (result.success) {
+        setParsedFileContent(result.text);
+        setMessages(prev => [...prev, {
+          role: 'system',
+          content: `Attached: ${file.name} (${Math.round(result.text.length / 1000)}k characters). You can now ask me to create sections from this document.`
+        }]);
+      } else {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `Sorry, I couldn't parse that file: ${result.error}`
+        }]);
+        setAttachedFile(null);
+      }
+    } catch (error) {
+      console.error('Error parsing file:', error);
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: `Sorry, I couldn't parse that file. Please try a different PDF or DOCX.`
+      }]);
+      setAttachedFile(null);
+    } finally {
+      setIsParsingFile(false);
+    }
+  };
+
+  // Handle file removal
+  const handleFileRemove = () => {
+    setAttachedFile(null);
+    setParsedFileContent(null);
+  };
+
+  const handleSend = async () => {
+    if ((!inputValue.trim() && !parsedFileContent) || isGenerating) return;
+
+    const userMessage = inputValue.trim() || 'Create sections from the attached document';
     setInputValue('');
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setIsGenerating(true);
@@ -79,7 +121,8 @@ const AIChatSidebar = ({
           template: template,
           sections: sections
         },
-        messages.filter(m => m.role !== 'system')
+        messages.filter(m => m.role !== 'system'),
+        parsedFileContent // Pass the parsed document content
       );
 
       if (result.action === 'add_section' && result.generatedSection) {
@@ -218,6 +261,10 @@ const AIChatSidebar = ({
           onSend={handleSend}
           disabled={isGenerating}
           placeholder="Ask me to add a section..."
+          attachedFile={attachedFile}
+          onFileAttach={handleFileAttach}
+          onFileRemove={handleFileRemove}
+          isParsingFile={isParsingFile}
         />
       </div>
     </>
