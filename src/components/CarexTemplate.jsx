@@ -1923,6 +1923,494 @@ const CarexConclusion = ({ title = 'Conclusion', paragraphs = [], takeaways = []
 );
 
 // ============================================
+// 2025 NEW SECTION COMPONENTS
+// ============================================
+
+// Business Impact Preview - Key metrics upfront (NEW for 2025)
+const CarexBusinessImpactPreview = ({ title = 'Business Impact Preview', primaryMetric, secondaryMetrics = [], impactSummary }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16" style={{ backgroundColor: carexColors.extraLight }}>
+    <div className="max-w-6xl mx-auto text-center">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px' }}>
+        {title}
+      </h2>
+      {primaryMetric && (
+        <div className="mb-12">
+          <div style={{ fontSize: 'clamp(48px, 8vw, 96px)', fontWeight: 700, color: carexColors.primary, lineHeight: 1 }}>
+            {primaryMetric.value}
+          </div>
+          <div style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(18px, 2vw, 26px)', marginTop: '8px' }}>
+            {primaryMetric.label}
+          </div>
+          {primaryMetric.context && (
+            <div style={{ ...carexTypography.bodySmall, color: carexColors.light, fontSize: 'clamp(14px, 1.5vw, 22px)', marginTop: '4px' }}>
+              {primaryMetric.context}
+            </div>
+          )}
+        </div>
+      )}
+      {secondaryMetrics.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-12">
+          {secondaryMetrics.map((metric, idx) => (
+            <div key={idx}>
+              <div style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 600, color: carexColors.primary }}>{metric.value}</div>
+              <div style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{metric.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      {impactSummary && (
+        <p style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)', marginTop: '32px' }}>
+          {impactSummary}
+        </p>
+      )}
+    </div>
+  </section>
+);
+
+// Design Vision & Strategy (NEW for 2025)
+const CarexDesignVisionStrategy = ({ title = 'Design Vision & Strategy', vision, strategy, principles = [], northStar }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="p-8 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '16px' }}>Vision</h3>
+          <p style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(16px, 1.8vw, 26px)' }}>{vision}</p>
+          {strategy && (
+            <>
+              <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '16px', marginTop: '24px' }}>Strategy</h3>
+              <p style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(16px, 1.8vw, 26px)' }}>{strategy}</p>
+            </>
+          )}
+        </div>
+        <div>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '20px' }}>Design Principles</h3>
+          <div className="space-y-4">
+            {principles.map((principle, idx) => (
+              <div key={idx} className="flex items-start gap-4 p-4 rounded-xl" style={{ backgroundColor: carexColors.extraLight }}>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: carexColors.primary }}>
+                  <span style={{ color: carexColors.white, fontWeight: 600 }}>{idx + 1}</span>
+                </div>
+                <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{principle}</p>
+              </div>
+            ))}
+          </div>
+          {northStar && (
+            <div className="mt-6 p-4 rounded-xl border-2" style={{ borderColor: carexColors.primary }}>
+              <span style={{ ...carexTypography.bodySmall, color: carexColors.primary, fontSize: 'clamp(12px, 1.2vw, 18px)' }}>North Star</span>
+              <p style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)', marginTop: '4px' }}>{northStar}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// Cross-Functional Alignment (NEW for 2025)
+const CarexCrossFunctionalAlignment = ({ title = 'Cross-Functional Alignment', pmPartnership, engineeringCollaboration, dataScienceCoordination }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        {[
+          { title: 'PM Partnership', data: pmPartnership, icon: '📋' },
+          { title: 'Engineering', data: engineeringCollaboration, icon: '⚙️' },
+          { title: 'Data Science', data: dataScienceCoordination, icon: '📊' }
+        ].filter(item => item.data).map((item, idx) => (
+          <div key={idx} className="p-6 rounded-2xl border" style={{ borderColor: carexColors.lightSecondary, backgroundColor: carexColors.white }}>
+            <div className="text-3xl mb-4">{item.icon}</div>
+            <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(18px, 2vw, 32px)', marginBottom: '16px' }}>{item.title}</h3>
+            {item.data.collaboration && <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)', marginBottom: '12px' }}>{item.data.collaboration}</p>}
+            {item.data.outcomes && (
+              <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: carexColors.extraLight }}>
+                <span style={{ ...carexTypography.bodySmall, color: carexColors.primary, fontSize: 'clamp(12px, 1.2vw, 18px)' }}>Outcome: </span>
+                <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(12px, 1.2vw, 18px)' }}>{item.data.outcomes}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// Technical Constraints (NEW for 2025)
+const CarexTechnicalConstraints = ({ title = 'Technical Constraints', constraints = [], designAdaptations = [], tradeoffs = [] }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.cons, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '20px' }}>Constraints</h3>
+          <div className="space-y-4">
+            {constraints.map((constraint, idx) => (
+              <div key={idx} className="p-4 rounded-xl" style={{ backgroundColor: '#fff4ce' }}>
+                <p style={{ ...carexTypography.bodySmall, color: '#67530c', fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{constraint}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '20px' }}>Design Adaptations</h3>
+          <div className="space-y-4">
+            {designAdaptations.map((adaptation, idx) => (
+              <div key={idx} className="flex items-start gap-3 p-4 rounded-xl" style={{ backgroundColor: carexColors.extraLight }}>
+                <CheckBullet color={carexColors.primary} />
+                <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{adaptation}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// AI/ML Considerations (NEW for 2025 - Critical for AI roles)
+const CarexAIMlConsiderations = ({ title = 'AI/ML Considerations', modelCapabilities, infrastructureConstraints = [], trustExplainability, ethicalConsiderations }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <div className="flex items-center justify-center gap-4 mb-8">
+        <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)' }}>
+          {title}
+        </h2>
+        <span className="px-4 py-1 rounded-full text-sm font-semibold" style={{ backgroundColor: carexColors.primary, color: carexColors.white }}>
+          Critical for AI Roles
+        </span>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        {modelCapabilities && (
+          <div className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+            <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '16px' }}>Model Capabilities & Limitations</h3>
+            {modelCapabilities.capabilities?.length > 0 && (
+              <div className="mb-4">
+                <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 20px)', fontWeight: 600 }}>Can do:</span>
+                <ul className="mt-2 space-y-2">
+                  {modelCapabilities.capabilities.map((cap, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckBullet color="#8fd818" />
+                      <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 20px)' }}>{cap}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {modelCapabilities.limitations?.length > 0 && (
+              <div>
+                <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 20px)', fontWeight: 600 }}>Cannot do:</span>
+                <ul className="mt-2 space-y-2">
+                  {modelCapabilities.limitations.map((lim, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <XBullet color={carexColors.cons} />
+                      <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 20px)' }}>{lim}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+        {trustExplainability && (
+          <div className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+            <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '16px' }}>Trust & Explainability</h3>
+            {trustExplainability.strategy && <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 20px)', marginBottom: '12px' }}>{trustExplainability.strategy}</p>}
+            {trustExplainability.implementation && <p style={{ ...carexTypography.bodySmall, color: carexColors.light, fontSize: 'clamp(14px, 1.5vw, 20px)' }}>{trustExplainability.implementation}</p>}
+          </div>
+        )}
+        {ethicalConsiderations && (
+          <div className="p-6 rounded-2xl md:col-span-2" style={{ backgroundColor: carexColors.extraLight }}>
+            <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '16px' }}>Ethical Considerations</h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              {ethicalConsiderations.concerns?.length > 0 && (
+                <div>
+                  <span style={{ ...carexTypography.bodySmall, fontWeight: 600, color: carexColors.dark }}>Concerns:</span>
+                  <ul className="mt-2 space-y-1">
+                    {ethicalConsiderations.concerns.map((c, i) => <li key={i} style={{ ...carexTypography.bodyExtraSmall, color: carexColors.dark }}>{c}</li>)}
+                  </ul>
+                </div>
+              )}
+              {ethicalConsiderations.mitigations?.length > 0 && (
+                <div>
+                  <span style={{ ...carexTypography.bodySmall, fontWeight: 600, color: carexColors.dark }}>Mitigations:</span>
+                  <ul className="mt-2 space-y-1">
+                    {ethicalConsiderations.mitigations.map((m, i) => <li key={i} style={{ ...carexTypography.bodyExtraSmall, color: carexColors.dark }}>{m}</li>)}
+                  </ul>
+                </div>
+              )}
+              {ethicalConsiderations.guidelines?.length > 0 && (
+                <div>
+                  <span style={{ ...carexTypography.bodySmall, fontWeight: 600, color: carexColors.dark }}>Guidelines:</span>
+                  <ul className="mt-2 space-y-1">
+                    {ethicalConsiderations.guidelines.map((g, i) => <li key={i} style={{ ...carexTypography.bodyExtraSmall, color: carexColors.dark }}>{g}</li>)}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+);
+
+// Key Insights (Enhanced for 2025)
+const CarexKeyInsights = ({ title = 'Key Insights', insights = [] }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      <div className="grid md:grid-cols-2 gap-6">
+        {insights.map((item, idx) => (
+          <div key={idx} className="p-6 rounded-2xl border-2" style={{ borderColor: carexColors.primary }}>
+            <div style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: carexColors.primary, marginBottom: '16px' }}>{idx + 1}</div>
+            <p style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)', marginBottom: '12px' }}>{item.insight}</p>
+            {item.source && <p style={{ ...carexTypography.bodySmall, color: carexColors.light, fontSize: 'clamp(12px, 1.2vw, 18px)', fontStyle: 'italic' }}>Source: {item.source}</p>}
+            {item.designImplication && (
+              <p style={{ ...carexTypography.bodySmall, color: carexColors.primary, fontSize: 'clamp(14px, 1.5vw, 22px)', marginTop: '12px' }}>
+                → {item.designImplication}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// Design System Contribution (NEW for 2025)
+const CarexDesignSystemContribution = ({ title = 'Design System Contribution', components = [], patterns = [], guidelines = [], adoption }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      {components.length > 0 && (
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          {components.map((comp, idx) => (
+            <div key={idx} className="p-6 rounded-2xl border" style={{ borderColor: carexColors.lightSecondary }}>
+              <div className="h-32 rounded-xl mb-4" style={{ backgroundColor: carexColors.extraLight }}></div>
+              <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)', marginBottom: '8px' }}>{comp.name}</h3>
+              {comp.description && <p style={{ ...carexTypography.bodySmall, color: carexColors.light, fontSize: 'clamp(14px, 1.5vw, 20px)' }}>{comp.description}</p>}
+              {comp.usage && <p style={{ ...carexTypography.bodySmall, color: carexColors.primary, fontSize: 'clamp(14px, 1.5vw, 18px)', marginTop: '8px' }}>{comp.usage}</p>}
+            </div>
+          ))}
+        </div>
+      )}
+      {adoption && (
+        <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: carexColors.extraLight }}>
+          <p style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)' }}>{adoption}</p>
+        </div>
+      )}
+    </div>
+  </section>
+);
+
+// Turning Point (NEW for 2025)
+const CarexTurningPoint = ({ title = 'Turning Point', situation, insight, impact, evidence }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16" style={{ background: `linear-gradient(135deg, ${carexColors.extraLight} 0%, ${carexColors.extraLightSecondary} 100%)` }}>
+    <div className="max-w-4xl mx-auto text-center">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '24px' }}>
+        {title}
+      </h2>
+      <div className="inline-block px-6 py-2 rounded-full mb-8" style={{ backgroundColor: '#ffd52f' }}>
+        <span style={{ fontWeight: 700, color: carexColors.dark }}>AHA MOMENT</span>
+      </div>
+      {insight && (
+        <p style={{ fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 600, color: carexColors.primary, lineHeight: 1.4, marginBottom: '24px' }}>
+          "{insight}"
+        </p>
+      )}
+      {impact && (
+        <p style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 22px)' }}>
+          {impact}
+        </p>
+      )}
+    </div>
+  </section>
+);
+
+// Validation & Iteration (NEW for 2025)
+const CarexValidationIteration = ({ title = 'Validation & Iteration', testingRounds = [], validationMetrics = [] }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      <div className="space-y-6">
+        {testingRounds.map((round, idx) => (
+          <div key={idx} className="p-6 rounded-2xl border-2" style={{ borderColor: carexColors.primary }}>
+            <div className="flex items-center gap-4 mb-4">
+              <span className="px-4 py-2 rounded-full font-bold" style={{ backgroundColor: carexColors.primary, color: carexColors.white }}>
+                Round {round.round}
+              </span>
+              <span style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 22px)' }}>{round.method}</span>
+              {round.participants && <span style={{ ...carexTypography.bodySmall, color: carexColors.light }}>{round.participants}</span>}
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {round.findings?.length > 0 && (
+                <div className="p-4 rounded-xl" style={{ backgroundColor: '#fff4ce' }}>
+                  <span style={{ fontWeight: 600, color: '#67530c', fontSize: 'clamp(14px, 1.5vw, 20px)' }}>Findings:</span>
+                  <ul className="mt-2 space-y-1">
+                    {round.findings.map((f, i) => <li key={i} style={{ color: '#67530c', fontSize: 'clamp(14px, 1.5vw, 20px)' }}>• {f}</li>)}
+                  </ul>
+                </div>
+              )}
+              {round.changes?.length > 0 && (
+                <div className="p-4 rounded-xl" style={{ backgroundColor: 'rgba(143, 216, 24, 0.2)' }}>
+                  <span style={{ fontWeight: 600, color: '#3c5612', fontSize: 'clamp(14px, 1.5vw, 20px)' }}>Changes Made:</span>
+                  <ul className="mt-2 space-y-1">
+                    {round.changes.map((c, i) => <li key={i} style={{ color: '#3c5612', fontSize: 'clamp(14px, 1.5vw, 20px)' }}>✓ {c}</li>)}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// Business Impact Enhanced (2025)
+const CarexBusinessImpactEnhanced = ({ title = 'Business Impact', quantitativeMetrics = [], qualitativeFeedback = [], behavioralChanges = [], longTermSuccess }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      {quantitativeMetrics.length > 0 && (
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          {quantitativeMetrics.map((metric, idx) => (
+            <div key={idx} className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+              {metric.before && <div style={{ fontSize: 'clamp(18px, 2vw, 26px)', color: carexColors.cons, textDecoration: 'line-through' }}>{metric.before}</div>}
+              <div style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: carexColors.primary }}>{metric.after || metric.value}</div>
+              {metric.improvement && (
+                <span className="inline-block px-3 py-1 rounded-full mt-2" style={{ backgroundColor: 'rgba(143, 216, 24, 0.3)', color: '#3c5612', fontWeight: 600, fontSize: 'clamp(14px, 1.5vw, 22px)' }}>
+                  {metric.improvement}
+                </span>
+              )}
+              <div style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)', marginTop: '8px' }}>{metric.metric || metric.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      {qualitativeFeedback.length > 0 && (
+        <div className="p-6 rounded-2xl border mb-8" style={{ borderColor: carexColors.lightSecondary }}>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '16px' }}>User Feedback</h3>
+          {qualitativeFeedback.map((quote, idx) => (
+            <p key={idx} className="pl-4 mb-4 italic" style={{ borderLeft: `4px solid ${carexColors.primary}`, color: carexColors.dark, fontSize: 'clamp(16px, 1.8vw, 22px)' }}>
+              {quote}
+            </p>
+          ))}
+        </div>
+      )}
+      {behavioralChanges.length > 0 && (
+        <div className="space-y-3">
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '16px' }}>Behavioral Changes</h3>
+          {behavioralChanges.map((change, idx) => (
+            <div key={idx} className="flex items-center gap-3">
+              <ArrowBullet color={carexColors.primary} />
+              <span style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{change}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+);
+
+// Team & Organizational Impact (NEW for 2025)
+const CarexTeamOrganizationalImpact = ({ title = 'Team & Organizational Impact', processImprovements = [], collaborationWins = [], mentorship = [], cultureImpact }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        {processImprovements.length > 0 && (
+          <div className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+            <div className="text-3xl mb-4">🔄</div>
+            <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)', marginBottom: '16px' }}>Process Improvements</h3>
+            <ul className="space-y-2">
+              {processImprovements.map((item, idx) => <li key={idx} className="flex items-start gap-2"><CheckBullet /><span style={{ fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{item}</span></li>)}
+            </ul>
+          </div>
+        )}
+        {collaborationWins.length > 0 && (
+          <div className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+            <div className="text-3xl mb-4">🤝</div>
+            <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)', marginBottom: '16px' }}>Collaboration Wins</h3>
+            <ul className="space-y-2">
+              {collaborationWins.map((item, idx) => <li key={idx} className="flex items-start gap-2"><CheckBullet /><span style={{ fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{item}</span></li>)}
+            </ul>
+          </div>
+        )}
+        {mentorship.length > 0 && (
+          <div className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+            <div className="text-3xl mb-4">🎓</div>
+            <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)', marginBottom: '16px' }}>Mentorship</h3>
+            <ul className="space-y-2">
+              {mentorship.map((item, idx) => <li key={idx} className="flex items-start gap-2"><CheckBullet /><span style={{ fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{item}</span></li>)}
+            </ul>
+          </div>
+        )}
+      </div>
+      {cultureImpact && (
+        <div className="mt-8 p-6 rounded-2xl text-center" style={{ backgroundColor: carexColors.extraLightSecondary }}>
+          <p style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)' }}>{cultureImpact}</p>
+        </div>
+      )}
+    </div>
+  </section>
+);
+
+// Reflection & Next Steps (Enhanced for 2025)
+const CarexReflectionNextSteps = ({ title = 'Reflection & Next Steps', keyLearnings = [], whatWouldChange = [], futureIterations = [], personalGrowth }) => (
+  <section className="py-16 md:py-20 px-6 md:px-16">
+    <div className="max-w-6xl mx-auto">
+      <h2 style={{ ...carexTypography.heading, color: carexColors.dark, fontSize: 'clamp(28px, 4vw, 48px)', marginBottom: '48px', textAlign: 'center' }}>
+        {title}
+      </h2>
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLight }}>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '20px' }}>Key Learnings</h3>
+          {keyLearnings.map((learning, idx) => (
+            <div key={idx} className="mb-4 pl-4" style={{ borderLeft: `3px solid ${carexColors.primary}` }}>
+              <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{learning}</p>
+            </div>
+          ))}
+        </div>
+        <div className="p-6 rounded-2xl" style={{ backgroundColor: carexColors.extraLightSecondary }}>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.primary, fontSize: 'clamp(18px, 2vw, 26px)', marginBottom: '20px' }}>Next Steps</h3>
+          {futureIterations.map((step, idx) => (
+            <div key={idx} className="flex items-start gap-4 mb-4">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: carexColors.primary }}>
+                <span style={{ color: carexColors.white, fontWeight: 600, fontSize: '14px' }}>{idx + 1}</span>
+              </div>
+              <p style={{ ...carexTypography.bodySmall, color: carexColors.dark, fontSize: 'clamp(14px, 1.5vw, 22px)' }}>{step}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {personalGrowth && (
+        <div className="mt-8 p-6 rounded-2xl text-center" style={{ backgroundColor: carexColors.extraLight }}>
+          <h3 style={{ ...carexTypography.bodyBold, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 22px)', marginBottom: '12px' }}>Personal Growth</h3>
+          <p style={{ ...carexTypography.body, color: carexColors.dark, fontSize: 'clamp(16px, 2vw, 26px)' }}>{personalGrowth}</p>
+        </div>
+      )}
+    </div>
+  </section>
+);
+
+// ============================================
 // CAREX SECTION ROUTER
 // ============================================
 

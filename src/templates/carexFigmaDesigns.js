@@ -1254,6 +1254,1145 @@ export const carexSectionDesigns = {
     contentStructure: {
       title: 'Thank You\nFor Watching'
     }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // NEW 2025 SECTIONS - Strategic Context & Enhanced Sections
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BUSINESS IMPACT PREVIEW (NEW - Hook Section)
+  // ═══════════════════════════════════════════════════════════════════════════
+  businessImpactPreview: {
+    figmaNodeId: '2025:001',
+    name: 'Business Impact Preview',
+    isNew: true,
+    dimensions: { width: 1513, height: 600 },
+    layout: {
+      type: 'metrics-showcase',
+      primaryMetricPosition: 'center',
+      background: '#F6FAFE'
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46',
+        textAlign: 'center'
+      },
+      primaryMetric: {
+        value: {
+          fontSize: '96px',
+          fontWeight: 700,
+          color: '#188AEC',
+          textAlign: 'center'
+        },
+        label: {
+          fontSize: '26px',
+          fontWeight: 500,
+          color: '#282D46',
+          textAlign: 'center'
+        }
+      },
+      secondaryMetrics: {
+        container: {
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '60px'
+        },
+        value: {
+          fontSize: '48px',
+          fontWeight: 600,
+          color: '#188AEC'
+        },
+        label: {
+          fontSize: '22px',
+          fontWeight: 500,
+          color: '#282D46'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Business Impact Preview',
+      primaryMetric: { value: '', label: '' },
+      secondaryMetrics: []
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DESIGN VISION & STRATEGY (NEW - Strategic Context)
+  // ═══════════════════════════════════════════════════════════════════════════
+  designVisionStrategy: {
+    figmaNodeId: '2025:002',
+    name: 'Design Vision & Strategy',
+    isNew: true,
+    dimensions: { width: 1513, height: 800 },
+    layout: {
+      type: 'two-column-principles',
+      leftColumn: 'vision',
+      rightColumn: 'principles'
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      vision: {
+        container: {
+          background: '#F6FAFE',
+          borderRadius: '16px',
+          padding: '40px'
+        },
+        label: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#188AEC',
+          marginBottom: '16px'
+        },
+        text: {
+          fontSize: '26px',
+          fontWeight: 500,
+          lineHeight: 1.826,
+          color: '#282D46'
+        }
+      },
+      principles: {
+        item: {
+          icon: {
+            size: 48,
+            background: '#188AEC',
+            color: '#FFFFFF'
+          },
+          title: {
+            fontSize: '26px',
+            fontWeight: 600,
+            color: '#282D46'
+          },
+          description: {
+            fontSize: '22px',
+            fontWeight: 400,
+            color: '#666666'
+          }
+        },
+        gap: '24px'
+      }
+    },
+    contentStructure: {
+      title: 'Design Vision & Strategy',
+      vision: '',
+      strategy: '',
+      principles: [],
+      northStar: ''
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CROSS-FUNCTIONAL ALIGNMENT (NEW - Strategic Context)
+  // ═══════════════════════════════════════════════════════════════════════════
+  crossFunctionalAlignment: {
+    figmaNodeId: '2025:003',
+    name: 'Cross-Functional Alignment',
+    isNew: true,
+    dimensions: { width: 1513, height: 900 },
+    layout: {
+      type: 'stakeholder-grid',
+      columns: 3
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      stakeholderCard: {
+        container: {
+          background: '#FFFFFF',
+          borderRadius: '16px',
+          padding: '32px',
+          border: '1px solid #CBD4DC'
+        },
+        icon: {
+          size: 64,
+          background: '#F6FAFE',
+          borderRadius: '50%'
+        },
+        title: {
+          fontSize: '32px',
+          fontWeight: 600,
+          color: '#282D46',
+          marginTop: '20px'
+        },
+        collaboration: {
+          fontSize: '22px',
+          fontWeight: 500,
+          lineHeight: 1.731,
+          color: '#282D46'
+        },
+        outcomes: {
+          fontSize: '20px',
+          fontWeight: 400,
+          color: '#666666'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Cross-Functional Alignment',
+      pmPartnership: { collaboration: '', sharedGoals: '', outcomes: '' },
+      engineeringCollaboration: { collaboration: '', technicalDiscussions: '', outcomes: '' },
+      dataScienceCoordination: { collaboration: '', dataInsights: '', outcomes: '' }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // TECHNICAL CONSTRAINTS (NEW - Strategic Context)
+  // ═══════════════════════════════════════════════════════════════════════════
+  technicalConstraints: {
+    figmaNodeId: '2025:004',
+    name: 'Technical Constraints',
+    isNew: true,
+    dimensions: { width: 1513, height: 700 },
+    layout: {
+      type: 'constraints-list',
+      twoColumn: true
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      constraint: {
+        container: {
+          background: '#FFF4CE',
+          borderRadius: '12px',
+          padding: '24px'
+        },
+        icon: {
+          type: 'warning',
+          color: '#67530C'
+        },
+        text: {
+          fontSize: '22px',
+          fontWeight: 500,
+          color: '#67530C'
+        }
+      },
+      adaptation: {
+        container: {
+          background: '#EDF6FE',
+          borderRadius: '12px',
+          padding: '24px'
+        },
+        icon: {
+          type: 'checkmark',
+          color: '#188AEC'
+        },
+        text: {
+          fontSize: '22px',
+          fontWeight: 500,
+          color: '#282D46'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Technical Constraints',
+      constraints: [],
+      designAdaptations: [],
+      tradeoffs: []
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // AI/ML CONSIDERATIONS (NEW - Critical for AI Roles)
+  // ═══════════════════════════════════════════════════════════════════════════
+  aiMlConsiderations: {
+    figmaNodeId: '2025:005',
+    name: 'AI/ML Considerations',
+    isNew: true,
+    isCriticalForAI: true,
+    dimensions: { width: 1513, height: 1200 },
+    layout: {
+      type: 'four-quadrant',
+      quadrantGap: '32px'
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      badge: {
+        text: 'CRITICAL FOR AI ROLES',
+        background: '#188AEC',
+        color: '#FFFFFF',
+        fontSize: '14px',
+        fontWeight: 600,
+        padding: '8px 16px',
+        borderRadius: '20px'
+      },
+      quadrant: {
+        container: {
+          background: '#F6FAFE',
+          borderRadius: '16px',
+          padding: '32px'
+        },
+        title: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#188AEC',
+          marginBottom: '16px'
+        },
+        content: {
+          fontSize: '22px',
+          fontWeight: 500,
+          lineHeight: 1.731,
+          color: '#282D46'
+        },
+        listItem: {
+          fontSize: '20px',
+          fontWeight: 400,
+          color: '#282D46',
+          listStyleType: 'disc'
+        }
+      },
+      quadrants: {
+        modelCapabilities: {
+          icon: 'brain',
+          title: 'Model Capabilities & Limitations'
+        },
+        infrastructureConstraints: {
+          icon: 'server',
+          title: 'Infrastructure Constraints'
+        },
+        trustExplainability: {
+          icon: 'shield',
+          title: 'Trust & Explainability Strategy'
+        },
+        ethicalConsiderations: {
+          icon: 'balance',
+          title: 'Ethical Considerations'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'AI/ML Considerations',
+      modelCapabilities: { capabilities: [], limitations: [] },
+      infrastructureConstraints: [],
+      trustExplainability: { strategy: '', implementation: '', userFeedback: '' },
+      ethicalConsiderations: { concerns: [], mitigations: [], guidelines: [] }
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // KEY INSIGHTS (Enhanced for 2025)
+  // ═══════════════════════════════════════════════════════════════════════════
+  keyInsights: {
+    figmaNodeId: '2025:006',
+    name: 'Key Insights',
+    isEnhanced: true,
+    dimensions: { width: 1513, height: 900 },
+    layout: {
+      type: 'insight-cards',
+      columns: 2
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      insightCard: {
+        container: {
+          background: '#FFFFFF',
+          borderRadius: '16px',
+          padding: '32px',
+          border: '2px solid #188AEC'
+        },
+        number: {
+          fontSize: '48px',
+          fontWeight: 700,
+          color: '#188AEC'
+        },
+        insight: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#282D46',
+          marginTop: '16px'
+        },
+        source: {
+          fontSize: '18px',
+          fontWeight: 500,
+          color: '#666666',
+          fontStyle: 'italic'
+        },
+        implication: {
+          fontSize: '22px',
+          fontWeight: 500,
+          color: '#188AEC',
+          marginTop: '12px'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Key Insights',
+      insights: [
+        { insight: '', source: '', businessImplication: '', designImplication: '' }
+      ]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DESIGN EXPLORATIONS & TRADEOFFS (Enhanced for 2025)
+  // ═══════════════════════════════════════════════════════════════════════════
+  designExplorationsTradeoffs: {
+    figmaNodeId: '2025:007',
+    name: 'Design Explorations & Tradeoffs',
+    isEnhanced: true,
+    dimensions: { width: 1513, height: 1400 },
+    layout: {
+      type: 'exploration-comparison',
+      alternativesPerRow: 3
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      alternativeCard: {
+        container: {
+          background: '#F6FAFE',
+          borderRadius: '16px',
+          padding: '24px',
+          border: '1px solid #CBD4DC'
+        },
+        image: {
+          width: '100%',
+          height: 200,
+          borderRadius: '12px',
+          objectFit: 'cover'
+        },
+        name: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#282D46',
+          marginTop: '16px'
+        },
+        pros: {
+          icon: { type: 'checkmark', color: '#8FD818' },
+          text: { fontSize: '20px', color: '#3C5612' }
+        },
+        cons: {
+          icon: { type: 'x', color: '#F57878' },
+          text: { fontSize: '20px', color: '#49010E' }
+        }
+      },
+      constraintSection: {
+        container: {
+          marginTop: '40px',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr 1fr',
+          gap: '24px'
+        },
+        card: {
+          background: '#EFEFEF',
+          borderRadius: '12px',
+          padding: '20px'
+        },
+        title: {
+          fontSize: '22px',
+          fontWeight: 600,
+          color: '#282D46'
+        },
+        items: {
+          fontSize: '18px',
+          fontWeight: 400,
+          color: '#666666'
+        }
+      },
+      decision: {
+        container: {
+          background: '#EDF6FE',
+          borderRadius: '16px',
+          padding: '32px',
+          marginTop: '40px'
+        },
+        title: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#188AEC'
+        },
+        rationale: {
+          fontSize: '22px',
+          fontWeight: 500,
+          color: '#282D46'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Design Explorations & Tradeoffs',
+      designAlternatives: [],
+      technicalConstraints: [],
+      businessConstraints: [],
+      aiModelConstraints: [],
+      decisionRationale: '',
+      tradeoffsMade: []
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DESIGN SYSTEM CONTRIBUTION (NEW - Process & Execution)
+  // ═══════════════════════════════════════════════════════════════════════════
+  designSystemContribution: {
+    figmaNodeId: '2025:008',
+    name: 'Design System Contribution',
+    isNew: true,
+    dimensions: { width: 1513, height: 1000 },
+    layout: {
+      type: 'component-showcase',
+      columns: 3
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      componentCard: {
+        container: {
+          background: '#FFFFFF',
+          borderRadius: '16px',
+          padding: '24px',
+          border: '1px solid #CBD4DC'
+        },
+        preview: {
+          background: '#F6FAFE',
+          borderRadius: '12px',
+          padding: '20px',
+          height: 150
+        },
+        name: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#282D46',
+          marginTop: '16px'
+        },
+        description: {
+          fontSize: '20px',
+          fontWeight: 400,
+          color: '#666666'
+        },
+        usage: {
+          fontSize: '18px',
+          fontWeight: 500,
+          color: '#188AEC'
+        }
+      },
+      adoptionStats: {
+        container: {
+          background: '#EDF6FE',
+          borderRadius: '16px',
+          padding: '32px',
+          marginTop: '40px'
+        },
+        stat: {
+          value: {
+            fontSize: '48px',
+            fontWeight: 700,
+            color: '#188AEC'
+          },
+          label: {
+            fontSize: '22px',
+            fontWeight: 500,
+            color: '#282D46'
+          }
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Design System Contribution',
+      components: [],
+      patterns: [],
+      guidelines: [],
+      adoption: ''
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CHALLENGES & OBSTACLES (Enhanced for 2025)
+  // ═══════════════════════════════════════════════════════════════════════════
+  challengesObstacles: {
+    figmaNodeId: '2025:009',
+    name: 'Challenges/Obstacles',
+    dimensions: { width: 1513, height: 800 },
+    layout: {
+      type: 'challenge-resolution',
+      style: 'timeline'
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      challengeBlock: {
+        container: {
+          display: 'flex',
+          gap: '24px',
+          marginBottom: '40px'
+        },
+        challenge: {
+          background: '#FCCFCF',
+          borderRadius: '16px',
+          padding: '24px',
+          flex: 1
+        },
+        arrow: {
+          width: 60,
+          color: '#CBD4DC'
+        },
+        resolution: {
+          background: 'rgba(143, 216, 24, 0.3)',
+          borderRadius: '16px',
+          padding: '24px',
+          flex: 1
+        },
+        title: {
+          fontSize: '26px',
+          fontWeight: 600,
+          marginBottom: '12px'
+        },
+        text: {
+          fontSize: '22px',
+          fontWeight: 500,
+          lineHeight: 1.731
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Challenges/Obstacles',
+      challenges: [
+        { challenge: '', context: '', approach: '', resolution: '' }
+      ]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // TURNING POINT (NEW - Process & Execution)
+  // ═══════════════════════════════════════════════════════════════════════════
+  turningPoint: {
+    figmaNodeId: '2025:010',
+    name: 'Turning Point',
+    isNew: true,
+    dimensions: { width: 1513, height: 600 },
+    layout: {
+      type: 'narrative-highlight',
+      centered: true
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46',
+        textAlign: 'center'
+      },
+      container: {
+        background: 'linear-gradient(135deg, #F6FAFE 0%, #EDF6FE 100%)',
+        borderRadius: '24px',
+        padding: '60px',
+        maxWidth: '900px',
+        margin: '0 auto'
+      },
+      badge: {
+        text: 'AHA MOMENT',
+        background: '#FFD52F',
+        color: '#282D46',
+        fontSize: '16px',
+        fontWeight: 700,
+        padding: '8px 20px',
+        borderRadius: '20px'
+      },
+      insight: {
+        fontSize: '32px',
+        fontWeight: 600,
+        color: '#188AEC',
+        textAlign: 'center',
+        marginTop: '24px',
+        lineHeight: 1.4
+      },
+      impact: {
+        fontSize: '22px',
+        fontWeight: 500,
+        color: '#282D46',
+        textAlign: 'center',
+        marginTop: '20px'
+      }
+    },
+    contentStructure: {
+      title: 'Turning Point',
+      situation: '',
+      insight: '',
+      impact: '',
+      evidence: ''
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // VALIDATION & ITERATION (NEW - Process & Execution)
+  // ═══════════════════════════════════════════════════════════════════════════
+  validationIteration: {
+    figmaNodeId: '2025:011',
+    name: 'Validation & Iteration',
+    isNew: true,
+    dimensions: { width: 1513, height: 1100 },
+    layout: {
+      type: 'iteration-timeline',
+      rounds: 3
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      iterationCard: {
+        container: {
+          background: '#FFFFFF',
+          borderRadius: '16px',
+          padding: '32px',
+          border: '2px solid #188AEC'
+        },
+        roundBadge: {
+          background: '#188AEC',
+          color: '#FFFFFF',
+          fontSize: '18px',
+          fontWeight: 700,
+          padding: '8px 16px',
+          borderRadius: '20px'
+        },
+        method: {
+          fontSize: '22px',
+          fontWeight: 600,
+          color: '#282D46',
+          marginTop: '16px'
+        },
+        participants: {
+          fontSize: '18px',
+          fontWeight: 400,
+          color: '#666666'
+        },
+        findings: {
+          container: {
+            background: '#FFF4CE',
+            borderRadius: '12px',
+            padding: '16px',
+            marginTop: '16px'
+          },
+          text: {
+            fontSize: '20px',
+            fontWeight: 500,
+            color: '#67530C'
+          }
+        },
+        changes: {
+          container: {
+            background: 'rgba(143, 216, 24, 0.2)',
+            borderRadius: '12px',
+            padding: '16px',
+            marginTop: '12px'
+          },
+          text: {
+            fontSize: '20px',
+            fontWeight: 500,
+            color: '#3C5612'
+          }
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Validation & Iteration',
+      testingRounds: [
+        { round: 1, method: '', participants: '', findings: [], changes: [] }
+      ],
+      validationMetrics: []
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BUSINESS IMPACT (Enhanced for 2025)
+  // ═══════════════════════════════════════════════════════════════════════════
+  businessImpact: {
+    figmaNodeId: '2025:012',
+    name: 'Business Impact',
+    isEnhanced: true,
+    dimensions: { width: 1513, height: 1200 },
+    layout: {
+      type: 'impact-dashboard',
+      sections: 4
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      metricCard: {
+        container: {
+          background: '#F6FAFE',
+          borderRadius: '16px',
+          padding: '32px'
+        },
+        before: {
+          fontSize: '26px',
+          fontWeight: 500,
+          color: '#F57878',
+          textDecoration: 'line-through'
+        },
+        after: {
+          fontSize: '48px',
+          fontWeight: 700,
+          color: '#188AEC'
+        },
+        improvement: {
+          fontSize: '22px',
+          fontWeight: 600,
+          color: '#3C5612',
+          background: 'rgba(143, 216, 24, 0.3)',
+          padding: '4px 12px',
+          borderRadius: '12px'
+        },
+        label: {
+          fontSize: '22px',
+          fontWeight: 500,
+          color: '#282D46'
+        }
+      },
+      qualitativeSection: {
+        container: {
+          background: '#FFFFFF',
+          borderRadius: '16px',
+          padding: '32px',
+          border: '1px solid #CBD4DC'
+        },
+        title: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#282D46'
+        },
+        quote: {
+          fontSize: '22px',
+          fontWeight: 400,
+          fontStyle: 'italic',
+          color: '#282D46',
+          borderLeft: '4px solid #188AEC',
+          paddingLeft: '20px'
+        }
+      },
+      behavioralSection: {
+        title: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#282D46'
+        },
+        change: {
+          container: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px'
+          },
+          arrow: {
+            color: '#188AEC'
+          },
+          text: {
+            fontSize: '22px',
+            fontWeight: 500,
+            color: '#282D46'
+          }
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Business Impact',
+      quantitativeMetrics: [],
+      qualitativeFeedback: [],
+      behavioralChanges: [],
+      longTermSuccess: ''
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DESIGN SYSTEM IMPACT (NEW - Outcome)
+  // ═══════════════════════════════════════════════════════════════════════════
+  designSystemImpact: {
+    figmaNodeId: '2025:013',
+    name: 'Design System Impact',
+    isNew: true,
+    dimensions: { width: 1513, height: 700 },
+    layout: {
+      type: 'impact-metrics',
+      columns: 4
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      statCard: {
+        container: {
+          background: '#F6FAFE',
+          borderRadius: '16px',
+          padding: '32px',
+          textAlign: 'center'
+        },
+        value: {
+          fontSize: '64px',
+          fontWeight: 700,
+          color: '#188AEC'
+        },
+        label: {
+          fontSize: '22px',
+          fontWeight: 500,
+          color: '#282D46',
+          marginTop: '8px'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Design System Impact',
+      componentsCreated: [],
+      patternsEstablished: [],
+      adoptionRate: '',
+      timeSaved: ''
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // UI/UX IMPROVEMENTS (Enhanced for 2025)
+  // ═══════════════════════════════════════════════════════════════════════════
+  uiUxImprovements: {
+    figmaNodeId: '2025:014',
+    name: 'UI/UX Improvements',
+    dimensions: { width: 1513, height: 1000 },
+    layout: {
+      type: 'before-after-grid',
+      comparisons: 3
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      comparisonCard: {
+        container: {
+          background: '#FFFFFF',
+          borderRadius: '16px',
+          overflow: 'hidden',
+          border: '1px solid #CBD4DC'
+        },
+        header: {
+          background: '#F6FAFE',
+          padding: '16px 24px',
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#282D46'
+        },
+        imageContainer: {
+          display: 'flex',
+          gap: '2px'
+        },
+        before: {
+          background: '#FCCFCF',
+          padding: '8px',
+          label: {
+            fontSize: '14px',
+            fontWeight: 600,
+            color: '#49010E'
+          }
+        },
+        after: {
+          background: 'rgba(143, 216, 24, 0.3)',
+          padding: '8px',
+          label: {
+            fontSize: '14px',
+            fontWeight: 600,
+            color: '#3C5612'
+          }
+        },
+        metric: {
+          background: '#EDF6FE',
+          padding: '16px 24px',
+          fontSize: '22px',
+          fontWeight: 600,
+          color: '#188AEC'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'UI/UX Improvements',
+      comparisons: [],
+      overallImprovement: ''
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // TEAM & ORGANIZATIONAL IMPACT (NEW - Outcome)
+  // ═══════════════════════════════════════════════════════════════════════════
+  teamOrganizationalImpact: {
+    figmaNodeId: '2025:015',
+    name: 'Team & Organizational Impact',
+    isNew: true,
+    dimensions: { width: 1513, height: 800 },
+    layout: {
+      type: 'impact-categories',
+      columns: 3
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      categoryCard: {
+        container: {
+          background: '#F6FAFE',
+          borderRadius: '16px',
+          padding: '32px'
+        },
+        icon: {
+          size: 56,
+          background: '#188AEC',
+          color: '#FFFFFF',
+          borderRadius: '50%'
+        },
+        title: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#282D46',
+          marginTop: '20px'
+        },
+        items: {
+          fontSize: '22px',
+          fontWeight: 500,
+          lineHeight: 1.731,
+          color: '#282D46',
+          listStyleType: 'disc',
+          marginLeft: '20px'
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Team & Organizational Impact',
+      processImprovements: [],
+      collaborationWins: [],
+      mentorship: [],
+      cultureImpact: ''
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // REFLECTION & NEXT STEPS (Enhanced for 2025)
+  // ═══════════════════════════════════════════════════════════════════════════
+  reflectionNextSteps: {
+    figmaNodeId: '2025:016',
+    name: 'Reflection & Next Steps',
+    dimensions: { width: 1513, height: 800 },
+    layout: {
+      type: 'two-column-reflection',
+      leftColumn: 'learnings',
+      rightColumn: 'nextSteps'
+    },
+    components: {
+      title: {
+        fontSize: '48px',
+        fontWeight: 600,
+        letterSpacing: '-1.44px',
+        color: '#282D46'
+      },
+      learningsSection: {
+        container: {
+          background: '#F6FAFE',
+          borderRadius: '16px',
+          padding: '32px'
+        },
+        subtitle: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#188AEC',
+          marginBottom: '20px'
+        },
+        item: {
+          fontSize: '22px',
+          fontWeight: 500,
+          lineHeight: 1.731,
+          color: '#282D46',
+          marginBottom: '16px',
+          paddingLeft: '24px',
+          borderLeft: '3px solid #188AEC'
+        }
+      },
+      nextStepsSection: {
+        container: {
+          background: '#EDF6FE',
+          borderRadius: '16px',
+          padding: '32px'
+        },
+        subtitle: {
+          fontSize: '26px',
+          fontWeight: 600,
+          color: '#188AEC',
+          marginBottom: '20px'
+        },
+        item: {
+          container: {
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '16px',
+            marginBottom: '16px'
+          },
+          number: {
+            background: '#188AEC',
+            color: '#FFFFFF',
+            width: 32,
+            height: 32,
+            borderRadius: '50%',
+            fontSize: '18px',
+            fontWeight: 600,
+            textAlign: 'center',
+            lineHeight: '32px'
+          },
+          text: {
+            fontSize: '22px',
+            fontWeight: 500,
+            color: '#282D46'
+          }
+        }
+      }
+    },
+    contentStructure: {
+      title: 'Reflection & Next Steps',
+      keyLearnings: [],
+      whatWouldChange: [],
+      futureIterations: [],
+      personalGrowth: ''
+    }
   }
 };
 
@@ -1262,6 +2401,7 @@ export const getSectionDesign = (sectionName) => {
   const normalizedName = sectionName.toLowerCase().replace(/[^a-z0-9]/g, '');
 
   const sectionMapping = {
+    // Original Carex sections
     'hero': 'hero',
     'problemstatement': 'problemStatement',
     'objectivesgoals': 'objectivesGoals',
@@ -1277,7 +2417,7 @@ export const getSectionDesign = (sectionName) => {
     'needs': 'userNeeds',
     'featuresfunctionalities': 'featuresFunctionalities',
     'features': 'featuresFunctionalities',
-    'productuserchallengeschallenges': 'productUserChallenges',
+    'productuserchallenges': 'productUserChallenges',
     'userchallenges': 'productUserChallenges',
     'competitoranalysis': 'competitorAnalysis',
     'competitors': 'competitorAnalysis',
@@ -1302,7 +2442,56 @@ export const getSectionDesign = (sectionName) => {
     'screens': 'screens',
     'screengallery': 'screens',
     'thankyou': 'thankYou',
-    'thanks': 'thankYou'
+    'thanks': 'thankYou',
+
+    // NEW 2025 sections
+    'businessimpactpreview': 'businessImpactPreview',
+    'impactpreview': 'businessImpactPreview',
+    'designvisionstrategy': 'designVisionStrategy',
+    'visionstrategy': 'designVisionStrategy',
+    'designvision': 'designVisionStrategy',
+    'crossfunctionalalignment': 'crossFunctionalAlignment',
+    'crossfunctional': 'crossFunctionalAlignment',
+    'stakeholderalignment': 'crossFunctionalAlignment',
+    'technicalconstraints': 'technicalConstraints',
+    'constraints': 'technicalConstraints',
+    'aimlconsiderations': 'aiMlConsiderations',
+    'aiconsiderations': 'aiMlConsiderations',
+    'mlconsiderations': 'aiMlConsiderations',
+    'keyinsights': 'keyInsights',
+    'insights': 'keyInsights',
+    'designexplorationstradeoffs': 'designExplorationsTradeoffs',
+    'designexplorations': 'designExplorationsTradeoffs',
+    'tradeoffs': 'designExplorationsTradeoffs',
+    'explorations': 'designExplorationsTradeoffs',
+    'designsystemcontribution': 'designSystemContribution',
+    'systemcontribution': 'designSystemContribution',
+    'componentcontribution': 'designSystemContribution',
+    'challengesobstacles': 'challengesObstacles',
+    'challenges': 'challengesObstacles',
+    'obstacles': 'challengesObstacles',
+    'turningpoint': 'turningPoint',
+    'ahahmoment': 'turningPoint',
+    'pivot': 'turningPoint',
+    'validationiteration': 'validationIteration',
+    'validation': 'validationIteration',
+    'iteration': 'validationIteration',
+    'testing': 'validationIteration',
+    'businessimpact': 'businessImpact',
+    'impact': 'businessImpact',
+    'results': 'businessImpact',
+    'designsystemimpact': 'designSystemImpact',
+    'systemimpact': 'designSystemImpact',
+    'uiuximprovements': 'uiUxImprovements',
+    'improvements': 'uiUxImprovements',
+    'beforeafter': 'uiUxImprovements',
+    'teamorganizationalimpact': 'teamOrganizationalImpact',
+    'teamimpact': 'teamOrganizationalImpact',
+    'organizationalimpact': 'teamOrganizationalImpact',
+    'reflectionnextsteps': 'reflectionNextSteps',
+    'reflection': 'reflectionNextSteps',
+    'nextsteps': 'reflectionNextSteps',
+    'learnings': 'reflectionNextSteps'
   };
 
   const key = sectionMapping[normalizedName];
