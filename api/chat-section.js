@@ -1,6 +1,57 @@
 // Vercel serverless function for chat-based section generation
 // Handles natural language requests to add sections to case studies
 
+// Carex Figma design configuration (inline for serverless compatibility)
+const carexDesignTokens = {
+  colors: {
+    dark: '#282D46',
+    primary: '#188AEC',
+    extraLight: '#F6FAFE',
+    light: '#CBD4DC',
+    lightSecondary: '#EFEFEF',
+    extraLightSecondary: '#EDF6FE',
+    white: '#FFFFFF',
+    darkSecondary: '#143D61',
+    sunglow: '#FFD52F',
+    cons: '#F57878',
+    screenLabel: '#6A7D8E'
+  },
+  typography: {
+    fontFamily: "'Poppins', sans-serif",
+    title: { fontSize: '72px', fontWeight: 600 },
+    heading: { fontSize: '48px', fontWeight: 600 },
+    subheading: { fontSize: '32px', fontWeight: 600 },
+    body: { fontSize: '26px', fontWeight: 500, lineHeight: 1.826 },
+    bodySmall: { fontSize: '22px', fontWeight: 500 },
+    caption: { fontSize: '18px', fontWeight: 400 }
+  }
+};
+
+const carexSectionTypes = [
+  { id: 'hero', name: 'Hero', description: 'Hero section with title, tag, and phone mockups' },
+  { id: 'problemStatement', name: 'Problem Statement', description: 'Centered problem statement with decorative border' },
+  { id: 'objectivesGoals', name: 'Objectives & Goals', description: 'Two-column layout with objectives and goals' },
+  { id: 'ourProcess', name: 'Our Process', description: 'Double Diamond process with 4 steps (Discover, Define, Ideate, Design)' },
+  { id: 'businessChallenges', name: 'Business Challenges', description: 'List of challenges with arrow icons' },
+  { id: 'productUsers', name: 'Product Users', description: 'Target users section with floating avatars' },
+  { id: 'quantitativeResearch', name: 'Quantitative Research', description: 'Research metrics with scattered percentage layout' },
+  { id: 'userNeeds', name: 'User Needs', description: 'Sequential list with arrow indicators' },
+  { id: 'featuresFunctionalities', name: 'Features & Functionalities', description: 'Icon grid showing key features' },
+  { id: 'productUserChallenges', name: 'Product User Challenges', description: 'List of user challenges' },
+  { id: 'competitorAnalysis', name: 'Competitor Analysis', description: 'Two-column competitor comparison cards' },
+  { id: 'uniqueFeatures', name: 'Unique Features', description: 'Checkmark list of differentiating features' },
+  { id: 'userPersona', name: 'User Persona', description: 'Detailed persona with profile, Maslow pyramid, and quote' },
+  { id: 'taskMapping', name: 'Task Mapping', description: 'Table mapping tasks through steps with challenges and emotions' },
+  { id: 'eisenhowerMatrix', name: 'Eisenhower Matrix', description: '2x2 prioritization matrix (Important/Urgent)' },
+  { id: 'fiveWhyAnalysis', name: '5 Why Analysis', description: 'Flowchart showing root cause analysis' },
+  { id: 'rootCauseAnalysis', name: 'Root Cause Analysis', description: 'Fishbone diagram for RCA' },
+  { id: 'taskflows', name: 'Taskflows', description: 'User flow scenarios with connected steps' },
+  { id: 'sketches', name: 'Sketches', description: 'Wireframe sketches grid' },
+  { id: 'majorScreens', name: 'Major Screens', description: 'Annotated screen designs with callouts' },
+  { id: 'screens', name: 'Screens', description: 'Screen gallery with labeled categories' },
+  { id: 'thankYou', name: 'Thank You', description: 'Closing section with 3D decorations' }
+];
+
 export default async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
@@ -25,11 +76,42 @@ export default async function handler(req, res) {
 
   const sectionNames = existingSections?.map(s => s.title).join(', ') || 'None';
   const hasDocument = documentContent && documentContent.length > 0;
+  const isCarexTemplate = caseStudyContext?.template === 'carex';
 
   // Trim document content to avoid timeout (max 8000 chars)
   const trimmedDocContent = hasDocument && documentContent.length > 8000
     ? documentContent.slice(0, 8000) + '\n\n[Content truncated for processing...]'
     : documentContent;
+
+  // Build Carex-specific section types string
+  const carexSectionTypesStr = carexSectionTypes.map(s => `- ${s.id}: ${s.name} - ${s.description}`).join('\n');
+
+  // Carex design system instructions
+  const carexDesignInstructions = isCarexTemplate ? `
+=== CAREX TEMPLATE DESIGN SYSTEM ===
+You are generating sections for the CAREX template which follows a specific Figma design system.
+
+DESIGN TOKENS:
+- Colors: Primary (#188AEC), Dark (#282D46), Extra Light (#F6FAFE), Light Border (#CBD4DC), Error/Cons (#F57878)
+- Typography: Poppins font family, Headings 48px SemiBold, Body 26px Medium with 1.826 line-height
+- Layout: Max width 1512px, content padding 172px, section gap 100px
+
+CAREX-SPECIFIC SECTION TYPES (use these instead of generic types):
+${carexSectionTypesStr}
+
+IMPORTANT CAREX DESIGN RULES:
+1. Match the exact section type from the Figma designs when possible
+2. Use the Carex color palette in your generated content suggestions
+3. Follow the specific data structures for each Carex section type
+4. When user asks for "competitor analysis", use competitorAnalysis type with two competitor cards
+5. When user asks for "research" or "metrics", use quantitativeResearch with percentage observations
+6. When user asks for "persona", use userPersona with Maslow pyramid structure
+7. When user asks for "prioritization" or "matrix", use eisenhowerMatrix with 4 quadrants
+8. When user asks for "why analysis" or "root cause", use fiveWhyAnalysis or rootCauseAnalysis
+9. Extract REAL data from attached documents to populate sections
+
+=== END CAREX DESIGN SYSTEM ===
+` : '';
 
   const systemPrompt = `You are an AI assistant helping users add sections to their UX case study portfolio. You help parse natural language requests and generate appropriate content.
 
@@ -38,7 +120,7 @@ Current case study context:
 - Subtitle: ${caseStudyContext?.subtitle || ''}
 - Template: ${caseStudyContext?.template || 'default'}
 - Existing sections: ${sectionNames}
-${hasDocument ? `
+${carexDesignInstructions}${hasDocument ? `
 IMPORTANT: The user has attached a document. Use the content from this document to generate accurate, relevant sections. Extract real information from the document rather than making up generic content.
 
 === ATTACHED DOCUMENT CONTENT ===
@@ -116,7 +198,103 @@ conclusion:
 
 text:
 { "title": "string", "paragraphs": ["string", "string"] }
+${isCarexTemplate ? `
+=== CAREX-SPECIFIC DATA FORMATS ===
+For Carex template, use these specialized formats:
 
+competitorAnalysis:
+{
+  "title": "Competitor Analysis",
+  "competitors": [
+    { "name": "Competitor 1", "description": "Brief overview", "features": ["Feature 1", "Feature 2", "Feature 3"] },
+    { "name": "Competitor 2", "description": "Brief overview", "features": ["Feature 1", "Feature 2", "Feature 3"] }
+  ]
+}
+
+quantitativeResearch:
+{
+  "title": "Quantitative Research",
+  "description": "Research methodology explanation",
+  "observations": [
+    { "percentage": "80%", "description": "Key finding 1" },
+    { "percentage": "65%", "description": "Key finding 2" },
+    { "percentage": "45%", "description": "Key finding 3" }
+  ]
+}
+
+userPersona:
+{
+  "title": "User Persona",
+  "persona": {
+    "name": "Person Name",
+    "role": "Job Title",
+    "age": "28",
+    "location": "City, Country",
+    "education": "Degree",
+    "status": "Employment status",
+    "description": "Background description",
+    "dayInLife": ["Morning activity", "Work activity", "Evening activity"],
+    "painPoints": ["Pain point 1", "Pain point 2", "Pain point 3"],
+    "maslowLevel": "Esteem",
+    "quote": "A representative quote from this persona"
+  }
+}
+
+eisenhowerMatrix:
+{
+  "title": "Prioritization Matrix",
+  "quadrants": {
+    "doFirst": ["Important & Urgent task 1", "Important & Urgent task 2"],
+    "schedule": ["Important & Not Urgent task 1", "Important & Not Urgent task 2"],
+    "delegate": ["Not Important & Urgent task 1"],
+    "eliminate": ["Not Important & Not Urgent task 1"]
+  }
+}
+
+fiveWhyAnalysis:
+{
+  "title": "5 Why Analysis",
+  "problems": [
+    {
+      "statement": "Initial problem",
+      "whys": ["Why 1 answer", "Why 2 answer", "Why 3 answer", "Why 4 answer"],
+      "rootCause": "The root cause"
+    }
+  ]
+}
+
+businessChallenges:
+{
+  "title": "Business Challenges",
+  "challenges": ["Challenge 1 description", "Challenge 2 description", "Challenge 3 description"]
+}
+
+userNeeds:
+{
+  "title": "User Needs",
+  "needs": ["Need 1 description", "Need 2 description", "Need 3 description"]
+}
+
+uniqueFeatures:
+{
+  "title": "Unique Features",
+  "features": ["Feature 1 that differentiates", "Feature 2 that differentiates", "Feature 3 that differentiates"]
+}
+
+problemStatement:
+{
+  "title": "Problem Statement",
+  "statement": "The core problem description in 1-2 sentences"
+}
+
+objectivesGoals:
+{
+  "title": "Objectives & Goals",
+  "objectives": ["Objective 1", "Objective 2"],
+  "goals": ["Goal 1", "Goal 2"]
+}
+=== END CAREX-SPECIFIC FORMATS ===
+` : ''}
 If the request is unclear, return:
 {
   "action": "clarify",

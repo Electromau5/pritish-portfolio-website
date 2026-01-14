@@ -423,6 +423,26 @@ const CaseStudyEditor = () => {
     }));
   };
 
+  // State for save feedback in preview
+  const [saveStatus, setSaveStatus] = useState('idle'); // idle, saving, saved
+
+  // Preview save handler with feedback
+  const handlePreviewSave = async () => {
+    setSaveStatus('saving');
+    try {
+      const updatedCaseStudy = {
+        ...caseStudy,
+        updatedAt: new Date().toISOString()
+      };
+      await db.caseStudies.put(updatedCaseStudy);
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus('idle'), 2000);
+    } catch (error) {
+      console.error('Error saving:', error);
+      setSaveStatus('idle');
+    }
+  };
+
   // Preview mode
   if (showPreview) {
     const previewData = previewTemplate
@@ -454,6 +474,32 @@ const CaseStudyEditor = () => {
                 <span>Apply Template</span>
               </button>
             )}
+            <button
+              onClick={handlePreviewSave}
+              disabled={saveStatus === 'saving'}
+              className={`inline-flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                saveStatus === 'saved'
+                  ? 'bg-green-600 text-white'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
+              }`}
+            >
+              {saveStatus === 'saving' ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent" />
+                  <span>Saving...</span>
+                </>
+              ) : saveStatus === 'saved' ? (
+                <>
+                  <Check size={16} />
+                  <span>Saved!</span>
+                </>
+              ) : (
+                <>
+                  <Save size={16} />
+                  <span>Save Changes</span>
+                </>
+              )}
+            </button>
             <button
               onClick={() => {
                 setPreviewTemplate(null);
