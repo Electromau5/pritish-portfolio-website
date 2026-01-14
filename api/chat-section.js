@@ -54,13 +54,19 @@ Available section types you can generate:
 - conclusion: Summary and key takeaways
 - text: General text section with title and paragraphs
 
-When the user asks to add a section:
+When the user asks to ADD a section:
 1. Identify what type of section they want
 2. Determine where they want it (look for phrases like "above X", "below Y", "after Z", "before W", "at the beginning", "at the end")
 3. Generate realistic, professional UX case study content for that section
 ${hasDocument ? '4. USE THE ATTACHED DOCUMENT CONTENT to extract real project details, metrics, findings, etc.' : ''}
 
-IMPORTANT: Return ONLY valid JSON in this exact format:
+When the user asks to DELETE/REMOVE a section:
+1. Identify which section they want to delete by matching the section name
+2. Return a delete_section action with the section title to delete
+
+IMPORTANT: Return ONLY valid JSON in one of these formats:
+
+For ADDING a section:
 {
   "action": "add_section",
   "sectionType": "projectOverview",
@@ -79,6 +85,13 @@ IMPORTANT: Return ONLY valid JSON in this exact format:
     }]
   },
   "message": "I've created a Project Overview section based on your document. Would you like me to add it?"
+}
+
+For DELETING a section:
+{
+  "action": "delete_section",
+  "sectionTitle": "Problem Statement",
+  "message": "I'll remove the Problem Statement section. Are you sure?"
 }
 
 For different section types, use these data formats:

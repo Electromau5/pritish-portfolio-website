@@ -1,20 +1,55 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Sparkles, Loader2 } from 'lucide-react';
+import { X, Sparkles, Loader2, Trash2 } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import SectionPreviewCard from './SectionPreviewCard';
 import { generateSectionFromChat } from '../../services/claudeService';
 import { parseDocument } from '../../services/fileParser';
-import { calculateInsertionIndex, getInsertionDescription } from '../../utils/sectionMatcher';
+import { calculateInsertionIndex, getInsertionDescription, findSectionIndex } from '../../utils/sectionMatcher';
 
 const INITIAL_MESSAGE = {
   role: 'assistant',
-  content: `Hi! I can help you add sections to this case study. You can:
+  content: `Hi! I can help you manage sections in this case study. You can:
 
-- Type requests like "Add a Project Overview at the beginning"
-- Attach a PDF/DOCX and ask me to create sections from it
-- Say "Create all sections from the document" after attaching a file`
+- "Add a Project Overview at the beginning"
+- "Delete the Problem Statement section"
+- Attach a PDF/DOCX and ask me to create sections from it`
 };
+
+// Delete confirmation card component
+const DeleteConfirmCard = ({ sectionTitle, onConfirm, onCancel }) => (
+  <div className="bg-red-50 rounded-xl p-4 border border-red-200">
+    <div className="flex items-center gap-2 mb-3">
+      <div className="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center">
+        <Trash2 size={16} className="text-white" />
+      </div>
+      <div>
+        <p className="text-xs text-red-600 font-medium uppercase tracking-wide">
+          Delete Section
+        </p>
+        <h4 className="font-medium text-gray-900">{sectionTitle}</h4>
+      </div>
+    </div>
+    <p className="text-sm text-gray-600 mb-4">
+      Are you sure you want to delete this section? This action cannot be undone.
+    </p>
+    <div className="flex gap-2">
+      <button
+        onClick={onConfirm}
+        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
+      >
+        <Trash2 size={16} />
+        Delete
+      </button>
+      <button
+        onClick={onCancel}
+        className="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+);
 
 const AIChatSidebar = ({
   isOpen,
@@ -22,12 +57,14 @@ const AIChatSidebar = ({
   caseStudy,
   sections,
   onInsertSection,
+  onDeleteSection,
   template
 }) => {
   const [messages, setMessages] = useState([INITIAL_MESSAGE]);
   const [inputValue, setInputValue] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [pendingSection, setPendingSection] = useState(null);
+  const [pendingDelete, setPendingDelete] = useState(null);
   const [attachedFile, setAttachedFile] = useState(null);
   const [parsedFileContent, setParsedFileContent] = useState(null);
   const [isParsingFile, setIsParsingFile] = useState(false);
@@ -39,7 +76,7 @@ const AIChatSidebar = ({
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, pendingSection]);
+  }, [messages, pendingSection, pendingDelete]);
 
   // Handle escape key to close
   useEffect(() => {
@@ -135,6 +172,24 @@ const AIChatSidebar = ({
           role: 'assistant',
           content: result.message || `I've generated a ${result.sectionType} section for you. Would you like to add it?`
         }]);
+      } else if (result.action === 'delete_section' && result.sectionTitle) {
+        // Find the section index to verify it exists
+        const sectionIndex = findSectionIndex(sections, result.sectionTitle);
+        if (sectionIndex !== -1) {
+          setPendingDelete({
+            sectionTitle: sections[sectionIndex].title,
+            sectionIndex: sectionIndex
+          });
+          setMessages(prev => [...prev, {
+            role: 'assistant',
+            content: result.message || `I'll delete the "${sections[sectionIndex].title}" section.`
+          }]);
+        } else {
+          setMessages(prev => [...prev, {
+            role: 'assistant',
+            content: `I couldn't find a section called "${result.sectionTitle}". The available sections are: ${sections.map(s => s.title).join(', ')}`
+          }]);
+        }
       } else if (result.action === 'clarify') {
         setMessages(prev => [...prev, {
           role: 'assistant',
@@ -182,7 +237,26 @@ const AIChatSidebar = ({
     setPendingSection(null);
     setMessages(prev => [...prev, {
       role: 'system',
-      content: 'Section discarded. What else would you like to add?'
+      content: 'Section discarded. What else would you like to do?'
+    }]);
+  };
+
+  const handleConfirmDelete = () => {
+    if (pendingDelete && onDeleteSection) {
+      onDeleteSection(pendingDelete.sectionIndex);
+      setMessages(prev => [...prev, {
+        role: 'system',
+        content: `Deleted "${pendingDelete.sectionTitle}" section.`
+      }]);
+      setPendingDelete(null);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setPendingDelete(null);
+    setMessages(prev => [...prev, {
+      role: 'system',
+      content: 'Delete cancelled. What else would you like to do?'
     }]);
   };
 
@@ -216,7 +290,7 @@ const AIChatSidebar = ({
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">AI Assistant</h3>
-              <p className="text-xs text-gray-500">Add sections with AI</p>
+              <p className="text-xs text-gray-500">Add or delete sections</p>
             </div>
           </div>
           <button
@@ -243,6 +317,15 @@ const AIChatSidebar = ({
             />
           )}
 
+          {/* Pending Delete Confirmation */}
+          {pendingDelete && (
+            <DeleteConfirmCard
+              sectionTitle={pendingDelete.sectionTitle}
+              onConfirm={handleConfirmDelete}
+              onCancel={handleCancelDelete}
+            />
+          )}
+
           {/* Typing indicator */}
           {isGenerating && (
             <div className="flex items-center gap-2 text-gray-400 text-sm">
@@ -260,7 +343,7 @@ const AIChatSidebar = ({
           onChange={setInputValue}
           onSend={handleSend}
           disabled={isGenerating}
-          placeholder="Ask me to add a section..."
+          placeholder="Ask me to add or delete a section..."
           attachedFile={attachedFile}
           onFileAttach={handleFileAttach}
           onFileRemove={handleFileRemove}

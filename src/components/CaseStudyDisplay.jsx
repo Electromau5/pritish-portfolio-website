@@ -1858,6 +1858,12 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
     setHasLocalChanges(true);
   };
 
+  // Handler for deleting sections from chat
+  const handleDeleteSection = (index) => {
+    setLocalSections(prev => prev.filter((_, i) => i !== index));
+    setHasLocalChanges(true);
+  };
+
   // Load case study from database
   useEffect(() => {
     if (caseStudyData) {
@@ -2036,6 +2042,7 @@ const CaseStudyDisplay = ({ caseStudyData, isPreview = false }) => {
             caseStudy={caseStudy}
             sections={hasLocalChanges ? localSections : (caseStudy?.sections || [])}
             onInsertSection={handleInsertSection}
+            onDeleteSection={handleDeleteSection}
             template={template}
           />
 
