@@ -56,7 +56,7 @@ const UXPortfolio = () => {
             path="/"
             element={
               <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-light transition-colors duration-200">
-                <Navigation onNavigate={scrollToSection} name="Pritish Sai" />
+                <Navigation onNavigate={scrollToSection} />
                 <HeroSection
                   scrollY={scrollY}
                   onExploreClick={handleExploreClick}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 
-const Navigation = ({ onNavigate, name = "Pritish Sai" }) => {
+const Navigation = ({ onNavigate }) => {
     const navItems = [
         { label: "Home", sectionIndex: 0 },
         { label: "About", sectionIndex: 1 },
@@ -11,16 +12,21 @@ const Navigation = ({ onNavigate, name = "Pritish Sai" }) => {
         { label: "Contact", sectionIndex: 4 }
     ];
     const navigate = useNavigate();
+    const { isDark } = useTheme();
 
     return (
         <nav className="site-nav">
             <div className="site-nav__inner">
                 <button
                     className="site-nav__brand"
-                    onClick={() => navigate('/home')}
+                    onClick={() => navigate('/')}
                     style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
                 >
-                    {name}
+                    <img
+                        src={isDark ? '/images/logo-dark.png' : '/images/logo-light.png'}
+                        alt="Artemis Design Labs"
+                        className="h-8 w-auto"
+                    />
                 </button>
                 <div className="site-nav__links">
                     {navItems.map((item) => (
