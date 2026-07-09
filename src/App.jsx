@@ -55,16 +55,12 @@ const UXPortfolio = () => {
           <Route
             path="/"
             element={
-              <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-light transition-colors duration-200">
-                <Navigation onNavigate={scrollToSection} />
-                <HeroSection
-                  scrollY={scrollY}
-                  onExploreClick={handleExploreClick}
-                  onScrollDown={handleScrollDown}
-                />
+              <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-page)', color: 'var(--text-primary)' }}>
+                <Navigation onNavigate={scrollToSection} name="Pritish Sai" />
+                <HeroSection onExploreClick={handleExploreClick} />
+                <DesignJourney />
                 <AboutSection />
                 <SkillsSection />
-                <DesignJourney />
                 <ContactSection
                   email="pritish@example.com"
                   linkedinUrl="https://linkedin.com/in/pritishpatel"

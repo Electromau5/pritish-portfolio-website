@@ -1,36 +1,117 @@
 import React from 'react';
-import { Mail, Linkedin } from 'lucide-react';
 
-const ContactSection = ({ email = "pritish@example.com", linkedinUrl = "https://linkedin.com" }) => {
+const ContactSection = ({
+    email = "pritish@example.com",
+    linkedinUrl = "https://linkedin.com/in/pritishpatel",
+    twitterUrl = "https://twitter.com",
+    dribbbleUrl = "https://dribbble.com",
+    readcvUrl = "https://read.cv",
+}) => {
+    const socialLinks = [
+        { label: "LinkedIn", href: linkedinUrl },
+        { label: "Twitter", href: twitterUrl },
+        { label: "Dribbble", href: dribbbleUrl },
+        { label: "Read.cv", href: readcvUrl },
+    ];
+
     return (
-        <section id="section-4" className="py-20 bg-gray-900 text-white">
-            <div className="max-w-4xl mx-auto px-6 text-center">
-                <h2 className="section-title mb-8">
-                    Let's Shape the Future Together
-                </h2>
-                <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-                    I'm always excited to discuss new opportunities, collaborate on innovative projects, or simply chat about the future of AI and design.
+        <footer
+            id="section-4"
+            style={{
+                backgroundColor: 'var(--bg-inverse)',
+                paddingTop: 100,
+                paddingBottom: 40,
+            }}
+        >
+            <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+                <p
+                    className="uppercase mb-5"
+                    style={{
+                        fontSize: 13,
+                        fontWeight: 500,
+                        color: 'var(--text-tertiary)',
+                        letterSpacing: '1.04px',
+                        lineHeight: 1.2,
+                    }}
+                >
+                    Get in touch
                 </p>
-                <div className="flex justify-center space-x-6">
-                    <a
-                        href={`mailto:${email}`}
-                        className="group flex items-center space-x-3 bg-white text-gray-900 px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:shadow-lg hover:scale-105"
+
+                <a
+                    href={`mailto:${email}`}
+                    style={{ textDecoration: 'none', display: 'block' }}
+                >
+                    <h2
+                        style={{
+                            fontSize: 'clamp(40px, 5.5vw, 64px)',
+                            fontWeight: 600,
+                            color: 'var(--text-inverse)',
+                            lineHeight: 1.05,
+                            letterSpacing: '-1.28px',
+                            marginBottom: 20,
+                            transition: 'opacity 0.15s',
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+                        onMouseLeave={e => e.currentTarget.style.opacity = '1'}
                     >
-                        <Mail size={20} />
-                        <span>Get in Touch</span>
-                    </a>
-                    <a
-                        href={linkedinUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center space-x-3 border border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 hover:shadow-lg hover:scale-105"
+                        Let's work<br />together.
+                    </h2>
+                </a>
+
+                <p
+                    style={{
+                        fontSize: 20,
+                        fontWeight: 400,
+                        color: 'var(--text-inverse)',
+                        lineHeight: 1.5,
+                        marginBottom: 48,
+                    }}
+                >
+                    {email}
+                </p>
+
+                {/* Spacer */}
+                <div style={{ height: 48 }} />
+
+                {/* Bottom bar */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+                    <p
+                        style={{
+                            fontSize: 13,
+                            fontWeight: 400,
+                            color: 'var(--text-tertiary)',
+                            lineHeight: 1.4,
+                            margin: 0,
+                        }}
                     >
-                        <Linkedin size={20} />
-                        <span>LinkedIn</span>
-                    </a>
+                        © 2025 Pritish Sai — Product Designer
+                    </p>
+
+                    <div style={{ display: 'flex', gap: 24 }}>
+                        {socialLinks.map((link) => (
+                            <a
+                                key={link.label}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    fontSize: 14,
+                                    fontWeight: 500,
+                                    color: 'var(--text-inverse)',
+                                    textDecoration: 'none',
+                                    lineHeight: 1.4,
+                                    transition: 'opacity 0.15s',
+                                }}
+                                onMouseEnter={e => e.currentTarget.style.opacity = '0.6'}
+                                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </section>
+        </footer>
     );
 };
 

@@ -1,53 +1,76 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../contexts/ThemeContext';
 
-const Navigation = ({ onNavigate }) => {
+const Navigation = ({ onNavigate, name = "Pritish Sai" }) => {
     const navItems = [
-        { label: "Home", sectionIndex: 0 },
+        { label: "Work", sectionIndex: 3 },
         { label: "About", sectionIndex: 1 },
-        { label: "Featured Work", sectionIndex: 3 },
         { label: "Resume", href: "/resume.pdf" },
-        { label: "Blog", href: "https://medium.com/ai-ui" },
-        { label: "Contact", sectionIndex: 4 }
+        { label: "Contact", sectionIndex: 4 },
     ];
-    const navigate = useNavigate();
-    const { isDark } = useTheme();
 
     return (
-        <nav className="site-nav">
-            <div className="site-nav__inner">
+        <nav
+            className="fixed top-0 inset-x-0 z-50"
+            style={{ backgroundColor: 'var(--bg-page)', borderBottom: '1px solid var(--border-subtle)' }}
+        >
+            <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-[24px] flex items-center justify-between">
                 <button
-                    className="site-nav__brand"
-                    onClick={() => navigate('/')}
-                    style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    style={{
+                        fontSize: 19,
+                        fontWeight: 600,
+                        color: 'var(--text-primary)',
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        lineHeight: 'normal',
+                        letterSpacing: 0,
+                    }}
                 >
-                    <img
-                        src={isDark ? '/images/logo-dark.png' : '/images/logo-light.png'}
-                        alt="Artemis Design Labs"
-                        className="h-8 w-auto"
-                    />
+                    {name}
                 </button>
-                <div className="site-nav__links">
-                    {navItems.map((item) => (
+                <div className="flex items-center gap-9">
+                    {navItems.map((item) =>
                         item.href ? (
-                            <button
+                            <a
                                 key={item.label}
-                                onClick={() => window.open(item.href, '_blank', 'noopener,noreferrer')}
-                                className="site-nav__link"
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    fontSize: 14,
+                                    fontWeight: 500,
+                                    color: 'var(--text-secondary)',
+                                    textDecoration: 'none',
+                                    transition: 'color 0.15s',
+                                }}
+                                onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
+                                onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
                             >
                                 {item.label}
-                            </button>
+                            </a>
                         ) : (
                             <button
                                 key={item.label}
                                 onClick={() => onNavigate(item.sectionIndex)}
-                                className="site-nav__link"
+                                style={{
+                                    fontSize: 14,
+                                    fontWeight: 500,
+                                    color: 'var(--text-secondary)',
+                                    background: 'none',
+                                    border: 'none',
+                                    padding: 0,
+                                    cursor: 'pointer',
+                                    transition: 'color 0.15s',
+                                }}
+                                onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
+                                onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
                             >
                                 {item.label}
                             </button>
                         )
-                    ))}
+                    )}
                 </div>
             </div>
         </nav>
