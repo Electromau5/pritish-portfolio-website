@@ -4,17 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Colour blindness filters applied to body via AccessibilityFAB */
-body.cb-protanopia   { filter: url(#cb-filter-protanopia); }
-body.cb-deuteranopia { filter: url(#cb-filter-deuteranopia); }
-body.cb-tritanopia   { filter: url(#cb-filter-tritanopia); }
-body.cb-grayscale    { filter: grayscale(100%); }
-body.cb-high-contrast {
-  filter: contrast(175%);
-  --text-primary: #000000;
-  --text-secondary: #1a1a1a;
-  --border-subtle: #000000;
-}
+/* Colour blindness filters applied to #root via AccessibilityFAB.
+   Keeping filters off body/html prevents breaking position:fixed on the FAB. */
+#root.cb-protanopia   { filter: url(#cb-filter-protanopia); }
+#root.cb-deuteranopia { filter: url(#cb-filter-deuteranopia); }
+#root.cb-tritanopia   { filter: url(#cb-filter-tritanopia); }
+#root.cb-grayscale    { filter: grayscale(100%); }
+#root.cb-high-contrast { filter: contrast(175%); }
 
 @layer base {
   :root {
