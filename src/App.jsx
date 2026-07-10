@@ -10,6 +10,7 @@ import ContactSection from './components/ContactSection';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import CaseStudyDisplay from './components/CaseStudyDisplay';
 import CMSApp from './cms/CMSApp';
+import AccessibilityFAB from './components/AccessibilityFAB';
 import { Routes, Route } from 'react-router-dom';
 import { migrateToArtifactsSystem } from './services/db';
 
@@ -72,6 +73,7 @@ const UXPortfolio = () => {
           <Route path="/case-study/:slug" element={<CaseStudyDisplay />} />
           <Route path="/cms/*" element={<CMSApp />} />
         </Routes>
+        <AccessibilityFAB />
       </AuthProvider>
     </ThemeProvider>
   );

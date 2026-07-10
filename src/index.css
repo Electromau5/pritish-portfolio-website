@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Colour blindness filters applied to body via AccessibilityFAB */
+body.cb-protanopia   { filter: url(#cb-filter-protanopia); }
+body.cb-deuteranopia { filter: url(#cb-filter-deuteranopia); }
+body.cb-tritanopia   { filter: url(#cb-filter-tritanopia); }
+body.cb-grayscale    { filter: grayscale(100%); }
+body.cb-high-contrast {
+  filter: contrast(175%);
+  --text-primary: #000000;
+  --text-secondary: #1a1a1a;
+  --border-subtle: #000000;
+}
+
 @layer base {
   :root {
     --bg-page: #fbfbf9;
