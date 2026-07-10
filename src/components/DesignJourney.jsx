@@ -22,7 +22,7 @@ const Tag = ({ label }) => (
 const ProjectCard = ({ project, onClick }) => (
     <article
         onClick={onClick}
-        style={{ display: 'flex', flexDirection: 'column', gap: 24, cursor: project.hasCaseStudy ? 'pointer' : 'default' }}
+        style={{ display: 'flex', flexDirection: 'column', gap: 24, cursor: (project.hasCaseStudy || project.caseStudyPath) ? 'pointer' : 'default' }}
     >
         <div
             style={{
@@ -104,6 +104,8 @@ const DesignJourney = () => {
             description: "Distilling student and school data into clear, actionable insights that empower educators with real-time clarity and turn data complexity into strategic action.",
             tags: ["AI Insights", "Data Visualization", "Education"],
             image: testImage,
+            hasCaseStudy: true,
+            caseStudyPath: '/work/ai-school-decisions',
         },
         {
             id: 3,
@@ -166,7 +168,9 @@ const DesignJourney = () => {
 
     const handleProjectClick = (project) => {
         if (project.hasCaseStudy) {
-            if (project.isCMS && project.slug) {
+            if (project.caseStudyPath) {
+                navigate(project.caseStudyPath);
+            } else if (project.isCMS && project.slug) {
                 navigate(`/case-study/${project.slug}`);
             } else {
                 navigate(`/project/${project.id}`);

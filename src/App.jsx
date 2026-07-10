@@ -9,6 +9,7 @@ import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import ProjectDetailPage from './components/ProjectDetailPage';
 import CaseStudyDisplay from './components/CaseStudyDisplay';
+import CaseStudyPage from './components/CaseStudyPage';
 import CMSApp from './cms/CMSApp';
 import AccessibilityFAB from './components/AccessibilityFAB';
 import { Routes, Route } from 'react-router-dom';
@@ -70,6 +71,7 @@ const UXPortfolio = () => {
             }
           />
           <Route path="/project/:projectId" element={<ProjectDetailPage />} />
+          <Route path="/work/ai-school-decisions" element={<CaseStudyPage />} />
           <Route path="/case-study/:slug" element={<CaseStudyDisplay />} />
           <Route path="/cms/*" element={<CMSApp />} />
         </Routes>
