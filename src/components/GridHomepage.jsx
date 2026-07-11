@@ -350,7 +350,9 @@ const AboutModalContent = ({ data }) => {
 const WorkModalContent = ({ data, navigate }) => {
     const handleProjectClick = (project) => {
         if (project.id === 1) {
-            navigate(`/project/${project.id}`);
+            navigate('/work/hands-ai');
+        } else if (project.id === 2) {
+            navigate('/work/ai-school-decisions');
         }
     };
 

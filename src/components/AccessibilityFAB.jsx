@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Accessibility, X, Type, Eye } from 'lucide-react';
+import { Accessibility, X, Type, Eye, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ZOOM_LEVELS = [
     { id: 'normal',  label: 'A', scale: 1,   title: 'Default'  },
@@ -54,6 +55,7 @@ const AccessibilityFAB = () => {
     const [open, setOpen] = useState(false);
     const [zoom, setZoom] = useState(() => localStorage.getItem('a11y-zoom') || 'normal');
     const [colorMode, setColorMode] = useState(() => localStorage.getItem('a11y-color') || 'normal');
+    const { isDark, toggleTheme } = useTheme();
 
     useEffect(() => {
         applyZoom(zoom);
@@ -75,6 +77,7 @@ const AccessibilityFAB = () => {
     const handleReset = () => {
         handleZoom('normal');
         handleColorMode('normal');
+        if (isDark) toggleTheme();
     };
 
     // The floating UI — rendered into #a11y-portal (a sibling of #root in index.html)
@@ -190,6 +193,53 @@ const AccessibilityFAB = () => {
                                             <div style={{ fontSize: 12, fontWeight: 600, color: '#1a1a1a', lineHeight: 1.2 }}>{mode.label}</div>
                                             <div style={{ fontSize: 10, color: '#9a9a96', lineHeight: 1.3 }}>{mode.description}</div>
                                         </div>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div style={{ height: 1, backgroundColor: '#e7e6e2', margin: '0 20px' }} />
+
+                    {/* Appearance */}
+                    <div style={{ padding: '16px 20px 20px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
+                            {isDark ? <Moon size={13} color="#9a9a96" /> : <Sun size={13} color="#9a9a96" />}
+                            <span style={{ fontSize: 11, fontWeight: 600, color: '#9a9a96', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Appearance</span>
+                        </div>
+                        <div style={{ display: 'flex', gap: 8 }}>
+                            {[
+                                { id: 'light', label: 'Light', Icon: Sun  },
+                                { id: 'dark',  label: 'Dark',  Icon: Moon },
+                            ].map(({ id, label, Icon }) => {
+                                const active = id === (isDark ? 'dark' : 'light');
+                                return (
+                                    <button
+                                        key={id}
+                                        onClick={() => { if (!active) toggleTheme(); }}
+                                        aria-label={`Switch to ${label} mode`}
+                                        aria-pressed={active}
+                                        style={{
+                                            flex: 1,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            gap: 6,
+                                            padding: '10px 12px',
+                                            borderRadius: 10,
+                                            border: active ? '1.5px solid #1a1a1a' : '1px solid #e7e6e2',
+                                            backgroundColor: active ? '#1a1a1a' : 'transparent',
+                                            color: active ? '#fafaf8' : '#6e6e6b',
+                                            fontSize: 13,
+                                            fontWeight: 600,
+                                            cursor: 'pointer',
+                                            transition: 'all 0.15s',
+                                            fontFamily: 'Inter, sans-serif',
+                                        }}
+                                    >
+                                        <Icon size={13} />
+                                        {label}
                                     </button>
                                 );
                             })}

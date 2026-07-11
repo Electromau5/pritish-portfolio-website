@@ -24,6 +24,17 @@
     --border-subtle: #e7e6e2;
   }
 
+  html.dark {
+    --bg-page: #040406;
+    --bg-subtle: #0b0c0f;
+    --bg-inverse: #ededed;
+    --text-primary: #e5e5e5;
+    --text-secondary: #919194;
+    --text-tertiary: #656569;
+    --text-inverse: #050507;
+    --border-subtle: #18191d;
+  }
+
   html,
   body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;

@@ -97,6 +97,17 @@ const DesignJourney = () => {
 
     const fallbackProjects = [
         {
+            id: 1,
+            title: "Transforming Healthcare with Smart Automation",
+            subtitle: "Healthcare · AI Chatbot",
+            year: "2024",
+            description: "Redefining healthcare case management by embedding an intelligent assistant that turns complex case workflows into seamless, insight-driven experiences.",
+            tags: ["Healthcare", "Conversational AI", "Case Automation"],
+            image: testImage,
+            hasCaseStudy: true,
+            caseStudyPath: '/work/hands-ai',
+        },
+        {
             id: 2,
             title: "AI for Smarter School Decisions",
             subtitle: "Education · Data Analytics",
@@ -115,6 +126,7 @@ const DesignJourney = () => {
             description: "Redesigned project management workflows to empower Verizon's engineering and network teams to manage complex initiatives from inception to delivery.",
             tags: ["Project Management", "Workflow Design", "Collaboration"],
             image: testImage,
+            hasCaseStudy: true,
         },
         {
             id: 4,
@@ -124,6 +136,7 @@ const DesignJourney = () => {
             description: "Reengineered Verizon's diagnostic interface by flattening overloaded network hierarchies into a modular, intuitive experience.",
             tags: ["Real-time Data", "Operations", "Data Visibility"],
             image: testImage,
+            hasCaseStudy: true,
         },
         {
             id: 5,
@@ -133,6 +146,7 @@ const DesignJourney = () => {
             description: "Redesigned Verizon's internal search function into an intuitive interface that enhanced metadata transparency and reorganized search logic.",
             tags: ["Customer Experience", "Enterprise Search", "Service Design"],
             image: testImage,
+            hasCaseStudy: true,
         },
     ];
 
