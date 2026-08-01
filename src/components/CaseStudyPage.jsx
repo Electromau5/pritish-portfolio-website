@@ -103,8 +103,12 @@ const CaseStudyPage = () => {
             </div>
           ))}
         </div>
-        <div style={{ backgroundColor: c.bgSubtle, border: `1px solid ${c.border}`, borderRadius: 24, height: 580, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 14, fontWeight: 500, color: c.muted }}>AI School Decisions — Platform Interface</span>
+        <div style={{ border: `1px solid ${c.border}`, borderRadius: 24, height: 580, overflow: 'hidden' }}>
+          <img
+            src="/images/doe-hero.png"
+            alt="AI School Decisions — Student Detail View showing attendance trends, grade averages, and intervention plans"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left', display: 'block' }}
+          />
         </div>
       </section>
 
