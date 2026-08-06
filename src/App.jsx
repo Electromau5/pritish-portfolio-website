@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthProvider } from './contexts/AuthContext';
 import Navigation from './components/Navigation';
+import LoadingScreen from './components/LoadingScreen';
 import HeroSection from './components/HeroSection';
 import DesignJourney from './components/DesignJourney';
 import AboutSection from './components/AboutSection';
@@ -17,6 +18,8 @@ import { Routes, Route } from 'react-router-dom';
 import { migrateToArtifactsSystem } from './services/db';
 
 const UXPortfolio = () => {
+  const [loading, setLoading] = useState(true);
+  const handleLoadingComplete = useCallback(() => setLoading(false), []);
   const [scrollY, setScrollY] = useState(0);
 
   // Run database migration on app load
@@ -52,8 +55,10 @@ const UXPortfolio = () => {
   };
 
   return (
-    <ThemeProvider>
-      <AuthProvider>
+    <>
+      {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      <ThemeProvider>
+        <AuthProvider>
         <Routes>
           <Route
             path="/"
@@ -78,8 +83,9 @@ const UXPortfolio = () => {
           <Route path="/cms/*" element={<CMSApp />} />
         </Routes>
         <AccessibilityFAB />
-      </AuthProvider>
-    </ThemeProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </>
   );
 };
 
